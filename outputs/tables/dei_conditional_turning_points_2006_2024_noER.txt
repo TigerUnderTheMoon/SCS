@@ -1,0 +1,4 @@
+DEI conditional turning points and marginal effects
+DEI low/mean/high are p25, mean, and p75 among e(sample).
+SCCD range among e(sample): [ 0.121422,  0.822216]; SCCD mean =  0.317449
+See CSV for nlcom standard errors and confidence intervals.

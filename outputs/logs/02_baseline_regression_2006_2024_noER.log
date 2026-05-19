@@ -1,0 +1,545 @@
+-------------------------------------------------------------------------------
+      name:  log02_noer
+       log:  D:/Workplace/SCS/outputs/logs/02_baseline_regression_2006_2024_noE
+> R.log
+  log type:  text
+ opened on:  16 May 2026, 04:09:00
+
+. 
+. use "$DATA", clear
+
+. keep if inrange(year, 2006, 2024)
+(0 observations deleted)
+
+. 
+. gen double lnCE = CE
+
+. label variable lnCE "Log carbon emissions"
+
+. 
+. capture confirm variable SCCD2
+
+. if _rc gen double SCCD2 = SCCD^2
+
+. label variable SCCD2 "Spatial coupling coordination degree squared"
+
+. 
+. xtset id year
+
+Panel variable: id (strongly balanced)
+ Time variable: year, 2006 to 2024
+         Delta: 1 unit
+
+. 
+. global BASE_CONTROLS OPEN UR URG GI
+
+. 
+. eststo clear
+
+. xtreg lnCE SCCD SCCD2 i.year, fe vce(cluster id)
+
+Fixed-effects (within) regression               Number of obs     =      5,396
+Group variable: id                              Number of groups  =        284
+
+R-squared:                                      Obs per group:
+     Within  = 0.5681                                         min =         19
+     Between = 0.5504                                         avg =       19.0
+     Overall = 0.4837                                         max =         19
+
+                                                F(20, 283)        =      88.30
+corr(u_i, Xb) = 0.2253                          Prob > F          =     0.0000
+
+                                   (Std. err. adjusted for 284 clusters in id)
+------------------------------------------------------------------------------
+             |               Robust
+        lnCE | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        SCCD |    13.4678    1.54617     8.71   0.000     10.42435    16.51125
+       SCCD2 |  -11.47182   1.813525    -6.33   0.000    -15.04153   -7.902112
+             |
+        year |
+       2007  |   .1131936   .0277577     4.08   0.000     .0585558    .1678314
+       2008  |   .2115057   .0285069     7.42   0.000     .1553933    .2676181
+       2009  |   .2771314   .0287432     9.64   0.000     .2205537    .3337091
+       2010  |   .2985005   .0290255    10.28   0.000     .2413672    .3556339
+       2011  |   .3232825   .0347823     9.29   0.000     .2548177    .3917473
+       2012  |   .3587993   .0430777     8.33   0.000      .274006    .4435926
+       2013  |   .2367169   .0515955     4.59   0.000     .1351573    .3382764
+       2014  |    .231576   .0557915     4.15   0.000      .121757    .3413949
+       2015  |   1.024753   .0579782    17.67   0.000     .9106293    1.138876
+       2016  |   1.065958   .0615489    17.32   0.000      .944806     1.18711
+       2017  |   1.090343    .064443    16.92   0.000     .9634943    1.217191
+       2018  |   1.066486   .0718711    14.84   0.000     .9250162    1.207956
+       2019  |   1.037664    .082284    12.61   0.000     .8756976     1.19963
+       2020  |    .014475   .0837825     0.17   0.863    -.1504409    .1793909
+       2021  |   .0855948   .0771373     1.11   0.268    -.0662409    .2374305
+       2022  |   .7466243   .0622449    11.99   0.000     .6241026    .8691461
+       2023  |   .7860717   .0657633    11.95   0.000     .6566244     .915519
+       2024  |    .825977   .0693217    11.92   0.000     .6895254    .9624287
+             |
+       _cons |   1.057338   .3105992     3.40   0.001       .44596    1.668716
+-------------+----------------------------------------------------------------
+     sigma_u |   .7270529
+     sigma_e |    .573362
+         rho |  .61655797   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+
+. estadd local cityfe "Yes"
+
+added macro:
+             e(cityfe) : "Yes"
+
+. estadd local yearfe "Yes"
+
+added macro:
+             e(yearfe) : "Yes"
+
+. eststo b1_noer
+
+. xtreg lnCE SCCD SCCD2 OPEN i.year, fe vce(cluster id)
+
+Fixed-effects (within) regression               Number of obs     =      5,381
+Group variable: id                              Number of groups  =        284
+
+R-squared:                                      Obs per group:
+     Within  = 0.5788                                         min =          4
+     Between = 0.5788                                         avg =       18.9
+     Overall = 0.5257                                         max =         19
+
+                                                F(21, 283)        =      85.37
+corr(u_i, Xb) = 0.2422                          Prob > F          =     0.0000
+
+                                   (Std. err. adjusted for 284 clusters in id)
+------------------------------------------------------------------------------
+             |               Robust
+        lnCE | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        SCCD |   12.34401   1.520665     8.12   0.000     9.350757    15.33726
+       SCCD2 |  -10.36917   1.815673    -5.71   0.000    -13.94311   -6.795234
+        OPEN |   .4855436   .1074025     4.52   0.000     .2741343    .6969528
+             |
+        year |
+       2007  |   .1367918    .027614     4.95   0.000     .0824369    .1911468
+       2008  |   .2234007   .0279652     7.99   0.000     .1683544     .278447
+       2009  |   .2916119   .0284104    10.26   0.000     .2356894    .3475345
+       2010  |   .3219895   .0287512    11.20   0.000     .2653961    .3785829
+       2011  |     .35196   .0339822    10.36   0.000     .2850701      .41885
+       2012  |   .3951788   .0423222     9.34   0.000     .3118724    .4784851
+       2013  |   .2646083   .0509462     5.19   0.000     .1643268    .3648898
+       2014  |   .2881303   .0537742     5.36   0.000     .1822821    .3939786
+       2015  |   1.082813   .0552934    19.58   0.000     .9739744    1.191652
+       2016  |   1.124208   .0587446    19.14   0.000     1.008576    1.239839
+       2017  |   1.148272   .0607593    18.90   0.000     1.028675     1.26787
+       2018  |   1.131518   .0672105    16.84   0.000     .9992217    1.263814
+       2019  |   1.097663   .0756409    14.51   0.000      .948773    1.246553
+       2020  |  -.0068606   .0812185    -0.08   0.933    -.1667296    .1530084
+       2021  |   .0633885   .0749629     0.85   0.398     -.084167    .2109441
+       2022  |   .7885489   .0603913    13.06   0.000     .6696758    .9074221
+       2023  |   .8287796   .0638224    12.99   0.000     .7031527    .9544065
+       2024  |   .8694242   .0672945    12.92   0.000     .7369629    1.001885
+             |
+       _cons |   1.170565   .2993948     3.91   0.000     .5812421    1.759889
+-------------+----------------------------------------------------------------
+     sigma_u |  .68616168
+     sigma_e |  .56579929
+         rho |  .59525864   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+
+. estadd local cityfe "Yes"
+
+added macro:
+             e(cityfe) : "Yes"
+
+. estadd local yearfe "Yes"
+
+added macro:
+             e(yearfe) : "Yes"
+
+. eststo b2_noer
+
+. xtreg lnCE SCCD SCCD2 OPEN UR i.year, fe vce(cluster id)
+
+Fixed-effects (within) regression               Number of obs     =      5,381
+Group variable: id                              Number of groups  =        284
+
+R-squared:                                      Obs per group:
+     Within  = 0.6290                                         min =          4
+     Between = 0.5689                                         avg =       18.9
+     Overall = 0.5918                                         max =         19
+
+                                                F(22, 283)        =      88.21
+corr(u_i, Xb) = 0.1209                          Prob > F          =     0.0000
+
+                                   (Std. err. adjusted for 284 clusters in id)
+------------------------------------------------------------------------------
+             |               Robust
+        lnCE | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        SCCD |   9.122755   1.373909     6.64   0.000     6.418378    11.82713
+       SCCD2 |  -8.282669   1.622472    -5.10   0.000    -11.47631   -5.089025
+        OPEN |   .2041536   .0835129     2.44   0.015     .0397683    .3685389
+          UR |   .0321007   .0043736     7.34   0.000     .0234918    .0407097
+             |
+        year |
+       2007  |   .0699791   .0263759     2.65   0.008     .0180612    .1218969
+       2008  |    .143054   .0289195     4.95   0.000     .0861294    .1999787
+       2009  |   .1873346   .0303187     6.18   0.000     .1276558    .2470134
+       2010  |   .1845568   .0326266     5.66   0.000     .1203351    .2487785
+       2011  |    .189694   .0387584     4.89   0.000     .1134026    .2659854
+       2012  |   .2165258   .0457251     4.74   0.000     .1265214    .3065303
+       2013  |    .073023   .0528865     1.38   0.168    -.0310778    .1771238
+       2014  |   .0737418   .0562111     1.31   0.191    -.0369031    .1843868
+       2015  |   .8352697   .0578972    14.43   0.000     .7213058    .9492335
+       2016  |   .8697951   .0617596    14.08   0.000     .7482285    .9913616
+       2017  |    .894904   .0637008    14.05   0.000     .7695166    1.020291
+       2018  |    .823994   .0702411    11.73   0.000     .6857326    .9622553
+       2019  |   .8088308   .0759412    10.65   0.000     .6593495    .9583121
+       2020  |  -.0036844   .0701257    -0.05   0.958    -.1417186    .1343498
+       2021  |     .05579     .06438     0.87   0.387    -.0709345    .1825145
+       2022  |   .5836003   .0579271    10.07   0.000     .4695775     .697623
+       2023  |   .6168485   .0609184    10.13   0.000     .4969379    .7367591
+       2024  |   .6504273   .0639508    10.17   0.000     .5245478    .7763069
+             |
+       _cons |   .4375979   .2844563     1.54   0.125    -.1223206    .9975165
+-------------+----------------------------------------------------------------
+     sigma_u |  .61709088
+     sigma_e |   .5310552
+         rho |  .57451601   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+
+. estadd local cityfe "Yes"
+
+added macro:
+             e(cityfe) : "Yes"
+
+. estadd local yearfe "Yes"
+
+added macro:
+             e(yearfe) : "Yes"
+
+. eststo b3_noer
+
+. xtreg lnCE SCCD SCCD2 OPEN UR URG i.year, fe vce(cluster id)
+
+Fixed-effects (within) regression               Number of obs     =      5,366
+Group variable: id                              Number of groups  =        284
+
+R-squared:                                      Obs per group:
+     Within  = 0.6311                                         min =          4
+     Between = 0.5642                                         avg =       18.9
+     Overall = 0.5901                                         max =         19
+
+                                                F(23, 283)        =      89.19
+corr(u_i, Xb) = 0.1144                          Prob > F          =     0.0000
+
+                                   (Std. err. adjusted for 284 clusters in id)
+------------------------------------------------------------------------------
+             |               Robust
+        lnCE | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        SCCD |   8.871349   1.408458     6.30   0.000     6.098967    11.64373
+       SCCD2 |  -7.881634   1.657993    -4.75   0.000     -11.1452   -4.618071
+        OPEN |   .2229154   .0853419     2.61   0.009     .0549299     .390901
+          UR |   .0300079   .0042348     7.09   0.000     .0216722    .0383435
+         URG |  -.1348294   .0725469    -1.86   0.064    -.2776295    .0079706
+             |
+        year |
+       2007  |   .0733815   .0260314     2.82   0.005     .0221418    .1246212
+       2008  |   .1343356   .0300846     4.47   0.000     .0751176    .1935537
+       2009  |   .1663397   .0336465     4.94   0.000     .1001106    .2325688
+       2010  |     .16292   .0361824     4.50   0.000     .0916992    .2341407
+       2011  |   .1579357   .0444845     3.55   0.000     .0703732    .2454983
+       2012  |   .1726486    .053535     3.22   0.001     .0672713    .2780259
+       2013  |   .0259133   .0609838     0.42   0.671    -.0941261    .1459526
+       2014  |   .0272451   .0647445     0.42   0.674    -.1001967    .1546869
+       2015  |   .7916225   .0639099    12.39   0.000     .6658235    .9174215
+       2016  |   .8237837   .0680911    12.10   0.000     .6897544     .957813
+       2017  |   .8442241   .0703998    11.99   0.000     .7056504    .9827979
+       2018  |   .7674961   .0774402     9.91   0.000     .6150643    .9199279
+       2019  |   .7428642   .0832325     8.93   0.000     .5790307    .9066976
+       2020  |  -.0075276   .0707024    -0.11   0.915     -.146697    .1316418
+       2021  |   .0614879   .0648053     0.95   0.344    -.0660737    .1890496
+       2022  |   .5424554   .0628873     8.63   0.000     .4186691    .6662418
+       2023  |   .5738339    .065896     8.71   0.000     .4441253    .7035424
+       2024  |   .6055269   .0689481     8.78   0.000     .4698108     .741243
+             |
+       _cons |   .9440346   .3769459     2.50   0.013     .2020612    1.686008
+-------------+----------------------------------------------------------------
+     sigma_u |   .6146493
+     sigma_e |  .52982479
+         rho |  .57371167   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+
+. estadd local cityfe "Yes"
+
+added macro:
+             e(cityfe) : "Yes"
+
+. estadd local yearfe "Yes"
+
+added macro:
+             e(yearfe) : "Yes"
+
+. eststo b4_noer
+
+. xtreg lnCE SCCD SCCD2 $BASE_CONTROLS i.year, fe vce(cluster id)
+
+Fixed-effects (within) regression               Number of obs     =      5,366
+Group variable: id                              Number of groups  =        284
+
+R-squared:                                      Obs per group:
+     Within  = 0.6410                                         min =          4
+     Between = 0.6294                                         avg =       18.9
+     Overall = 0.6319                                         max =         19
+
+                                                F(24, 283)        =      89.52
+corr(u_i, Xb) = 0.1033                          Prob > F          =     0.0000
+
+                                   (Std. err. adjusted for 284 clusters in id)
+------------------------------------------------------------------------------
+             |               Robust
+        lnCE | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        SCCD |   8.377657   1.387975     6.04   0.000     5.645593    11.10972
+       SCCD2 |  -7.724638   1.664873    -4.64   0.000    -11.00174   -4.447533
+        OPEN |    .258669   .0842428     3.07   0.002      .092847    .4244909
+          UR |   .0277984   .0040585     6.85   0.000     .0198097     .035787
+         URG |   -.111755   .0699539    -1.60   0.111     -.249451    .0259411
+          GI |  -2.064027   .6263334    -3.30   0.001    -3.296891   -.8311637
+             |
+        year |
+       2007  |   .1192769   .0292195     4.08   0.000     .0617618    .1767921
+       2008  |   .1933959   .0335844     5.76   0.000     .1272891    .2595028
+       2009  |   .2368177    .038759     6.11   0.000     .1605251    .3131102
+       2010  |   .2642607   .0455484     5.80   0.000     .1746041    .3539173
+       2011  |    .277019   .0553926     5.00   0.000     .1679853    .3860528
+       2012  |   .3064615   .0624477     4.91   0.000     .1835406    .4293824
+       2013  |   .2015693   .0770846     2.61   0.009     .0498374    .3533012
+       2014  |   .2222112   .0831212     2.67   0.008      .058597    .3858254
+       2015  |   .9918079   .0850824    11.66   0.000     .8243332    1.159283
+       2016  |   1.040489   .0909935    11.43   0.000     .8613788    1.219599
+       2017  |   1.085513   .0969826    11.19   0.000     .8946138    1.276411
+       2018  |   1.031212   .1067578     9.66   0.000     .8210719    1.241352
+       2019  |   .9442715   .0987916     9.56   0.000     .7498119    1.138731
+       2020  |  -.0771707    .069502    -1.11   0.268    -.2139772    .0596358
+       2021  |   .0171786   .0618698     0.28   0.781    -.1046049     .138962
+       2022  |   .6981154   .0782357     8.92   0.000     .5441177     .852113
+       2023  |    .733675   .0815451     9.00   0.000     .5731632    .8941868
+       2024  |   .7695429   .0848921     9.06   0.000     .6024428     .936643
+             |
+       _cons |   1.399819   .4117418     3.40   0.001     .5893541    2.210284
+-------------+----------------------------------------------------------------
+     sigma_u |  .56457855
+     sigma_e |   .5226993
+         rho |  .53846046   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+
+. estadd local cityfe "Yes"
+
+added macro:
+             e(cityfe) : "Yes"
+
+. estadd local yearfe "Yes"
+
+added macro:
+             e(yearfe) : "Yes"
+
+. eststo b5_noer
+
+. 
+. esttab b1_noer b2_noer b3_noer b4_noer b5_noer using "$TABLES/table3_baseline
+> _2006_2024_noER.rtf", replace ///
+>     b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) ///
+>     keep(SCCD SCCD2 OPEN UR URG GI _cons) ///
+>     order(SCCD SCCD2 OPEN UR URG GI _cons) ///
+>     stats(cityfe yearfe N r2_w, labels("City fixed effects" "Year fixed effec
+> ts" "N" "Within R-squared") fmt(%9s %9s 0 3)) ///
+>     label compress title("Table 3. Baseline regression: 2006-2024 main sample
+> ")
+(output written to D:/Workplace/SCS/outputs/tables/table3_baseline_2006_2024_no
+> ER.rtf)
+
+. 
+. est restore b5_noer
+(results b5_noer are active now)
+
+. scalar tp_baseline = -_b[SCCD] / (2 * _b[SCCD2])
+
+. quietly summarize SCCD if e(sample), detail
+
+. local xmin = r(min)
+
+. local xmax = r(max)
+
+. local xmean = r(mean)
+
+. local xp25 = r(p25)
+
+. local xp75 = r(p75)
+
+. 
+. nlcom turning_point: -_b[SCCD] / (2 * _b[SCCD2])
+
+turning_po~t: -_b[SCCD] / (2 * _b[SCCD2])
+
+------------------------------------------------------------------------------
+        lnCE | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+turning_po~t |   .5422686   .0470303    11.53   0.000     .4500909    .6344462
+------------------------------------------------------------------------------
+
+. matrix TP = r(table)
+
+. scalar tp = TP[1,1]
+
+. scalar tp_se = TP[2,1]
+
+. scalar tp_p = TP[4,1]
+
+. scalar tp_lb = TP[5,1]
+
+. scalar tp_ub = TP[6,1]
+
+. 
+. lincom SCCD + 2*`xmin'*SCCD2
+
+ ( 1)  SCCD + .2428434*SCCD2 = 0
+
+------------------------------------------------------------------------------
+        lnCE | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         (1) |    6.50178   1.023114     6.35   0.000       4.4879    8.515659
+------------------------------------------------------------------------------
+
+. scalar left_b = r(estimate)
+
+. scalar left_se = r(se)
+
+. scalar left_p = r(p)
+
+. scalar left_lb = r(lb)
+
+. scalar left_ub = r(ub)
+
+. 
+. lincom SCCD + 2*`xmax'*SCCD2
+
+ ( 1)  SCCD + 1.644432*SCCD2 = 0
+
+------------------------------------------------------------------------------
+        lnCE | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         (1) |  -4.324986   1.535559    -2.82   0.005    -7.347554   -1.302419
+------------------------------------------------------------------------------
+
+. scalar right_b = r(estimate)
+
+. scalar right_se = r(se)
+
+. scalar right_p = r(p)
+
+. scalar right_lb = r(lb)
+
+. scalar right_ub = r(ub)
+
+. 
+. lincom SCCD + 2*`xmean'*SCCD2
+
+ ( 1)  SCCD + .6348972*SCCD2 = 0
+
+------------------------------------------------------------------------------
+        lnCE | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         (1) |   3.473306   .5625572     6.17   0.000     2.365978    4.580633
+------------------------------------------------------------------------------
+
+. scalar mean_b = r(estimate)
+
+. scalar mean_se = r(se)
+
+. scalar mean_p = r(p)
+
+. scalar mean_lb = r(lb)
+
+. scalar mean_ub = r(ub)
+
+. 
+. local inrange = (tp >= `xmin' & tp <= `xmax')
+
+. local endpoint_pass = (left_b > 0 & left_p < 0.05 & right_b < 0 & right_p < 0
+> .05)
+
+. 
+. file open ucsv using "$TABLES/table_u_test_2006_2024_noER.csv", write replace
+
+. file write ucsv "test_item,estimate,se,p_value,ci_lower,ci_upper,notes" _n
+
+. file write ucsv "turning_point," %9.6f (tp) "," %9.6f (tp_se) "," %9.6f (tp_p
+> ) "," %9.6f (tp_lb) "," %9.6f (tp_ub) ",nlcom -b1/(2*b2)" _n
+
+. file write ucsv "left_endpoint_marginal_effect," %9.6f (left_b) "," %9.6f (le
+> ft_se) "," %9.6f (left_p) "," %9.6f (left_lb) "," %9.6f (left_ub) ",SCCD mini
+> mum = " %9.6f (`xmin') _n
+
+. file write ucsv "mean_sccd_marginal_effect," %9.6f (mean_b) "," %9.6f (mean_s
+> e) "," %9.6f (mean_p) "," %9.6f (mean_lb) "," %9.6f (mean_ub) ",SCCD mean = "
+>  %9.6f (`xmean') _n
+
+. file write ucsv "right_endpoint_marginal_effect," %9.6f (right_b) "," %9.6f (
+> right_se) "," %9.6f (right_p) "," %9.6f (right_lb) "," %9.6f (right_ub) ",SCC
+> D maximum = " %9.6f (`xmax') _n
+
+. file close ucsv
+
+. 
+. file open utxt using "$TABLES/table_u_test_2006_2024_noER.txt", write replace
+
+. file write utxt "Formal inverted-U test for the full-control baseline model" 
+> _n
+
+. file write utxt "Dependent variable: lnCE" _n
+
+. file write utxt "SCCD range in e(sample): [" %9.6f (`xmin') ", " %9.6f (`xmax
+> ') "]" _n
+
+. file write utxt "SCCD mean/p25/p75: " %9.6f (`xmean') " / " %9.6f (`xp25') " 
+> / " %9.6f (`xp75') _n
+
+. file write utxt "Turning point: " %9.6f (tp) " (SE " %9.6f (tp_se) ", 95% CI 
+> [" %9.6f (tp_lb) ", " %9.6f (tp_ub) "])" _n
+
+. file write utxt "Left endpoint marginal effect: " %9.6f (left_b) " (p=" %9.6f
+>  (left_p) ")" _n
+
+. file write utxt "Right endpoint marginal effect: " %9.6f (right_b) " (p=" %9.
+> 6f (right_p) ")" _n
+
+. file write utxt "Turning point inside SCCD range: `inrange'" _n
+
+. file write utxt "Endpoint-significance inverted-U check passed at 5%: `endpoi
+> nt_pass'" _n
+
+. file write utxt "This is the endpoint marginal-effect equivalent of a Lind-Me
+> hlum inverted-U check." _n
+
+. file close utxt
+
+. 
+. file open tpout using "$TABLES/baseline_turning_point_2006_2024_noER.txt", wr
+> ite replace
+
+. file write tpout "Baseline full-control turning point, 2006-2024 main sample:
+>  " %9.6f (tp_baseline) _n
+
+. file write tpout "Formula: -_b[SCCD] / (2 * _b[SCCD2])" _n
+
+. file close tpout
+
+. 
+. log close log02_noer
+      name:  log02_noer
+       log:  D:/Workplace/SCS/outputs/logs/02_baseline_regression_2006_2024_noE
+> R.log
+  log type:  text
+ closed on:  16 May 2026, 04:09:03
+-------------------------------------------------------------------------------

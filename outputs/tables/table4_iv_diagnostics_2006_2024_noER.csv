@@ -1,0 +1,7 @@
+diagnostic,value,p_value,notes
+First-stage F for SCCD,85.651068, 0.000000,Excluded instruments IV and IV2
+First-stage F for SCCD2, 1.07e+02, 0.000000,Excluded instruments IV and IV2
+Kleibergen-Paap rk LM underidentification,57.623380, 0.000000,Cluster-robust ivreg2 statistic
+Cragg-Donald Wald F, 2.38e+02,,Weak-identification statistic
+Kleibergen-Paap rk Wald F,73.061202,,Cluster-robust weak-identification statistic
+Overidentification test,,,Not applicable: exactly identified with two endogenous regressors and two excluded instruments

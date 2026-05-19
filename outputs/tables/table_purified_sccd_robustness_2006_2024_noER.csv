@@ -1,0 +1,4 @@
+item,status
+purified_sccd_regression,not completed
+reason,raw indicator-level data and entropy-weighting script are missing
+mccd_check,MCCD is identical to SCCD and is not a purified proxy

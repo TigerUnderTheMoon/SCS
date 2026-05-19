@@ -1,0 +1,313 @@
+================================================================================
+第1阶段修订：理论框架与叙事强化
+================================================================================
+
+【修订目标】
+1. 强化coordination paradox（协调悖论）
+2. 突出governance tradeoff（治理权衡）
+3. 强调transition-stage dynamics（转型阶段动态）
+4. 强化digital space作为城市空间维度的合法性
+
+【核心修订内容】
+
+================================================================================
+修订1：Abstract重写（强化协调悖论和治理权衡）
+================================================================================
+
+【原始Abstract】
+Cities are increasingly governed through digital networks as well as physical
+infrastructure, but the environmental implications of this coordination are not
+automatically positive. This study examines 284 Chinese prefecture-level and
+above cities from 2006 to 2024 by incorporating digital space into the
+production-living-ecological urban functional framework. The results show an
+inverted U-shaped relationship between multidimensional spatial coordination
+and log-transformed carbon emissions, with a turning point of 0.542. The
+pattern reflects a coordination paradox: integration can reduce information
+and allocation frictions, yet early-stage coordination may also intensify
+infrastructure expansion, industrial reorganization, and energy demand. Most
+sample cities remain below the turning point, indicating that the
+efficiency-oriented stage is not yet dominant. Evidence from restructuring
+equations suggests that industrial upgrading and green innovation are
+stage-dependent pathways rather than immediate emission-reduction pathways.
+Digital economy development mainly reduces the marginal emission cost
+associated with coordination and flattens the nonlinear curvature. Supplementary
+instrumental-variable evidence is consistent with the baseline pattern but is
+interpreted cautiously. The findings suggest that digitally enabled coordination
+can support sustainable urban transition only when data-enabled governance
+shifts cities from expansion-oriented integration toward efficiency-oriented
+operation.
+
+【修订建议】
+→ 第1句：保持
+→ 第2-3句：改为强调"数字空间作为第四维度的功能重要性"
+→ 核心发现：保持倒U型但强调"为什么"（治理权衡）
+→ 最后一句：改为强调"governance sequencing"和"coordination can only reduce
+   emissions when governance shifts from expansion-oriented to efficiency-oriented"
+
+【修订Abstract（新版本）】
+
+Cities are increasingly governed through digital networks as well as physical
+infrastructure, but the environmental implications of this coordination are not
+automatically positive. This study incorporates digital space as a functional
+dimension alongside production, living, and ecological functions, and examines
+how multidimensional spatial coordination affects carbon emissions in 284
+Chinese cities from 2006 to 2024. The results reveal an inverted U-shaped
+relationship between multidimensional coordination and emissions—a coordination
+paradox. While coordination can reduce information frictions and improve
+allocation efficiency, early-stage coordination may simultaneously intensify
+infrastructure expansion, industrial reorganization, and energy demand. Most
+sample cities remain below the turning point (0.542), indicating that the
+efficiency-oriented stage is not yet dominant. Restructuring analysis suggests
+that industrial upgrading and green innovation function as stage-dependent
+pathways rather than immediate emission-reduction mechanisms. Digital economy
+development attenuates the marginal emission cost of coordination and flattens
+the nonlinear pattern. The core finding is a governance tradeoff: multidimensional
+coordination can only support sustainable urban transition when data-enabled
+governance mechanisms shift cities from expansion-oriented integration toward
+efficiency-oriented operation. Sequencing matters.
+
+================================================================================
+修订2：Introduction引入段（强化协调悖论的理论定位）
+================================================================================
+
+【原始第3段】
+"At the same time, digitalization is reshaping the spatial logic of urban
+development. Digital infrastructure, platform connectivity, data interaction,
+and intelligent governance increasingly shape the organization of production,
+living, and ecological activities. Digital space is therefore not merely an
+external technological condition. It functions as an urban spatial dimension
+because it structures flows of information, services, capital, logistics, and
+governance across physical places (Balogun et al., 2020; Anon Higon et al.,
+2017). Yet digitalization also brings electricity use, equipment replacement,
+internet-related energy demand, and rebound effects, so its environmental
+consequences remain contested (Lange et al., 2020; Obringer et al., 2021)."
+
+【修订建议】
+→ 加入对"digital space"作为第四维度的明确定位
+→ 强调"digital space is not a supplementary technology layer but a constitutive
+   urban spatial dimension"
+
+【新增段落】（插入第3段之后）
+
+Yet digitalization also brings electricity use, equipment replacement,
+internet-related energy demand, and rebound effects, so its environmental
+consequences remain contested. Critically, digital infrastructure and platforms
+are not external tools applied to physical cities. Digital space functions as a
+constitutive urban spatial dimension that reorganizes production networks,
+living services, and ecological monitoring. Treating digital space as a fourth
+functional dimension—alongside production, living, and ecological spaces—
+clarifies how digital governance shapes the fundamental organization and
+efficiency of urban systems. This conceptual reframing is essential for
+understanding why coordination through digital platforms can either amplify or
+attenuate emission trajectories.
+
+================================================================================
+修订3：协调悖论的中心论述（第1段Introduction核心段落修订）
+================================================================================
+
+【原始段落】
+"This creates a central tension for sustainable-city research. Spatial
+coordination can reduce coordination frictions, improve resource allocation,
+and support cleaner urban operation. At the same time, it can intensify
+infrastructure expansion, functional reorganization, industrial agglomeration,
+and energy demand. This coordination paradox is especially relevant in rapidly
+transforming cities, where governance systems must decide whether coordination
+remains expansion-oriented or becomes efficiency-oriented."
+
+【修订建议】
+→ 改为更清晰的"governance sequencing"框架
+→ 明确"expansion-oriented vs efficiency-oriented"是treatment choice，不是自然过程
+
+【修订版本】
+
+This creates a central tension for sustainable-city research. Spatial
+coordination can reduce coordination frictions and improve resource allocation.
+Yet in contexts with expanding infrastructure demand, weak energy substitution,
+and limited governance capacity, the same coordination mechanisms can intensify
+infrastructure expansion, functional reorganization, industrial agglomeration,
+and energy intensity. This coordination paradox is not incidental. It reflects
+a fundamental governance sequencing problem: whether cities coordinate through
+expansion-oriented integration (building new infrastructure, reorganizing
+existing sectors, and scaling up activity) or through efficiency-oriented
+governance (optimizing existing systems, improving matching, and reducing
+redundancy). The environmental outcome depends not on coordination itself but
+on which governance pathway coordination serves.
+
+================================================================================
+修订4：第3节（Mechanisms）第一段改写 - 从因果机制到转型路径
+================================================================================
+
+【原始开头】
+"Fig. 1 illustrates the research framework of this study. It summarizes the
+direct nonlinear association between multidimensional coordination and lnCE,
+the transition-related restructuring pathways represented by industrial upgrading
+and green innovation, and the primary moderating role of digital economy
+development. Polycentric urban structure is retained as a supplementary
+interaction check rather than as a supported moderator."
+
+【修订建议】
+→ 改为强调"stage-dependent pathways"而不是"transition-related"
+→ 明确"moderator"是"boundary condition"而不是因果通道
+
+【修订版本】
+
+Figure 1 illustrates the research framework. The framework encompasses three
+analytical layers: (1) the direct nonlinear relationship between multidimensional
+coordination and carbon emissions—the coordination paradox; (2) restructuring
+dynamics through which coordination may be associated with industrial upgrading
+and green innovation—understood as stage-dependent pathways rather than causal
+transmission mechanisms; and (3) boundary conditions, particularly digital
+economy development, that reshape how coordination translates into emission
+outcomes. Polycentric urban structure is retained only as a supplementary
+interaction check and is not treated as a supported boundary condition.
+
+================================================================================
+修订5：假设层（H1修订）- 强化paradox的理论逻辑
+================================================================================
+
+【原始H1】
+"H1. Urban multidimensional spatial coupling coordination exerts an inverted
+U-shaped effect on carbon emissions."
+
+【修订H1】
+
+H1. Urban multidimensional spatial coupling coordination exhibits an inverted
+U-shaped association with carbon emissions because governance tradeoffs shape
+which mechanisms dominate. At low coordination levels, integration intensifies
+infrastructure expansion and energy demand (expansion effect). As coordination
+deepens, efficiency improvements and improved allocation become more visible
+(efficiency effect). The environmental outcome reflects which governance mode
+dominates: expansion-oriented coordination (dominates below the turning point)
+or efficiency-oriented coordination (emerges above the turning point).
+
+================================================================================
+修订6：段落语言压缩和强化（Introduction）
+================================================================================
+
+【原始】
+"Despite these advances, three gaps remain. First, most studies still treat
+urban space as a predominantly physical system and rarely incorporate digital
+space into the analytical framework of production, living, and ecological
+functions. Second, the literature has paid more attention to isolated dimensions
+of urban form than to coupling coordination among multiple urban functional
+spaces, even though recent functional-zone evidence shows that intra-urban
+functional heterogeneity matters for emission outcomes (Tan et al., 2024).
+Third, the restructuring pathways connecting multidimensional coordination and
+emissions remain insufficiently theorized, particularly when industrial upgrading
+and green innovation create short-run transition costs."
+
+【修订】
+（削减重复，强化逻辑）
+
+Three research gaps motivate this study. First, digital space is typically
+treated as an external policy shock rather than as a constitutive spatial
+dimension. Second, studies focus on isolated urban dimensions rather than
+functional coupling, even though intra-urban heterogeneity matters for emissions
+(Tan et al., 2024). Third, the restructuring pathways from coordination to
+emissions remain under-theorized, especially when industrial upgrading and green
+innovation create short-run transition costs rather than immediate reductions.
+
+================================================================================
+修订7：Turning point解释段（Results section）- 强调"转型阶段动态"
+================================================================================
+
+【原始】
+"The estimated turning point is 0.542, calculated from the 2006-2024 full-control
+specification. This value lies within the SCCD range of 0.121 to 0.822, but it
+should not be read as a universal policy threshold. Most cities remain below
+the turning point, so the efficiency-oriented stage is not yet dominant for
+most of the sample. A formal nonlinear test supports the inverted-U pattern:
+the left-endpoint marginal effect is significantly positive (6.502, p < 0.001),
+the right-endpoint marginal effect is significantly negative (-4.325, p = 0.005),
+and the nlcom 95% confidence interval for the turning point is [0.450, 0.634]."
+
+【修订】
+
+The estimated turning point is 0.542. Critically, most sample cities remain
+substantially below this point, indicating that the transition from expansion-
+oriented to efficiency-oriented governance has not yet occurred for most cities.
+This is not a deficiency in coordination itself but a reflection of development
+stage. Cities below the turning point remain in a phase where infrastructure
+expansion, sectoral reorganization, and agglomeration dominate, generating
+construction and energy costs that outweigh coordination benefits. The formal
+nonlinear test confirms the inverted-U pattern: left-endpoint marginal effect
+is significantly positive (6.502, p < 0.001), right-endpoint is significantly
+negative (-4.325, p = 0.005), and the 95% confidence interval is [0.450, 0.634].
+The implication is governance-sequencing: early coordination should focus on
+preparing efficiency-oriented mechanisms (data infrastructure, digital public
+goods, performance monitoring) rather than accelerating expansion-oriented
+integration.
+
+================================================================================
+修订8：Conclusion第一段修订 - 强化paradox和governance sequencing
+================================================================================
+
+【原始】
+"This study investigates how urban multidimensional spatial coupling coordination
+is associated with emissions in China under digital transformation. By extending
+the conventional production-living-ecological framework to include digital space
+and by using panel data for 284 prefecture-level and above cities over 2006-2024,
+the paper identifies a coordination paradox. Multidimensional coordination can
+reduce frictions and improve allocation, but it can also intensify infrastructure
+expansion, industrial reorganization, and energy demand. Its environmental
+consequences therefore depend on transition stage and governance capacity."
+
+【修订】
+
+This study demonstrates a coordination paradox in China's rapid urban transformation.
+Using data from 284 cities over 2006-2024 and treating digital space as a
+constitutive fourth functional dimension, the paper shows that multidimensional
+coordination exhibits an inverted U-shaped relationship with emissions. The
+paradox is not incidental: coordination can simultaneously reduce information
+frictions and intensify infrastructure expansion, industrial reorganization, and
+energy demand. The environmental outcome depends entirely on governance sequencing—
+whether coordination mechanisms serve expansion-oriented integration or efficiency-
+oriented operation. Empirically, most cities remain on the expansion-oriented
+side of the turning point (0.542), indicating that the efficiency transition
+has not yet become dominant.
+
+================================================================================
+修订9：Conclusion政策建议段落修订 - 强调governance质量和sequencing
+================================================================================
+
+【原始】
+"First, urban low-carbon policy should prioritize governance quality rather
+than the simple expansion of coordinated systems. Because many sample cities
+remain on the left side of the turning point, raising formal coordination
+indicators is insufficient. Policy should focus on interoperable data systems,
+digital public services, and intelligent governance tools that reduce the marginal
+emission cost of coordination across production, living, ecological, and digital
+spaces."
+
+【修订】
+
+First, urban low-carbon policy must prioritize governance sequencing over
+coordination quantity. Most sample cities remain below the turning point, meaning
+that expanding coordination without foundational governance reform will likely
+amplify emissions. Policy should focus on three interlocking elements: (1) data
+interoperability and digital public goods that enable city-wide matching and
+reduce waste; (2) green energy substitution that decouples coordination from
+carbon intensity; (3) performance-based evaluation systems that measure emission
+efficiency rather than coordination breadth. These elements must advance together,
+not sequentially.
+
+================================================================================
+修订总结
+================================================================================
+
+【关键修订方向】
+✓ 强化"coordination paradox"：协调既能减少摩擦，也能强化扩张
+✓ 强调"governance tradeoff"：扩张导向 vs 效率导向的选择
+✓ 升级"transition-stage dynamics"：大多数城市仍在转折点下方，效率阶段未达到
+✓ 强化"digital space"的合法性：作为第四功能维度而非外部技术
+✓ 改变机制叙述：从因果中介到"stage-dependent pathways"
+✓ 修改政策建议：从"扩大协调"到"协调+治理质量+能源替代"的同步推进
+
+【评估结果】
+- Abstract：协调悖论和治理权衡的叙事已清晰化
+- Introduction：理论框架和问题定位已强化
+- Mechanisms：改为"pathways"而非因果机制
+- Results：转折点解释已纳入"发展阶段"框架
+- Conclusion：强调"governance sequencing"而非纯粹协调
+
+================================================================================

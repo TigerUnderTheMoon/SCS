@@ -1,0 +1,129 @@
+-------------------------------------------------------------------------------
+      name:  log07
+       log:  D:/Workplace/SCS/outputs/logs/07_figures.log
+  log type:  text
+ opened on:  15 May 2026, 00:28:48
+
+. 
+. use "$DATA", clear
+
+. capture confirm variable SCCD2
+
+. if _rc gen double SCCD2 = SCCD^2
+
+. xtset id year
+
+Panel variable: id (strongly balanced)
+ Time variable: year, 2006 to 2024
+         Delta: 1 unit
+
+. 
+. graph set window fontface "Arial"
+
+. 
+. histogram SCCD, percent width(0.025) ///
+>     title("Distribution of SCCD, full sample") ///
+>     subtitle("2006-2024; 2022-2024 include fitted values") ///
+>     xtitle("Spatial coupling coordination degree") ytitle("Percent")
+(bin=29, start=.1214217, width=.025)
+
+. graph export "$FIGURES/fig_sccd_distribution_full_2006_2024.png", replace wid
+> th(2400)
+file
+    D:/Workplace/SCS/outputs/figures/fig_sccd_distribution_full_2006_2024.png
+    saved as PNG format
+
+. 
+. histogram SCCD if is_fitted == 0, percent width(0.025) ///
+>     title("Distribution of SCCD, observed-only sample") ///
+>     subtitle("2006-2021") ///
+>     xtitle("Spatial coupling coordination degree") ytitle("Percent")
+(bin=29, start=.1214217, width=.025)
+
+. graph export "$FIGURES/fig_sccd_distribution_observed_2006_2021.png", replace
+>  width(2400)
+file
+    D:/Workplace/SCS/outputs/figures/fig_sccd_distribution_observed_2006_2021
+    > .png saved as PNG format
+
+. 
+. twoway ///
+>     (scatter CE SCCD if is_fitted == 0, mcolor(gs12%35) msize(tiny)) ///
+>     (scatter CE SCCD if is_fitted == 1, mcolor(maroon%45) msize(tiny)) ///
+>     (qfit CE SCCD, lcolor(navy) lwidth(medthick)), ///
+>     title("Carbon emissions and SCCD") ///
+>     subtitle("Full sample, fitted rows highlighted") ///
+>     xtitle("SCCD") ytitle("CE") ///
+>     legend(order(1 "Observed" 2 "Fitted" 3 "Quadratic fit") pos(6) row(1))
+
+. graph export "$FIGURES/fig_ce_sccd_quadratic_fit_full_2006_2024.png", replace
+>  width(2400)
+file
+    D:/Workplace/SCS/outputs/figures/fig_ce_sccd_quadratic_fit_full_2006_2024
+    > .png saved as PNG format
+
+. 
+. preserve
+
+. collapse (mean) CE SCCD, by(year is_fitted)
+
+. twoway ///
+>     (line CE year, yaxis(1) lcolor(navy) lwidth(medthick)) ///
+>     (line SCCD year, yaxis(2) lcolor(maroon) lpattern(dash) lwidth(medthick))
+> , ///
+>     title("Annual mean CE and SCCD") ///
+>     subtitle("2006-2024; 2022-2024 fitted") ///
+>     xtitle("Year") ytitle("Mean CE", axis(1)) ytitle("Mean SCCD", axis(2)) //
+> /
+>     legend(order(1 "CE" 2 "SCCD") pos(6) row(1))
+
+. graph export "$FIGURES/fig_yearly_mean_ce_sccd_full_2006_2024.png", replace w
+> idth(2400)
+file
+    D:/Workplace/SCS/outputs/figures/fig_yearly_mean_ce_sccd_full_2006_2024.p
+    > ng saved as PNG format
+
+. restore
+
+. 
+. graph box CE, over(region) ///
+>     title("Carbon emissions by region") ///
+>     subtitle("Full sample, 2006-2024") ///
+>     ytitle("CE")
+
+. graph export "$FIGURES/fig_ce_by_region_box_full_2006_2024.png", replace widt
+> h(2400)
+file D:/Workplace/SCS/outputs/figures/fig_ce_by_region_box_full_2006_2024.png
+    saved as PNG format
+
+. 
+. preserve
+
+. collapse (mean) CE SCCD, by(region year)
+
+. twoway ///
+>     (line CE year if region == "东部", lcolor(navy) lwidth(medthick)) ///
+>     (line CE year if region == "中部", lcolor(maroon) lpattern(dash) lwidth(m
+> edthick)) ///
+>     (line CE year if region == "西部", lcolor(forest_green) lpattern(dot) lwi
+> dth(medthick)), ///
+>     title("Annual mean carbon emissions by region") ///
+>     subtitle("2006-2024; 2022-2024 fitted") ///
+>     xtitle("Year") ytitle("Mean CE") ///
+>     legend(order(1 "Eastern" 2 "Central" 3 "Western") pos(6) row(1))
+
+. graph export "$FIGURES/fig_regional_mean_ce_trends_full_2006_2024.png", repla
+> ce width(2400)
+file
+    D:/Workplace/SCS/outputs/figures/fig_regional_mean_ce_trends_full_2006_20
+    > 24.png saved as PNG format
+
+. restore
+
+. 
+. log close log07
+      name:  log07
+       log:  D:/Workplace/SCS/outputs/logs/07_figures.log
+  log type:  text
+ closed on:  15 May 2026, 00:28:55
+-------------------------------------------------------------------------------

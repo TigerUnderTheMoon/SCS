@@ -1,0 +1,10 @@
+Formal inverted-U test for the full-control baseline model
+Dependent variable: lnCE
+SCCD range in e(sample): [ 0.121422,  0.822216]
+SCCD mean/p25/p75:  0.317449 /  0.263037 /  0.353488
+Turning point:  0.542269 (SE  0.047030, 95% CI [ 0.450091,  0.634446])
+Left endpoint marginal effect:  6.501780 (p= 0.000000)
+Right endpoint marginal effect: -4.324986 (p= 0.005196)
+Turning point inside SCCD range: 1
+Endpoint-significance inverted-U check passed at 5%: 1
+This is the endpoint marginal-effect equivalent of a Lind-Mehlum inverted-U check.

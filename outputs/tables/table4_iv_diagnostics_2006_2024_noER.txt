@@ -1,0 +1,8 @@
+Table 4 Panel B. First-stage and weak-instrument diagnostics
+First-stage F for SCCD:    85.651 (p= 0.000000)
+First-stage F for SCCD2:   106.982 (p= 0.000000)
+Kleibergen-Paap rk LM underidentification statistic:    57.623 (p= 0.000000)
+Cragg-Donald Wald F statistic:   238.010
+Kleibergen-Paap rk Wald F statistic:    73.061
+Overidentification test: not applicable because the model is exactly identified.
+IV turning point:  0.638182

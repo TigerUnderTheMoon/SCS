@@ -1,0 +1,2 @@
+Baseline full-control turning point, 2006-2024 main sample:  0.542269
+Formula: -_b[SCCD] / (2 * _b[SCCD2])
