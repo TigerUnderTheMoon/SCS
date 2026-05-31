@@ -1,0 +1,4 @@
+dei_level,dei_value,effective_linear,effective_quadratic,turning_point,tp_se,tp_p,tp_ci_lower,tp_ci_upper,marginal_effect_at_mean_sccd,me_se,me_p,me_ci_lower,me_ci_upper,notes
+low, 0.008317, 8.653647,-7.775875, 0.556442, 0.047696, 0.000000, 0.462960, 0.649924, 3.792169, 0.552301, 0.000000, 2.709679, 4.874660,DEI low=p25 mean=mean high=p75; SCCD mean= 0.312600
+mean, 0.054745, 7.450549,-6.653553, 0.559893, 0.054210, 0.000000, 0.453643, 0.666142, 3.290747, 0.482387, 0.000000, 2.345286, 4.236208,DEI low=p25 mean=mean high=p75; SCCD mean= 0.312600
+high, 0.072928, 6.979373,-6.214012, 0.561584, 0.057577, 0.000000, 0.448735, 0.674432, 3.094372, 0.471241, 0.000000, 2.170758, 4.017987,DEI low=p25 mean=mean high=p75; SCCD mean= 0.312600

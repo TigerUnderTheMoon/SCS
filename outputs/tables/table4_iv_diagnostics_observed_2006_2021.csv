@@ -1,0 +1,7 @@
+diagnostic,value,p_value,notes
+First-stage F for SCCD,61.547595, 0.000000,Excluded instruments IV and IV2
+First-stage F for SCCD2,80.439193, 0.000000,Excluded instruments IV and IV2
+Kleibergen-Paap rk LM underidentification,,,Not generated because observed workflow uses xtivreg fixed-effects IV
+Cragg-Donald Wald F,,,Not generated because observed workflow uses xtivreg fixed-effects IV
+Kleibergen-Paap rk Wald F,,,Not generated because observed workflow uses xtivreg fixed-effects IV
+Overidentification test,,,Not applicable because the model is exactly identified with two endogenous regressors and two excluded instruments

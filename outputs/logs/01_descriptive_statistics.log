@@ -2,7 +2,7 @@
       name:  log01
        log:  D:/Workplace/SCS/outputs/logs/01_descriptive_statistics.log
   log type:  text
- opened on:  15 May 2026, 00:28:40
+ opened on:  31 May 2026, 23:46:11
 
 . 
 . use "$DATA", clear
@@ -490,5 +490,5 @@ file D:/Workplace/SCS/outputs/tables/table02_descriptive_statistics_observed.cs
       name:  log01
        log:  D:/Workplace/SCS/outputs/logs/01_descriptive_statistics.log
   log type:  text
- closed on:  15 May 2026, 00:28:41
+ closed on:  31 May 2026, 23:46:12
 -------------------------------------------------------------------------------

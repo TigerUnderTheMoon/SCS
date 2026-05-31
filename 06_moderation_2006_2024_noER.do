@@ -49,6 +49,34 @@ local sccd_mean = r(mean)
 local sccd_min = r(min)
 local sccd_max = r(max)
 
+scalar b_cons = _b[_cons]
+scalar b_sccd = _b[SCCD]
+scalar b_sccd2 = _b[SCCD2]
+scalar b_dei = _b[DEI]
+scalar b_sccd_dei = _b[SCCD_DEI]
+scalar b_sccd2_dei = _b[SCCD2_DEI]
+foreach v in OPEN UR URG GI {
+    quietly summarize `v' if e(sample)
+    scalar mean_`v' = r(mean)
+    scalar b_`v' = _b[`v']
+}
+
+preserve
+clear
+set obs 120
+gen double SCCD = `sccd_min' + (`sccd_max' - `sccd_min') * (_n - 1) / (_N - 1)
+gen double y_low = b_cons + (b_sccd + b_sccd_dei * `dei_low') * SCCD + (b_sccd2 + b_sccd2_dei * `dei_low') * SCCD^2 + b_dei * `dei_low' + b_OPEN * mean_OPEN + b_UR * mean_UR + b_URG * mean_URG + b_GI * mean_GI
+gen double y_high = b_cons + (b_sccd + b_sccd_dei * `dei_high') * SCCD + (b_sccd2 + b_sccd2_dei * `dei_high') * SCCD^2 + b_dei * `dei_high' + b_OPEN * mean_OPEN + b_UR * mean_UR + b_URG * mean_URG + b_GI * mean_GI
+
+twoway ///
+    (line y_low SCCD, lcolor(navy) lwidth(medthick)) ///
+    (line y_high SCCD, lcolor(maroon) lwidth(medthick)), ///
+    xtitle("SCCD") ytitle("Predicted lnCE") ///
+    legend(order(1 "Low DEI" 2 "High DEI") pos(6) row(1)) ///
+    graphregion(color(white)) plotregion(color(white))
+graph export "$FIGURES/fig_moderation_dei_2006_2024_noER.png", replace width(2400)
+restore
+
 file open ctp using "$TABLES/dei_conditional_turning_points_2006_2024_noER.csv", write replace
 file write ctp "dei_level,dei_value,effective_linear,effective_quadratic,turning_point,tp_se,tp_p,tp_ci_lower,tp_ci_upper,marginal_effect_at_mean_sccd,me_se,me_p,me_ci_lower,me_ci_upper,notes" _n
 

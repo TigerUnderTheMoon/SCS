@@ -1,0 +1,6 @@
+Table 4 Panel B. First-stage and weak-instrument diagnostics for observed 2006-2021 sample
+First-stage F for SCCD:    61.548 (p= 0.000000)
+First-stage F for SCCD2:    80.439 (p= 0.000000)
+Kleibergen-Paap and Cragg-Donald diagnostics: not generated because the observed workflow uses xtivreg fixed-effects IV.
+Overidentification test: not applicable because the model is exactly identified.
+IV turning point:  0.570248

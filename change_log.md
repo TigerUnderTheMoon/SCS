@@ -1,5 +1,40 @@
 # Change Log
 
+## 2026-05-31
+
+### Sustainability Deep Revision
+
+- Added observed-focused diagnostics to the main workflow:
+  - `outputs/tables/table_u_test_observed_2006_2021.csv`
+  - `outputs/tables/table_u_test_observed_2006_2021.txt`
+  - `outputs/tables/table4_iv_diagnostics_observed_2006_2021.csv`
+  - `outputs/tables/table4_iv_diagnostics_observed_2006_2021.txt`
+  - `outputs/tables/dei_conditional_turning_points_observed_2006_2021.csv`
+  - `outputs/tables/dei_conditional_turning_points_observed_2006_2021.txt`
+  - `outputs/tables/open_data_quality_observed_2006_2021.csv`
+  - `outputs/tables/open_data_quality_observed_2006_2021.txt`
+  - `outputs/tables/sample_position_relative_to_turning_point_observed_2006_2021.csv`
+- Updated `02_baseline_regression.do` to export observed-sample U-test evidence and sample-position diagnostics around the observed turning point.
+- Updated `03_robustness_endogeneity.do` to export observed-sample IV diagnostics and OPEN data-quality diagnostics.
+- Updated `06_moderation.do` to export observed-sample DEI conditional turning-point calculations.
+- Rebuilt `build_sustainability_observed_manuscript.py` as the Sustainability deep-revision generator. The generated manuscript now uses observed 2006-2021 as the main sample, moves 2006-2024 fitted/extrapolated evidence to supplementary discussion, adds H1-H4, expands methods/SCCD construction, treats IV as supplementary evidence, frames OIU/GTI as associated mechanisms, and keeps DEI as the supported moderation result.
+- Added `SUSTAINABILITY_REVISION_DATE` support to the generator so the output directory can be pinned when rerunning a dated revision package.
+- Adjusted Table 1 layout in the generated manuscript so the SCCD indicator-system table renders cleanly.
+- Generated:
+  - `outputs/sustainability_restructure_20260531_deep/manuscript_sustainability_deep.docx`
+  - `outputs/sustainability_restructure_20260531_deep/manuscript_sustainability_deep.pdf`
+  - `outputs/sustainability_restructure_20260531_deep/sustainability_deep_checks.json`
+  - `outputs/sustainability_restructure_20260531_deep/revision_evidence_manifest.md`
+- Updated `issues_remaining.md` with closed items, remaining author actions, and verification notes.
+
+### Verification
+
+- Ran `powershell -NoProfile -ExecutionPolicy Bypass -File .\run_stata.ps1`; the master log contains the completed marker and `outputs/logs/*.log` contains no Stata `r()` errors.
+- Confirmed all required observed diagnostic CSV/TXT files exist and are nonempty.
+- Confirmed `sustainability_deep_checks.json` reports `passed: true`.
+- Attempted `render_docx.py`; it failed because the LibreOffice/converter executable was unavailable in this environment.
+- Exported the final PDF through local Word COM and rendered the PDF to 17 PNG pages with `pdftoppm` for visual inspection.
+
 ## 2026-05-15
 
 ### Files Modified

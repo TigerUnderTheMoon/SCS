@@ -118,6 +118,35 @@ esttab fs_sccd_obs fs_sccd2_obs using "$TABLES/table04_first_stage_observed_2006
 est restore iv_second_obs
 scalar iv_tp_observed = -_b[SCCD] / (2 * _b[SCCD2])
 
+est restore fs_sccd_obs
+test IV IV2
+scalar fs_f_sccd = r(F)
+scalar fs_p_sccd = r(p)
+
+est restore fs_sccd2_obs
+test IV IV2
+scalar fs_f_sccd2 = r(F)
+scalar fs_p_sccd2 = r(p)
+
+file open dcsv using "$TABLES/table4_iv_diagnostics_observed_2006_2021.csv", write replace
+file write dcsv "diagnostic,value,p_value,notes" _n
+file write dcsv "First-stage F for SCCD," %9.6f (fs_f_sccd) "," %9.6f (fs_p_sccd) ",Excluded instruments IV and IV2" _n
+file write dcsv "First-stage F for SCCD2," %9.6f (fs_f_sccd2) "," %9.6f (fs_p_sccd2) ",Excluded instruments IV and IV2" _n
+file write dcsv "Kleibergen-Paap rk LM underidentification,,,Not generated because observed workflow uses xtivreg fixed-effects IV" _n
+file write dcsv "Cragg-Donald Wald F,,,Not generated because observed workflow uses xtivreg fixed-effects IV" _n
+file write dcsv "Kleibergen-Paap rk Wald F,,,Not generated because observed workflow uses xtivreg fixed-effects IV" _n
+file write dcsv "Overidentification test,,,Not applicable because the model is exactly identified with two endogenous regressors and two excluded instruments" _n
+file close dcsv
+
+file open dtxt using "$TABLES/table4_iv_diagnostics_observed_2006_2021.txt", write replace
+file write dtxt "Table 4 Panel B. First-stage and weak-instrument diagnostics for observed 2006-2021 sample" _n
+file write dtxt "First-stage F for SCCD: " %9.3f (fs_f_sccd) " (p=" %9.6f (fs_p_sccd) ")" _n
+file write dtxt "First-stage F for SCCD2: " %9.3f (fs_f_sccd2) " (p=" %9.6f (fs_p_sccd2) ")" _n
+file write dtxt "Kleibergen-Paap and Cragg-Donald diagnostics: not generated because the observed workflow uses xtivreg fixed-effects IV." _n
+file write dtxt "Overidentification test: not applicable because the model is exactly identified." _n
+file write dtxt "IV turning point: " %9.6f (iv_tp_observed) _n
+file close dtxt
+
 file open tp using "$TABLES/iv_turning_points.txt", write replace
 file write tp "Full-sample IV turning point, 2006-2024: " %9.6f (iv_tp_full) _n
 file write tp "Observed-only IV turning point, 2006-2021: " %9.6f (iv_tp_observed) _n

@@ -2,11 +2,11 @@
       name:  master
        log:  D:/Workplace/SCS/outputs/logs/00_master.log
   log type:  text
- opened on:  15 May 2026, 00:28:40
+ opened on:  31 May 2026, 23:46:11
 
 . 
 . di as text "Starting SCS workflow at " c(current_date) " " c(current_time)
-Starting SCS workflow at 15 May 2026 00:28:40
+Starting SCS workflow at 31 May 2026 23:46:11
 
 . di as text "Data file: $DATA"
 Data file: D:/Workplace/SCS/插值回归_2006_2024_拟合更新.dta
@@ -49,7 +49,7 @@ Data file: D:/Workplace/SCS/插值回归_2006_2024_拟合更新.dta
       name:  log01
        log:  D:/Workplace/SCS/outputs/logs/01_descriptive_statistics.log
   log type:  text
- opened on:  15 May 2026, 00:28:40
+ opened on:  31 May 2026, 23:46:11
 
 . 
 . use "$DATA", clear
@@ -537,7 +537,7 @@ file D:/Workplace/SCS/outputs/tables/table02_descriptive_statistics_observed.cs
       name:  log01
        log:  D:/Workplace/SCS/outputs/logs/01_descriptive_statistics.log
   log type:  text
- closed on:  15 May 2026, 00:28:41
+ closed on:  31 May 2026, 23:46:12
 -------------------------------------------------------------------------------
 
 . 
@@ -572,7 +572,7 @@ end of do-file
       name:  log02
        log:  D:/Workplace/SCS/outputs/logs/02_baseline_regression.log
   log type:  text
- opened on:  15 May 2026, 00:28:41
+ opened on:  31 May 2026, 23:46:12
 
 . 
 . use "$DATA", clear
@@ -1139,6 +1139,306 @@ corr(u_i, Xb) = 0.1642                          Prob > F          =     0.0000
 
 . scalar tp_observed = -_b[SCCD] / (2 * _b[SCCD2])
 
+. capture drop baseline_obs_sample
+
+. gen byte baseline_obs_sample = e(sample)
+
+. quietly summarize SCCD if baseline_obs_sample, detail
+
+. local xmin = r(min)
+
+. local xmax = r(max)
+
+. local xmean = r(mean)
+
+. local xp25 = r(p25)
+
+. local xp75 = r(p75)
+
+. 
+. nlcom turning_point: -_b[SCCD] / (2 * _b[SCCD2])
+
+turning_po~t: -_b[SCCD] / (2 * _b[SCCD2])
+
+------------------------------------------------------------------------------
+          CE | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+turning_po~t |   .5218384   .0406311    12.84   0.000     .4422029    .6014739
+------------------------------------------------------------------------------
+
+. matrix TP = r(table)
+
+. scalar tp = TP[1,1]
+
+. scalar tp_se = TP[2,1]
+
+. scalar tp_p = TP[4,1]
+
+. scalar tp_lb = TP[5,1]
+
+. scalar tp_ub = TP[6,1]
+
+. 
+. lincom SCCD + 2*`xmin'*SCCD2
+
+ ( 1)  SCCD + .2428434*SCCD2 = 0
+
+------------------------------------------------------------------------------
+          CE | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         (1) |   6.479416   .9668083     6.70   0.000     4.576368    8.382464
+------------------------------------------------------------------------------
+
+. scalar left_b = r(estimate)
+
+. scalar left_se = r(se)
+
+. scalar left_p = r(p)
+
+. scalar left_lb = r(lb)
+
+. scalar left_ub = r(ub)
+
+. 
+. lincom SCCD + 2*`xmean'*SCCD2
+
+ ( 1)  SCCD + .6252*SCCD2 = 0
+
+------------------------------------------------------------------------------
+          CE | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         (1) |   3.385829   .5014545     6.75   0.000     2.398775    4.372883
+------------------------------------------------------------------------------
+
+. scalar mean_b = r(estimate)
+
+. scalar mean_se = r(se)
+
+. scalar mean_p = r(p)
+
+. scalar mean_lb = r(lb)
+
+. scalar mean_ub = r(ub)
+
+. 
+. lincom SCCD + 2*`xmax'*SCCD2
+
+ ( 1)  SCCD + 1.644432*SCCD2 = 0
+
+------------------------------------------------------------------------------
+          CE | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         (1) |  -4.860617   1.545491    -3.15   0.002    -7.902734     -1.8185
+------------------------------------------------------------------------------
+
+. scalar right_b = r(estimate)
+
+. scalar right_se = r(se)
+
+. scalar right_p = r(p)
+
+. scalar right_lb = r(lb)
+
+. scalar right_ub = r(ub)
+
+. 
+. local inrange = (tp >= `xmin' & tp <= `xmax')
+
+. local endpoint_pass = (left_b > 0 & left_p < 0.05 & right_b < 0 & right_p < 0
+> .05)
+
+. 
+. quietly count if baseline_obs_sample
+
+. scalar sample_n = r(N)
+
+. quietly count if baseline_obs_sample & SCCD <= tp_observed
+
+. scalar n_at_or_below_tp = r(N)
+
+. quietly count if baseline_obs_sample & SCCD > tp_observed
+
+. scalar n_above_tp = r(N)
+
+. quietly levelsof id if baseline_obs_sample & SCCD > tp_observed, local(cities
+> _above_tp)
+
+. local n_cities_above_tp : word count `cities_above_tp'
+
+. scalar pct_at_or_below_tp = 100 * n_at_or_below_tp / sample_n
+
+. scalar pct_above_tp = 100 * n_above_tp / sample_n
+
+. 
+. file open ucsv using "$TABLES/table_u_test_observed_2006_2021.csv", write rep
+> lace
+
+. file write ucsv "test_item,estimate,se,p_value,ci_lower,ci_upper,notes" _n
+
+. file write ucsv "turning_point," %9.6f (tp) "," %9.6f (tp_se) "," %9.6f (tp_p
+> ) "," %9.6f (tp_lb) "," %9.6f (tp_ub) ",nlcom -b1/(2*b2)" _n
+
+. file write ucsv "left_endpoint_marginal_effect," %9.6f (left_b) "," %9.6f (le
+> ft_se) "," %9.6f (left_p) "," %9.6f (left_lb) "," %9.6f (left_ub) ",SCCD mini
+> mum = " %9.6f (`xmin') _n
+
+. file write ucsv "mean_sccd_marginal_effect," %9.6f (mean_b) "," %9.6f (mean_s
+> e) "," %9.6f (mean_p) "," %9.6f (mean_lb) "," %9.6f (mean_ub) ",SCCD mean = "
+>  %9.6f (`xmean') _n
+
+. file write ucsv "right_endpoint_marginal_effect," %9.6f (right_b) "," %9.6f (
+> right_se) "," %9.6f (right_p) "," %9.6f (right_lb) "," %9.6f (right_ub) ",SCC
+> D maximum = " %9.6f (`xmax') _n
+
+. file close ucsv
+
+. 
+. file open utxt using "$TABLES/table_u_test_observed_2006_2021.txt", write rep
+> lace
+
+. file write utxt "Formal inverted-U test for the observed-sample full-control 
+> baseline model" _n
+
+. file write utxt "Dependent variable: CE, interpreted as lnCE" _n
+
+. file write utxt "SCCD range in e(sample): [" %9.6f (`xmin') ", " %9.6f (`xmax
+> ') "]" _n
+
+. file write utxt "SCCD mean/p25/p75: " %9.6f (`xmean') " / " %9.6f (`xp25') " 
+> / " %9.6f (`xp75') _n
+
+. file write utxt "Turning point: " %9.6f (tp) " (SE " %9.6f (tp_se) ", 95% CI 
+> [" %9.6f (tp_lb) ", " %9.6f (tp_ub) "])" _n
+
+. file write utxt "Left endpoint marginal effect: " %9.6f (left_b) " (p=" %9.6f
+>  (left_p) ")" _n
+
+. file write utxt "Right endpoint marginal effect: " %9.6f (right_b) " (p=" %9.
+> 6f (right_p) ")" _n
+
+. file write utxt "Turning point inside SCCD range: `inrange'" _n
+
+. file write utxt "Endpoint-significance inverted-U check passed at 5%: `endpoi
+> nt_pass'" _n
+
+. file write utxt "This is the endpoint marginal-effect equivalent of a Lind-Me
+> hlum inverted-U check." _n
+
+. file close utxt
+
+. 
+. file open spcsv using "$TABLES/sample_position_relative_to_turning_point_obse
+> rved_2006_2021.csv", write replace
+
+. file write spcsv "item,value,notes" _n
+
+. file write spcsv "baseline_estimation_sample_n," %12.0f (sample_n) ",Full-con
+> trol observed baseline e(sample)" _n
+
+. file write spcsv "turning_point," %9.6f (tp_observed) ",Observed baseline tur
+> ning point" _n
+
+. file write spcsv "observations_at_or_below_turning_point," %12.0f (n_at_or_be
+> low_tp) ",SCCD <= turning point" _n
+
+. file write spcsv "observations_above_turning_point," %12.0f (n_above_tp) ",SC
+> CD > turning point" _n
+
+. file write spcsv "percent_at_or_below_turning_point," %9.6f (pct_at_or_below_
+> tp) ",Percent of e(sample)" _n
+
+. file write spcsv "percent_above_turning_point," %9.6f (pct_above_tp) ",Percen
+> t of e(sample)" _n
+
+. file write spcsv "cities_with_any_observation_above_turning_point," %12.0f (`
+> n_cities_above_tp') ",Unique ids with SCCD > turning point in e(sample)" _n
+
+. file close spcsv
+
+. 
+. quietly count if is_fitted == 0 & !missing(OPEN)
+
+. scalar open_obs_n = r(N)
+
+. quietly count if is_fitted == 0 & OPEN < 0
+
+. scalar open_neg_n = r(N)
+
+. quietly count if is_fitted == 0 & missing(OPEN)
+
+. scalar open_missing_n = r(N)
+
+. quietly summarize OPEN if is_fitted == 0, detail
+
+. scalar open_min = r(min)
+
+. scalar open_mean = r(mean)
+
+. scalar open_p25 = r(p25)
+
+. scalar open_p50 = r(p50)
+
+. scalar open_p75 = r(p75)
+
+. scalar open_max = r(max)
+
+. scalar open_neg_pct = 100 * open_neg_n / open_obs_n
+
+. 
+. file open oqcsv using "$TABLES/open_data_quality_observed_2006_2021.csv", wri
+> te replace
+
+. file write oqcsv "item,value,notes" _n
+
+. file write oqcsv "nonmissing_observed_OPEN," %12.0f (open_obs_n) ",Observed s
+> ample nonmissing OPEN" _n
+
+. file write oqcsv "missing_observed_OPEN," %12.0f (open_missing_n) ",Observed 
+> sample missing OPEN" _n
+
+. file write oqcsv "negative_observed_OPEN," %12.0f (open_neg_n) ",OPEN less th
+> an zero" _n
+
+. file write oqcsv "negative_observed_OPEN_percent," %9.6f (open_neg_pct) ",Sha
+> re among nonmissing observed OPEN" _n
+
+. file write oqcsv "OPEN_min," %9.6f (open_min) ",Observed sample" _n
+
+. file write oqcsv "OPEN_mean," %9.6f (open_mean) ",Observed sample" _n
+
+. file write oqcsv "OPEN_p25," %9.6f (open_p25) ",Observed sample" _n
+
+. file write oqcsv "OPEN_median," %9.6f (open_p50) ",Observed sample" _n
+
+. file write oqcsv "OPEN_p75," %9.6f (open_p75) ",Observed sample" _n
+
+. file write oqcsv "OPEN_max," %9.6f (open_max) ",Observed sample" _n
+
+. file close oqcsv
+
+. 
+. file open oqtxt using "$TABLES/open_data_quality_observed_2006_2021.txt", wri
+> te replace
+
+. file write oqtxt "OPEN data-quality diagnostic for observed 2006-2021 sample"
+>  _n
+
+. file write oqtxt "Nonmissing OPEN observations: " %12.0f (open_obs_n) _n
+
+. file write oqtxt "Missing OPEN observations: " %12.0f (open_missing_n) _n
+
+. file write oqtxt "Negative OPEN observations: " %12.0f (open_neg_n) " (" %9.3
+> f (open_neg_pct) "% of nonmissing OPEN)" _n
+
+. file write oqtxt "OPEN range: [" %9.6f (open_min) ", " %9.6f (open_max) "]" _
+> n
+
+. file write oqtxt "Interpretation note: negative OPEN values are retained and 
+> disclosed rather than recoded ex post because the data file is treated as aut
+> horitative input." _n
+
+. file close oqtxt
+
 . 
 . file open tp using "$TABLES/baseline_turning_points.txt", write replace
 
@@ -1156,7 +1456,7 @@ corr(u_i, Xb) = 0.1642                          Prob > F          =     0.0000
       name:  log02
        log:  D:/Workplace/SCS/outputs/logs/02_baseline_regression.log
   log type:  text
- closed on:  15 May 2026, 00:28:44
+ closed on:  31 May 2026, 23:46:16
 -------------------------------------------------------------------------------
 
 . 
@@ -1191,7 +1491,7 @@ end of do-file
       name:  log03
        log:  D:/Workplace/SCS/outputs/logs/03_robustness_endogeneity.log
   log type:  text
- opened on:  15 May 2026, 00:28:44
+ opened on:  31 May 2026, 23:46:16
 
 . 
 . use "$DATA", clear
@@ -1992,6 +2292,88 @@ Exogenous:  OPEN UR URG GI 2008.year 2009.year 2010.year 2011.year 2012.year
 . scalar iv_tp_observed = -_b[SCCD] / (2 * _b[SCCD2])
 
 . 
+. est restore fs_sccd_obs
+(results fs_sccd_obs are active now)
+
+. test IV IV2
+
+ ( 1)  IV = 0
+ ( 2)  IV2 = 0
+
+       F(  2,   283) =   61.55
+            Prob > F =    0.0000
+
+. scalar fs_f_sccd = r(F)
+
+. scalar fs_p_sccd = r(p)
+
+. 
+. est restore fs_sccd2_obs
+(results fs_sccd2_obs are active now)
+
+. test IV IV2
+
+ ( 1)  IV = 0
+ ( 2)  IV2 = 0
+
+       F(  2,   283) =   80.44
+            Prob > F =    0.0000
+
+. scalar fs_f_sccd2 = r(F)
+
+. scalar fs_p_sccd2 = r(p)
+
+. 
+. file open dcsv using "$TABLES/table4_iv_diagnostics_observed_2006_2021.csv", 
+> write replace
+
+. file write dcsv "diagnostic,value,p_value,notes" _n
+
+. file write dcsv "First-stage F for SCCD," %9.6f (fs_f_sccd) "," %9.6f (fs_p_s
+> ccd) ",Excluded instruments IV and IV2" _n
+
+. file write dcsv "First-stage F for SCCD2," %9.6f (fs_f_sccd2) "," %9.6f (fs_p
+> _sccd2) ",Excluded instruments IV and IV2" _n
+
+. file write dcsv "Kleibergen-Paap rk LM underidentification,,,Not generated be
+> cause observed workflow uses xtivreg fixed-effects IV" _n
+
+. file write dcsv "Cragg-Donald Wald F,,,Not generated because observed workflo
+> w uses xtivreg fixed-effects IV" _n
+
+. file write dcsv "Kleibergen-Paap rk Wald F,,,Not generated because observed w
+> orkflow uses xtivreg fixed-effects IV" _n
+
+. file write dcsv "Overidentification test,,,Not applicable because the model i
+> s exactly identified with two endogenous regressors and two excluded instrume
+> nts" _n
+
+. file close dcsv
+
+. 
+. file open dtxt using "$TABLES/table4_iv_diagnostics_observed_2006_2021.txt", 
+> write replace
+
+. file write dtxt "Table 4 Panel B. First-stage and weak-instrument diagnostics
+>  for observed 2006-2021 sample" _n
+
+. file write dtxt "First-stage F for SCCD: " %9.3f (fs_f_sccd) " (p=" %9.6f (fs
+> _p_sccd) ")" _n
+
+. file write dtxt "First-stage F for SCCD2: " %9.3f (fs_f_sccd2) " (p=" %9.6f (
+> fs_p_sccd2) ")" _n
+
+. file write dtxt "Kleibergen-Paap and Cragg-Donald diagnostics: not generated 
+> because the observed workflow uses xtivreg fixed-effects IV." _n
+
+. file write dtxt "Overidentification test: not applicable because the model is
+>  exactly identified." _n
+
+. file write dtxt "IV turning point: " %9.6f (iv_tp_observed) _n
+
+. file close dtxt
+
+. 
 . file open tp using "$TABLES/iv_turning_points.txt", write replace
 
 . file write tp "Full-sample IV turning point, 2006-2024: " %9.6f (iv_tp_full) 
@@ -2009,7 +2391,7 @@ Exogenous:  OPEN UR URG GI 2008.year 2009.year 2010.year 2011.year 2012.year
       name:  log03
        log:  D:/Workplace/SCS/outputs/logs/03_robustness_endogeneity.log
   log type:  text
- closed on:  15 May 2026, 00:28:46
+ closed on:  31 May 2026, 23:46:18
 -------------------------------------------------------------------------------
 
 . 
@@ -2044,7 +2426,7 @@ end of do-file
       name:  log04
        log:  D:/Workplace/SCS/outputs/logs/04_heterogeneity.log
   log type:  text
- opened on:  15 May 2026, 00:28:46
+ opened on:  31 May 2026, 23:46:18
 
 . 
 . use "$DATA", clear
@@ -2419,7 +2801,7 @@ corr(u_i, Xb) = 0.0866                          Prob > F          =     0.0000
       name:  log04
        log:  D:/Workplace/SCS/outputs/logs/04_heterogeneity.log
   log type:  text
- closed on:  15 May 2026, 00:28:47
+ closed on:  31 May 2026, 23:46:19
 -------------------------------------------------------------------------------
 
 . 
@@ -2454,7 +2836,7 @@ end of do-file
       name:  log05
        log:  D:/Workplace/SCS/outputs/logs/05_mediation.log
   log type:  text
- opened on:  15 May 2026, 00:28:47
+ opened on:  31 May 2026, 23:46:19
 
 . 
 . use "$DATA", clear
@@ -2936,7 +3318,7 @@ corr(u_i, Xb) = 0.1423                          Prob > F          =     0.0000
       name:  log05
        log:  D:/Workplace/SCS/outputs/logs/05_mediation.log
   log type:  text
- closed on:  15 May 2026, 00:28:48
+ closed on:  31 May 2026, 23:46:20
 -------------------------------------------------------------------------------
 
 . 
@@ -2971,7 +3353,7 @@ end of do-file
       name:  log06
        log:  D:/Workplace/SCS/outputs/logs/06_moderation.log
   log type:  text
- opened on:  15 May 2026, 00:28:48
+ opened on:  31 May 2026, 23:46:20
 
 . 
 . use "$DATA", clear
@@ -2979,6 +3361,16 @@ end of do-file
 . capture confirm variable SCCD2
 
 . if _rc gen double SCCD2 = SCCD^2
+
+. capture drop SCCD_DEI SCCD2_DEI SCCD_POLY SCCD2_POLY
+
+. gen double SCCD_DEI = SCCD * DEI
+
+. gen double SCCD2_DEI = SCCD2 * DEI
+
+. gen double SCCD_POLY = SCCD * POLY
+
+. gen double SCCD2_POLY = SCCD2 * POLY
 
 . xtset id year
 
@@ -3399,11 +3791,227 @@ corr(u_i, Xb) = 0.1691                          Prob > F          =     0.0000
 > 2006_2021.rtf)
 
 . 
+. xtreg CE SCCD SCCD2 DEI SCCD_DEI SCCD2_DEI $BASE_CONTROLS i.year if is_fitted
+>  == 0, fe vce(cluster id)
+
+Fixed-effects (within) regression               Number of obs     =      4,514
+Group variable: id                              Number of groups  =        284
+
+R-squared:                                      Obs per group:
+     Within  = 0.6521                                         min =          1
+     Between = 0.6254                                         avg =       15.9
+     Overall = 0.6316                                         max =         16
+
+                                                F(24, 283)        =      95.45
+corr(u_i, Xb) = 0.1808                          Prob > F          =     0.0000
+
+                                   (Std. err. adjusted for 284 clusters in id)
+------------------------------------------------------------------------------
+             |               Robust
+          CE | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        SCCD |   8.869165   1.197971     7.40   0.000     6.511102    11.22723
+       SCCD2 |  -7.976924   1.423302    -5.60   0.000    -10.77853   -5.175322
+         DEI |   5.874133   2.225523     2.64   0.009     1.493453    10.25481
+    SCCD_DEI |  -25.91319   7.935639    -3.27   0.001    -41.53356   -10.29282
+   SCCD2_DEI |   24.17338   6.665149     3.63   0.000     11.05382    37.29294
+        OPEN |    .263425   .0829404     3.18   0.002     .1001667    .4266833
+          UR |   .0245273   .0038411     6.39   0.000     .0169665    .0320881
+         URG |  -.0895793   .0667506    -1.34   0.181      -.22097    .0418114
+          GI |  -2.007667   .5440436    -3.69   0.000    -3.078553   -.9367815
+             |
+        year |
+       2007  |   .1238932   .0286726     4.32   0.000     .0674545    .1803319
+       2008  |   .2024753   .0330827     6.12   0.000      .137356    .2675947
+       2009  |   .2500883   .0377412     6.63   0.000     .1757993    .3243774
+       2010  |   .2762771   .0441564     6.26   0.000     .1893604    .3631937
+       2011  |   .2836158   .0719653     3.94   0.000     .1419607     .425271
+       2012  |   .3241073   .0732773     4.42   0.000     .1798696     .468345
+       2013  |   .2299858   .0853417     2.69   0.007     .0620007    .3979708
+       2014  |   .2578607   .0895008     2.88   0.004     .0816889    .4340326
+       2015  |   1.032642   .0931221    11.09   0.000     .8493426    1.215942
+       2016  |   1.081081   .0934476    11.57   0.000     .8971405    1.265022
+       2017  |   1.140203   .1042199    10.94   0.000     .9350589    1.345348
+       2018  |   1.097241   .1103702     9.94   0.000     .8799906    1.314492
+       2019  |    1.01559   .1009351    10.06   0.000     .8169112    1.214269
+       2020  |  -.0696672    .069512    -1.00   0.317    -.2064933     .067159
+       2021  |   .0223692   .0617607     0.36   0.717    -.0991995    .1439379
+             |
+       _cons |   1.363873   .3699944     3.69   0.000     .6355825    2.092163
+-------------+----------------------------------------------------------------
+     sigma_u |  .60961592
+     sigma_e |  .51969417
+         rho |  .57912373   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+
+. quietly summarize DEI if e(sample), detail
+
+. local dei_low = r(p25)
+
+. local dei_mean = r(mean)
+
+. local dei_high = r(p75)
+
+. quietly summarize SCCD if e(sample), detail
+
+. local sccd_mean = r(mean)
+
+. local sccd_min = r(min)
+
+. local sccd_max = r(max)
+
+. 
+. scalar b_cons = _b[_cons]
+
+. scalar b_sccd = _b[SCCD]
+
+. scalar b_sccd2 = _b[SCCD2]
+
+. scalar b_dei = _b[DEI]
+
+. scalar b_sccd_dei = _b[SCCD_DEI]
+
+. scalar b_sccd2_dei = _b[SCCD2_DEI]
+
+. foreach v in OPEN UR URG GI {
+  2.     quietly summarize `v' if e(sample)
+  3.     scalar mean_`v' = r(mean)
+  4.     scalar b_`v' = _b[`v']
+  5. }
+
+. 
+. preserve
+
+. clear
+
+. set obs 120
+Number of observations (_N) was 0, now 120.
+
+. gen double SCCD = `sccd_min' + (`sccd_max' - `sccd_min') * (_n - 1) / (_N - 1
+> )
+
+. gen double y_low = b_cons + (b_sccd + b_sccd_dei * `dei_low') * SCCD + (b_scc
+> d2 + b_sccd2_dei * `dei_low') * SCCD^2 + b_dei * `dei_low' + b_OPEN * mean_OP
+> EN + b_UR * mean_UR + b_URG * mean_URG + b_GI * mean_GI
+
+. gen double y_high = b_cons + (b_sccd + b_sccd_dei * `dei_high') * SCCD + (b_s
+> ccd2 + b_sccd2_dei * `dei_high') * SCCD^2 + b_dei * `dei_high' + b_OPEN * mea
+> n_OPEN + b_UR * mean_UR + b_URG * mean_URG + b_GI * mean_GI
+
+. 
+. twoway ///
+>     (line y_low SCCD, lcolor(navy) lwidth(medthick)) ///
+>     (line y_high SCCD, lcolor(maroon) lwidth(medthick)), ///
+>     xtitle("SCCD") ytitle("Predicted lnCE") ///
+>     legend(order(1 "Low DEI" 2 "High DEI") pos(6) row(1)) ///
+>     graphregion(color(white)) plotregion(color(white))
+
+. graph export "$FIGURES/fig_moderation_dei_observed_2006_2021.png", replace wi
+> dth(2400)
+file
+    D:/Workplace/SCS/outputs/figures/fig_moderation_dei_observed_2006_2021.pn
+    > g saved as PNG format
+
+. restore
+
+. 
+. file open ctp using "$TABLES/dei_conditional_turning_points_observed_2006_202
+> 1.csv", write replace
+
+. file write ctp "dei_level,dei_value,effective_linear,effective_quadratic,turn
+> ing_point,tp_se,tp_p,tp_ci_lower,tp_ci_upper,marginal_effect_at_mean_sccd,me_
+> se,me_p,me_ci_lower,me_ci_upper,notes" _n
+
+. 
+. foreach level in low mean high {
+  2.     local d = `dei_`level''
+  3.     scalar eff_linear = _b[SCCD] + _b[SCCD_DEI] * `d'
+  4.     scalar eff_quadratic = _b[SCCD2] + _b[SCCD2_DEI] * `d'
+  5.     nlcom ///
+>         (turning_point: -(_b[SCCD] + _b[SCCD_DEI] * `d') / (2 * (_b[SCCD2] + 
+> _b[SCCD2_DEI] * `d'))) ///
+>         (marginal_effect_at_mean_sccd: _b[SCCD] + _b[SCCD_DEI] * `d' + 2 * `s
+> ccd_mean' * (_b[SCCD2] + _b[SCCD2_DEI] * `d'))
+  6.     matrix C = r(table)
+  7.     scalar tp_b = C[1,1]
+  8.     scalar tp_se = C[2,1]
+  9.     scalar tp_p = C[4,1]
+ 10.     scalar tp_lb = C[5,1]
+ 11.     scalar tp_ub = C[6,1]
+ 12.     scalar me_b = C[1,2]
+ 13.     scalar me_se = C[2,2]
+ 14.     scalar me_p = C[4,2]
+ 15.     scalar me_lb = C[5,2]
+ 16.     scalar me_ub = C[6,2]
+ 17.     file write ctp "`level'," %9.6f (`d') "," %9.6f (eff_linear) "," %9.6f
+>  (eff_quadratic) "," %9.6f (tp_b) "," %9.6f (tp_se) "," %9.6f (tp_p) "," %9.6
+> f (tp_lb) "," %9.6f (tp_ub) "," %9.6f (me_b) "," %9.6f (me_se) "," %9.6f (me_
+> p) "," %9.6f (me_lb) "," %9.6f (me_ub) ",DEI low=p25 mean=mean high=p75; SCCD
+>  mean=" %9.6f (`sccd_mean') _n
+ 18. }
+
+turning_po~t: -(_b[SCCD] + _b[SCCD_DEI] * .0083169350400567) / (2 * (_b[SCCD2] 
+> + _b[SCCD2_DEI] * .0083169350400567))
+marginal_e~d: _b[SCCD] + _b[SCCD_DEI] * .0083169350400567 + 2 * .31260002417160
+> 6 * (_b[SCCD2] + _b[SCCD2_DEI] * .0083169350400567)
+
+------------------------------------------------------------------------------
+          CE | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+turning_po~t |    .556442    .047696    11.67   0.000     .4629596    .6499244
+marginal_e~d |   3.792169   .5523011     6.87   0.000     2.709679     4.87466
+------------------------------------------------------------------------------
+
+turning_po~t: -(_b[SCCD] + _b[SCCD_DEI] * .0547449591920834) / (2 * (_b[SCCD2] 
+> + _b[SCCD2_DEI] * .0547449591920834))
+marginal_e~d: _b[SCCD] + _b[SCCD_DEI] * .0547449591920834 + 2 * .31260002417160
+> 6 * (_b[SCCD2] + _b[SCCD2_DEI] * .0547449591920834)
+
+------------------------------------------------------------------------------
+          CE | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+turning_po~t |   .5598925     .05421    10.33   0.000     .4536429    .6661421
+marginal_e~d |   3.290747   .4823869     6.82   0.000     2.345286    4.236208
+------------------------------------------------------------------------------
+
+turning_po~t: -(_b[SCCD] + _b[SCCD_DEI] * .0729278177022934) / (2 * (_b[SCCD2] 
+> + _b[SCCD2_DEI] * .0729278177022934))
+marginal_e~d: _b[SCCD] + _b[SCCD_DEI] * .0729278177022934 + 2 * .31260002417160
+> 6 * (_b[SCCD2] + _b[SCCD2_DEI] * .0729278177022934)
+
+------------------------------------------------------------------------------
+          CE | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+turning_po~t |   .5615835   .0575767     9.75   0.000     .4487352    .6744319
+marginal_e~d |   3.094372   .4712406     6.57   0.000     2.170758    4.017987
+------------------------------------------------------------------------------
+
+. file close ctp
+
+. 
+. file open ctp_txt using "$TABLES/dei_conditional_turning_points_observed_2006
+> _2021.txt", write replace
+
+. file write ctp_txt "DEI conditional turning points and marginal effects for o
+> bserved 2006-2021 sample" _n
+
+. file write ctp_txt "DEI low/mean/high are p25, mean, and p75 among e(sample).
+> " _n
+
+. file write ctp_txt "SCCD range among e(sample): [" %9.6f (`sccd_min') ", " %9
+> .6f (`sccd_max') "]; SCCD mean = " %9.6f (`sccd_mean') _n
+
+. file write ctp_txt "See CSV for nlcom standard errors and confidence interval
+> s." _n
+
+. file close ctp_txt
+
+. 
 . log close log06
       name:  log06
        log:  D:/Workplace/SCS/outputs/logs/06_moderation.log
   log type:  text
- closed on:  15 May 2026, 00:28:48
+ closed on:  31 May 2026, 23:46:23
 -------------------------------------------------------------------------------
 
 . 
@@ -3438,7 +4046,7 @@ end of do-file
       name:  log07
        log:  D:/Workplace/SCS/outputs/logs/07_figures.log
   log type:  text
- opened on:  15 May 2026, 00:28:48
+ opened on:  31 May 2026, 23:46:23
 
 . 
 . use "$DATA", clear
@@ -3561,7 +4169,7 @@ file
       name:  log07
        log:  D:/Workplace/SCS/outputs/logs/07_figures.log
   log type:  text
- closed on:  15 May 2026, 00:28:55
+ closed on:  31 May 2026, 23:46:29
 -------------------------------------------------------------------------------
 
 . 
@@ -3569,11 +4177,11 @@ end of do-file
 
 . 
 . di as text "Completed SCS workflow at " c(current_date) " " c(current_time)
-Completed SCS workflow at 15 May 2026 00:28:55
+Completed SCS workflow at 31 May 2026 23:46:29
 
 . log close master
       name:  master
        log:  D:/Workplace/SCS/outputs/logs/00_master.log
   log type:  text
- closed on:  15 May 2026, 00:28:55
+ closed on:  31 May 2026, 23:46:29
 -------------------------------------------------------------------------------

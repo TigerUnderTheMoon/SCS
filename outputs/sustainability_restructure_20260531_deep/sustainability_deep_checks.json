@@ -1,0 +1,36 @@
+{
+  "docx": "D:\\Workplace\\SCS\\outputs\\sustainability_restructure_20260531_deep\\manuscript_sustainability_deep.docx",
+  "pdf": "D:\\Workplace\\SCS\\outputs\\sustainability_restructure_20260531_deep\\manuscript_sustainability_deep.pdf",
+  "pdf_status": {
+    "created": true,
+    "method": "PowerShell Word COM",
+    "error": ""
+  },
+  "abstract_words": 153,
+  "contains_H1_H4": true,
+  "contains_data_availability": true,
+  "contains_funding": true,
+  "contains_conflicts": true,
+  "contains_supplementary": true,
+  "contains_mediation_effect": false,
+  "contains_forbidden_real_records_phrase": false,
+  "contains_unqualified_2006_2024_main_sample": false,
+  "contains_placeholders_to_be_completed": false,
+  "uses_observed_main_sample": true,
+  "references_count": 31,
+  "tables_count": 7,
+  "paragraphs_count": 120,
+  "required_inputs": {
+    "table_u_test_observed_2006_2021.csv": true,
+    "table_u_test_observed_2006_2021.txt": true,
+    "table4_iv_diagnostics_observed_2006_2021.csv": true,
+    "table4_iv_diagnostics_observed_2006_2021.txt": true,
+    "dei_conditional_turning_points_observed_2006_2021.csv": true,
+    "dei_conditional_turning_points_observed_2006_2021.txt": true,
+    "open_data_quality_observed_2006_2021.csv": true,
+    "open_data_quality_observed_2006_2021.txt": true,
+    "sample_position_relative_to_turning_point_observed_2006_2021.csv": true,
+    "fig_moderation_dei_observed_2006_2021.png": true
+  },
+  "passed": true
+}

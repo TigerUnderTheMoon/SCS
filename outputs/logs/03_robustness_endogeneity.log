@@ -2,7 +2,7 @@
       name:  log03
        log:  D:/Workplace/SCS/outputs/logs/03_robustness_endogeneity.log
   log type:  text
- opened on:  15 May 2026, 00:28:44
+ opened on:  31 May 2026, 23:46:16
 
 . 
 . use "$DATA", clear
@@ -803,6 +803,88 @@ Exogenous:  OPEN UR URG GI 2008.year 2009.year 2010.year 2011.year 2012.year
 . scalar iv_tp_observed = -_b[SCCD] / (2 * _b[SCCD2])
 
 . 
+. est restore fs_sccd_obs
+(results fs_sccd_obs are active now)
+
+. test IV IV2
+
+ ( 1)  IV = 0
+ ( 2)  IV2 = 0
+
+       F(  2,   283) =   61.55
+            Prob > F =    0.0000
+
+. scalar fs_f_sccd = r(F)
+
+. scalar fs_p_sccd = r(p)
+
+. 
+. est restore fs_sccd2_obs
+(results fs_sccd2_obs are active now)
+
+. test IV IV2
+
+ ( 1)  IV = 0
+ ( 2)  IV2 = 0
+
+       F(  2,   283) =   80.44
+            Prob > F =    0.0000
+
+. scalar fs_f_sccd2 = r(F)
+
+. scalar fs_p_sccd2 = r(p)
+
+. 
+. file open dcsv using "$TABLES/table4_iv_diagnostics_observed_2006_2021.csv", 
+> write replace
+
+. file write dcsv "diagnostic,value,p_value,notes" _n
+
+. file write dcsv "First-stage F for SCCD," %9.6f (fs_f_sccd) "," %9.6f (fs_p_s
+> ccd) ",Excluded instruments IV and IV2" _n
+
+. file write dcsv "First-stage F for SCCD2," %9.6f (fs_f_sccd2) "," %9.6f (fs_p
+> _sccd2) ",Excluded instruments IV and IV2" _n
+
+. file write dcsv "Kleibergen-Paap rk LM underidentification,,,Not generated be
+> cause observed workflow uses xtivreg fixed-effects IV" _n
+
+. file write dcsv "Cragg-Donald Wald F,,,Not generated because observed workflo
+> w uses xtivreg fixed-effects IV" _n
+
+. file write dcsv "Kleibergen-Paap rk Wald F,,,Not generated because observed w
+> orkflow uses xtivreg fixed-effects IV" _n
+
+. file write dcsv "Overidentification test,,,Not applicable because the model i
+> s exactly identified with two endogenous regressors and two excluded instrume
+> nts" _n
+
+. file close dcsv
+
+. 
+. file open dtxt using "$TABLES/table4_iv_diagnostics_observed_2006_2021.txt", 
+> write replace
+
+. file write dtxt "Table 4 Panel B. First-stage and weak-instrument diagnostics
+>  for observed 2006-2021 sample" _n
+
+. file write dtxt "First-stage F for SCCD: " %9.3f (fs_f_sccd) " (p=" %9.6f (fs
+> _p_sccd) ")" _n
+
+. file write dtxt "First-stage F for SCCD2: " %9.3f (fs_f_sccd2) " (p=" %9.6f (
+> fs_p_sccd2) ")" _n
+
+. file write dtxt "Kleibergen-Paap and Cragg-Donald diagnostics: not generated 
+> because the observed workflow uses xtivreg fixed-effects IV." _n
+
+. file write dtxt "Overidentification test: not applicable because the model is
+>  exactly identified." _n
+
+. file write dtxt "IV turning point: " %9.6f (iv_tp_observed) _n
+
+. file close dtxt
+
+. 
 . file open tp using "$TABLES/iv_turning_points.txt", write replace
 
 . file write tp "Full-sample IV turning point, 2006-2024: " %9.6f (iv_tp_full) 
@@ -820,5 +902,5 @@ Exogenous:  OPEN UR URG GI 2008.year 2009.year 2010.year 2011.year 2012.year
       name:  log03
        log:  D:/Workplace/SCS/outputs/logs/03_robustness_endogeneity.log
   log type:  text
- closed on:  15 May 2026, 00:28:46
+ closed on:  31 May 2026, 23:46:18
 -------------------------------------------------------------------------------

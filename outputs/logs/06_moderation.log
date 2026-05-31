@@ -2,7 +2,7 @@
       name:  log06
        log:  D:/Workplace/SCS/outputs/logs/06_moderation.log
   log type:  text
- opened on:  15 May 2026, 00:28:48
+ opened on:  31 May 2026, 23:46:20
 
 . 
 . use "$DATA", clear
@@ -10,6 +10,16 @@
 . capture confirm variable SCCD2
 
 . if _rc gen double SCCD2 = SCCD^2
+
+. capture drop SCCD_DEI SCCD2_DEI SCCD_POLY SCCD2_POLY
+
+. gen double SCCD_DEI = SCCD * DEI
+
+. gen double SCCD2_DEI = SCCD2 * DEI
+
+. gen double SCCD_POLY = SCCD * POLY
+
+. gen double SCCD2_POLY = SCCD2 * POLY
 
 . xtset id year
 
@@ -430,9 +440,225 @@ corr(u_i, Xb) = 0.1691                          Prob > F          =     0.0000
 > 2006_2021.rtf)
 
 . 
+. xtreg CE SCCD SCCD2 DEI SCCD_DEI SCCD2_DEI $BASE_CONTROLS i.year if is_fitted
+>  == 0, fe vce(cluster id)
+
+Fixed-effects (within) regression               Number of obs     =      4,514
+Group variable: id                              Number of groups  =        284
+
+R-squared:                                      Obs per group:
+     Within  = 0.6521                                         min =          1
+     Between = 0.6254                                         avg =       15.9
+     Overall = 0.6316                                         max =         16
+
+                                                F(24, 283)        =      95.45
+corr(u_i, Xb) = 0.1808                          Prob > F          =     0.0000
+
+                                   (Std. err. adjusted for 284 clusters in id)
+------------------------------------------------------------------------------
+             |               Robust
+          CE | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        SCCD |   8.869165   1.197971     7.40   0.000     6.511102    11.22723
+       SCCD2 |  -7.976924   1.423302    -5.60   0.000    -10.77853   -5.175322
+         DEI |   5.874133   2.225523     2.64   0.009     1.493453    10.25481
+    SCCD_DEI |  -25.91319   7.935639    -3.27   0.001    -41.53356   -10.29282
+   SCCD2_DEI |   24.17338   6.665149     3.63   0.000     11.05382    37.29294
+        OPEN |    .263425   .0829404     3.18   0.002     .1001667    .4266833
+          UR |   .0245273   .0038411     6.39   0.000     .0169665    .0320881
+         URG |  -.0895793   .0667506    -1.34   0.181      -.22097    .0418114
+          GI |  -2.007667   .5440436    -3.69   0.000    -3.078553   -.9367815
+             |
+        year |
+       2007  |   .1238932   .0286726     4.32   0.000     .0674545    .1803319
+       2008  |   .2024753   .0330827     6.12   0.000      .137356    .2675947
+       2009  |   .2500883   .0377412     6.63   0.000     .1757993    .3243774
+       2010  |   .2762771   .0441564     6.26   0.000     .1893604    .3631937
+       2011  |   .2836158   .0719653     3.94   0.000     .1419607     .425271
+       2012  |   .3241073   .0732773     4.42   0.000     .1798696     .468345
+       2013  |   .2299858   .0853417     2.69   0.007     .0620007    .3979708
+       2014  |   .2578607   .0895008     2.88   0.004     .0816889    .4340326
+       2015  |   1.032642   .0931221    11.09   0.000     .8493426    1.215942
+       2016  |   1.081081   .0934476    11.57   0.000     .8971405    1.265022
+       2017  |   1.140203   .1042199    10.94   0.000     .9350589    1.345348
+       2018  |   1.097241   .1103702     9.94   0.000     .8799906    1.314492
+       2019  |    1.01559   .1009351    10.06   0.000     .8169112    1.214269
+       2020  |  -.0696672    .069512    -1.00   0.317    -.2064933     .067159
+       2021  |   .0223692   .0617607     0.36   0.717    -.0991995    .1439379
+             |
+       _cons |   1.363873   .3699944     3.69   0.000     .6355825    2.092163
+-------------+----------------------------------------------------------------
+     sigma_u |  .60961592
+     sigma_e |  .51969417
+         rho |  .57912373   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+
+. quietly summarize DEI if e(sample), detail
+
+. local dei_low = r(p25)
+
+. local dei_mean = r(mean)
+
+. local dei_high = r(p75)
+
+. quietly summarize SCCD if e(sample), detail
+
+. local sccd_mean = r(mean)
+
+. local sccd_min = r(min)
+
+. local sccd_max = r(max)
+
+. 
+. scalar b_cons = _b[_cons]
+
+. scalar b_sccd = _b[SCCD]
+
+. scalar b_sccd2 = _b[SCCD2]
+
+. scalar b_dei = _b[DEI]
+
+. scalar b_sccd_dei = _b[SCCD_DEI]
+
+. scalar b_sccd2_dei = _b[SCCD2_DEI]
+
+. foreach v in OPEN UR URG GI {
+  2.     quietly summarize `v' if e(sample)
+  3.     scalar mean_`v' = r(mean)
+  4.     scalar b_`v' = _b[`v']
+  5. }
+
+. 
+. preserve
+
+. clear
+
+. set obs 120
+Number of observations (_N) was 0, now 120.
+
+. gen double SCCD = `sccd_min' + (`sccd_max' - `sccd_min') * (_n - 1) / (_N - 1
+> )
+
+. gen double y_low = b_cons + (b_sccd + b_sccd_dei * `dei_low') * SCCD + (b_scc
+> d2 + b_sccd2_dei * `dei_low') * SCCD^2 + b_dei * `dei_low' + b_OPEN * mean_OP
+> EN + b_UR * mean_UR + b_URG * mean_URG + b_GI * mean_GI
+
+. gen double y_high = b_cons + (b_sccd + b_sccd_dei * `dei_high') * SCCD + (b_s
+> ccd2 + b_sccd2_dei * `dei_high') * SCCD^2 + b_dei * `dei_high' + b_OPEN * mea
+> n_OPEN + b_UR * mean_UR + b_URG * mean_URG + b_GI * mean_GI
+
+. 
+. twoway ///
+>     (line y_low SCCD, lcolor(navy) lwidth(medthick)) ///
+>     (line y_high SCCD, lcolor(maroon) lwidth(medthick)), ///
+>     xtitle("SCCD") ytitle("Predicted lnCE") ///
+>     legend(order(1 "Low DEI" 2 "High DEI") pos(6) row(1)) ///
+>     graphregion(color(white)) plotregion(color(white))
+
+. graph export "$FIGURES/fig_moderation_dei_observed_2006_2021.png", replace wi
+> dth(2400)
+file
+    D:/Workplace/SCS/outputs/figures/fig_moderation_dei_observed_2006_2021.pn
+    > g saved as PNG format
+
+. restore
+
+. 
+. file open ctp using "$TABLES/dei_conditional_turning_points_observed_2006_202
+> 1.csv", write replace
+
+. file write ctp "dei_level,dei_value,effective_linear,effective_quadratic,turn
+> ing_point,tp_se,tp_p,tp_ci_lower,tp_ci_upper,marginal_effect_at_mean_sccd,me_
+> se,me_p,me_ci_lower,me_ci_upper,notes" _n
+
+. 
+. foreach level in low mean high {
+  2.     local d = `dei_`level''
+  3.     scalar eff_linear = _b[SCCD] + _b[SCCD_DEI] * `d'
+  4.     scalar eff_quadratic = _b[SCCD2] + _b[SCCD2_DEI] * `d'
+  5.     nlcom ///
+>         (turning_point: -(_b[SCCD] + _b[SCCD_DEI] * `d') / (2 * (_b[SCCD2] + 
+> _b[SCCD2_DEI] * `d'))) ///
+>         (marginal_effect_at_mean_sccd: _b[SCCD] + _b[SCCD_DEI] * `d' + 2 * `s
+> ccd_mean' * (_b[SCCD2] + _b[SCCD2_DEI] * `d'))
+  6.     matrix C = r(table)
+  7.     scalar tp_b = C[1,1]
+  8.     scalar tp_se = C[2,1]
+  9.     scalar tp_p = C[4,1]
+ 10.     scalar tp_lb = C[5,1]
+ 11.     scalar tp_ub = C[6,1]
+ 12.     scalar me_b = C[1,2]
+ 13.     scalar me_se = C[2,2]
+ 14.     scalar me_p = C[4,2]
+ 15.     scalar me_lb = C[5,2]
+ 16.     scalar me_ub = C[6,2]
+ 17.     file write ctp "`level'," %9.6f (`d') "," %9.6f (eff_linear) "," %9.6f
+>  (eff_quadratic) "," %9.6f (tp_b) "," %9.6f (tp_se) "," %9.6f (tp_p) "," %9.6
+> f (tp_lb) "," %9.6f (tp_ub) "," %9.6f (me_b) "," %9.6f (me_se) "," %9.6f (me_
+> p) "," %9.6f (me_lb) "," %9.6f (me_ub) ",DEI low=p25 mean=mean high=p75; SCCD
+>  mean=" %9.6f (`sccd_mean') _n
+ 18. }
+
+turning_po~t: -(_b[SCCD] + _b[SCCD_DEI] * .0083169350400567) / (2 * (_b[SCCD2] 
+> + _b[SCCD2_DEI] * .0083169350400567))
+marginal_e~d: _b[SCCD] + _b[SCCD_DEI] * .0083169350400567 + 2 * .31260002417160
+> 6 * (_b[SCCD2] + _b[SCCD2_DEI] * .0083169350400567)
+
+------------------------------------------------------------------------------
+          CE | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+turning_po~t |    .556442    .047696    11.67   0.000     .4629596    .6499244
+marginal_e~d |   3.792169   .5523011     6.87   0.000     2.709679     4.87466
+------------------------------------------------------------------------------
+
+turning_po~t: -(_b[SCCD] + _b[SCCD_DEI] * .0547449591920834) / (2 * (_b[SCCD2] 
+> + _b[SCCD2_DEI] * .0547449591920834))
+marginal_e~d: _b[SCCD] + _b[SCCD_DEI] * .0547449591920834 + 2 * .31260002417160
+> 6 * (_b[SCCD2] + _b[SCCD2_DEI] * .0547449591920834)
+
+------------------------------------------------------------------------------
+          CE | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+turning_po~t |   .5598925     .05421    10.33   0.000     .4536429    .6661421
+marginal_e~d |   3.290747   .4823869     6.82   0.000     2.345286    4.236208
+------------------------------------------------------------------------------
+
+turning_po~t: -(_b[SCCD] + _b[SCCD_DEI] * .0729278177022934) / (2 * (_b[SCCD2] 
+> + _b[SCCD2_DEI] * .0729278177022934))
+marginal_e~d: _b[SCCD] + _b[SCCD_DEI] * .0729278177022934 + 2 * .31260002417160
+> 6 * (_b[SCCD2] + _b[SCCD2_DEI] * .0729278177022934)
+
+------------------------------------------------------------------------------
+          CE | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+turning_po~t |   .5615835   .0575767     9.75   0.000     .4487352    .6744319
+marginal_e~d |   3.094372   .4712406     6.57   0.000     2.170758    4.017987
+------------------------------------------------------------------------------
+
+. file close ctp
+
+. 
+. file open ctp_txt using "$TABLES/dei_conditional_turning_points_observed_2006
+> _2021.txt", write replace
+
+. file write ctp_txt "DEI conditional turning points and marginal effects for o
+> bserved 2006-2021 sample" _n
+
+. file write ctp_txt "DEI low/mean/high are p25, mean, and p75 among e(sample).
+> " _n
+
+. file write ctp_txt "SCCD range among e(sample): [" %9.6f (`sccd_min') ", " %9
+> .6f (`sccd_max') "]; SCCD mean = " %9.6f (`sccd_mean') _n
+
+. file write ctp_txt "See CSV for nlcom standard errors and confidence interval
+> s." _n
+
+. file close ctp_txt
+
+. 
 . log close log06
       name:  log06
        log:  D:/Workplace/SCS/outputs/logs/06_moderation.log
   log type:  text
- closed on:  15 May 2026, 00:28:48
+ closed on:  31 May 2026, 23:46:23
 -------------------------------------------------------------------------------

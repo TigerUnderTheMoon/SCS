@@ -2,7 +2,7 @@
       name:  log07_noer
        log:  D:/Workplace/SCS/outputs/logs/07_figures_2006_2024_noER.log
   log type:  text
- opened on:  16 May 2026, 04:09:15
+ opened on:  24 May 2026, 23:48:53
 
 . 
 . use "$DATA", clear
@@ -28,39 +28,39 @@ Panel variable: id (strongly balanced)
 
 . 
 . graph set window fontface "Arial"
+not available in non-GUI version
 
 . 
-. histogram SCCD, percent width(0.025) ///
->     title("Distribution of SCCD") ///
->     subtitle("Main sample, 2006-2024") ///
->     xtitle("Spatial coupling coordination degree") ytitle("Percent")
+. histogram SCCD, name(graph1, replace) percent width(0.025)     xtitle("Spatia
+> l coupling coordination degree") ytitle("Percent")     title("") subtitle("")
+>      graphregion(color(white)) plotregion(color(white))
 (bin=29, start=.1214217, width=.025)
 
 . graph export "$FIGURES/fig_sccd_distribution_2006_2024_noER.png", replace wid
 > th(2400)
-file
-    D:/Workplace/SCS/outputs/figures/fig_sccd_distribution_2006_2024_noER.png
-    saved as PNG format
+(file D:/Workplace/SCS/outputs/figures/fig_sccd_distribution_2006_2024_noER.png
+>  not found)
+file D:/Workplace/SCS/outputs/figures/fig_sccd_distribution_2006_2024_noER.png 
+> written in PNG format
 
 . 
-. twoway ///
->     (scatter lnCE SCCD, mcolor(gs12%35) msize(tiny)) ///
->     (qfit lnCE SCCD, lcolor(navy) lwidth(medthick)), ///
->     title("lnCE and SCCD") ///
->     subtitle("Main sample, 2006-2024") ///
->     xtitle("SCCD") ytitle("lnCE") ///
->     legend(order(1 "City-year observations" 2 "Quadratic fit") pos(6) row(1))
+. twoway (scatter lnCE SCCD, name(graph2, replace) mcolor(gs12%35) msize(tiny))
+>      (qfit lnCE SCCD, lcolor(navy) lwidth(medthick)),     xtitle("SCCD") ytit
+> le("lnCE")     title("") subtitle("")     legend(order(1 "City-year observati
+> ons" 2 "Quadratic fit") pos(6) row(1))     graphregion(color(white)) plotregi
+> on(color(white))
 
 . graph export "$FIGURES/fig_nonlinear_sccd_lnce_2006_2024_noER.png", replace w
 > idth(2400)
-file
-    D:/Workplace/SCS/outputs/figures/fig_nonlinear_sccd_lnce_2006_2024_noER.p
-    > ng saved as PNG format
+(file D:/Workplace/SCS/outputs/figures/fig_nonlinear_sccd_lnce_2006_2024_noER.p
+> ng not found)
+file D:/Workplace/SCS/outputs/figures/fig_nonlinear_sccd_lnce_2006_2024_noER.pn
+> g written in PNG format
 
 . 
 . log close log07_noer
       name:  log07_noer
        log:  D:/Workplace/SCS/outputs/logs/07_figures_2006_2024_noER.log
   log type:  text
- closed on:  16 May 2026, 04:09:18
+ closed on:  24 May 2026, 23:48:59
 -------------------------------------------------------------------------------

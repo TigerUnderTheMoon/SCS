@@ -1,0 +1,23 @@
+{
+  "docx": "D:\\Workplace\\SCS\\outputs\\sustainability_restructure_20260525\\manuscript_sustainability_observed.docx",
+  "abstract_words": 162,
+  "contains_highlights": false,
+  "contains_forbidden_real_records_phrase": false,
+  "contains_unqualified_2006_2024_main_sample": false,
+  "contains_mediation_effect": false,
+  "mentions_observed_sample": true,
+  "references_count": 28,
+  "tables_count": 7,
+  "paragraphs_count": 104,
+  "required_inputs": {
+    "D:\\Workplace\\SCS\\outputs\\tables\\table03_baseline_observed_2006_2021.rtf": true,
+    "D:\\Workplace\\SCS\\outputs\\tables\\table04_robustness_endogeneity_observed_2006_2021.rtf": true,
+    "D:\\Workplace\\SCS\\outputs\\tables\\table05_regional_heterogeneity_observed_2006_2021.rtf": true,
+    "D:\\Workplace\\SCS\\outputs\\tables\\table06_mediation_observed_2006_2021.rtf": true,
+    "D:\\Workplace\\SCS\\outputs\\tables\\table07_moderation_observed_2006_2021.rtf": true,
+    "D:\\Workplace\\SCS\\outputs\\figures\\fig_sccd_distribution_observed_2006_2021.png": true,
+    "D:\\Workplace\\SCS\\outputs\\figures\\fig_nonlinear_sccd_lnce_observed_2006_2021.png": true,
+    "D:\\Workplace\\SCS\\outputs\\figures\\fig_moderation_dei_observed_2006_2021.png": true
+  },
+  "passed": true
+}

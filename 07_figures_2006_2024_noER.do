@@ -31,18 +31,18 @@ xtset id year
 graph set window fontface "Arial"
 
 histogram SCCD, percent width(0.025) ///
-    title("Distribution of SCCD") ///
-    subtitle("Main sample, 2006-2024") ///
-    xtitle("Spatial coupling coordination degree") ytitle("Percent")
+    xtitle("Spatial coupling coordination degree") ytitle("Percent") ///
+    title("") subtitle("") ///
+    graphregion(color(white)) plotregion(color(white))
 graph export "$FIGURES/fig_sccd_distribution_2006_2024_noER.png", replace width(2400)
 
 twoway ///
     (scatter lnCE SCCD, mcolor(gs12%35) msize(tiny)) ///
     (qfit lnCE SCCD, lcolor(navy) lwidth(medthick)), ///
-    title("lnCE and SCCD") ///
-    subtitle("Main sample, 2006-2024") ///
     xtitle("SCCD") ytitle("lnCE") ///
-    legend(order(1 "City-year observations" 2 "Quadratic fit") pos(6) row(1))
+    title("") subtitle("") ///
+    legend(order(1 "City-year observations" 2 "Quadratic fit") pos(6) row(1)) ///
+    graphregion(color(white)) plotregion(color(white))
 graph export "$FIGURES/fig_nonlinear_sccd_lnce_2006_2024_noER.png", replace width(2400)
 
 log close log07_noer
