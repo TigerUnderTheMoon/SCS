@@ -1,5 +1,50 @@
 # Change Log
 
+## 2026-06-08
+
+### Empirical Workflow Consistency Repair
+
+- Rewrote the moderation regressions in `06_moderation.do` to use explicit `SCCD`, `SCCD2`, moderator main effects, and interaction terms instead of redundant `##` expansions.
+- Added the missing `ivreg2` dependency check to `00_master.do` and replaced placeholder weak-instrument diagnostic rows in `03_robustness_endogeneity.do` with observed-sample `ivreg2` Kleibergen-Paap and Cragg-Donald outputs.
+- Confirmed by Stata `tabulate region` that the data contain only eastern, central, and western regions; `AGENTS.md` and Sustainability manuscript-generator wording now avoid unsupported northeastern heterogeneity claims.
+- Clarified in `AGENTS.md` that `_2006_2024_noER` do-files are historical workflow files and that `run_stata.ps1` calls the current `00_master.do`.
+- Retained `outputs/sustainability_restructure_20260603_10k_deep/` as a failed 10,000-word QA attempt rather than deleting it, because its QA JSON is useful provenance.
+- Moved `apply_20260524_scs_submission_revisions.py` from the root directory to `backups/`.
+
+### Verification
+
+- Ran `powershell -NoProfile -ExecutionPolicy Bypass -File .\run_stata.ps1`; `outputs/logs/00_master.log` contains `Completed SCS workflow` and `outputs/logs/*.log` has no `r()` errors.
+- Confirmed `outputs/tables/table4_iv_diagnostics_observed_2006_2021.csv` contains Kleibergen-Paap rk LM and Kleibergen-Paap rk Wald F rows.
+- Confirmed the observed-sample abstract values match the regenerated Stata outputs at displayed precision: SCCD `8.444`, SCCD2 `-8.091`, turning point `0.522`.
+- Ran `SUSTAINABILITY_REVISION_DATE=20260603 python build_sustainability_observed_manuscript.py`; `outputs/sustainability_restructure_20260603_deep/sustainability_deep_checks.json` reports `passed: true`.
+
+## 2026-06-03
+
+### Sustainability Literature Integration
+
+- Revised `build_sustainability_observed_manuscript.py` to integrate the four requested smart-city/carbon-emissions studies into the Sustainability draft.
+- Corrected the `Sustainability 2023, 15, 225` reference to Ma and Wu's smart-city digitalization paper and added the 2025 277-city spatial-distribution paper and the 2024 green-technology-progress paper.
+- Kept the existing Zhu et al. coupling-coordination reference and used it to support the smart performance and low-carbon coordination framing.
+- Strengthened the introduction, hypotheses, regional heterogeneity discussion, associated-pathway wording, and policy conclusion around the distinction between average smart-city treatment effects and this paper's nonlinear SCCD intensity result.
+- Generated:
+  - `outputs/sustainability_restructure_20260603_deep/manuscript_sustainability_deep.docx`
+  - `outputs/sustainability_restructure_20260603_deep/manuscript_sustainability_deep.pdf`
+  - `outputs/sustainability_restructure_20260603_deep/sustainability_deep_checks.json`
+  - `outputs/sustainability_restructure_20260603_deep/revision_evidence_manifest.md`
+  - `outputs/sustainability_restructure_20260603_deep/submission_readiness_audit.md`
+  - `outputs/sustainability_restructure_20260603_deep/submission_cover_letter_draft.md`
+  - `outputs/sustainability_restructure_20260603_deep/author_metadata_intake.md`
+  - `outputs/sustainability_restructure_20260603_deep/final_submission_checklist.md`
+
+### Verification
+
+- Ran `SUSTAINABILITY_REVISION_DATE=20260603 python build_sustainability_observed_manuscript.py`.
+- Confirmed `sustainability_deep_checks.json` reports `passed: true`, abstract length 153 words, references count 33, H1-H4 present, back-matter headings present, observed-main-sample wording present, and no forbidden `mediation effect` phrase.
+- Rendered the final PDF to 18 PNG pages under `outputs/sustainability_restructure_20260603_deep/rendered_pdf_latest/` with `pdftoppm` and inspected the contact sheet plus dense table/reference pages for clipping or overlap.
+- Added `submission_readiness_audit.md` to document current MDPI Sustainability submission readiness and the remaining author-only blockers.
+- Added `submission_cover_letter_draft.md` as a fill-in cover-letter template for the final Sustainability submission packet.
+- Added `author_metadata_intake.md` and `final_submission_checklist.md` to make the remaining author-side submission inputs explicit.
+
 ## 2026-05-31
 
 ### Sustainability Deep Revision

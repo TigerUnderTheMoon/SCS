@@ -2,7 +2,7 @@
       name:  log04
        log:  D:/Workplace/SCS/outputs/logs/04_heterogeneity.log
   log type:  text
- opened on:  31 May 2026, 23:46:18
+ opened on:   8 Jun 2026, 23:43:24
 
 . 
 . use "$DATA", clear
@@ -377,5 +377,5 @@ corr(u_i, Xb) = 0.0866                          Prob > F          =     0.0000
       name:  log04
        log:  D:/Workplace/SCS/outputs/logs/04_heterogeneity.log
   log type:  text
- closed on:  31 May 2026, 23:46:19
+ closed on:   8 Jun 2026, 23:43:24
 -------------------------------------------------------------------------------

@@ -31,6 +31,12 @@ if _rc {
     ssc install estout, replace
 }
 
+capture which ivreg2
+if _rc {
+    di as text "Installing ivreg2 from SSC for weak-instrument diagnostics."
+    ssc install ivreg2, replace
+}
+
 do "$ROOT/01_descriptive_statistics.do"
 do "$ROOT/02_baseline_regression.do"
 do "$ROOT/03_robustness_endogeneity.do"

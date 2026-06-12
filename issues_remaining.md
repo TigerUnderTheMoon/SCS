@@ -1,5 +1,52 @@
 # Issues Remaining
 
+## 2026-06-08 Data Consistency Notes
+
+1. Stata `tabulate region` on `插值回归_2006_2024_拟合更新.dta` reports only `东部`, `中部`, and `西部`; no `东北部` category is present.
+2. The current heterogeneity workflow should therefore remain limited to eastern, central, and western subsamples. `AGENTS.md` and the Sustainability generator wording were aligned to avoid claiming a northeastern heterogeneity estimate.
+3. The `_2006_2024_noER` do-files are retained historical workflow files. `run_stata.ps1` calls `00_master.do`, not `00_master_2006_2024_noER.do`.
+4. `outputs/sustainability_restructure_20260603_10k_deep/` is retained as provenance for the prior 10,000-word QA attempt; its `sustainability_deep_checks.json` recorded `passed: false` because `word_count_main_text_no_references` was 9,631.
+5. The regenerated `outputs/sustainability_restructure_20260603_deep/sustainability_deep_checks.json` now records `passed: true`, with `word_count_main_text_no_references` equal to 10,000.
+
+## 2026-06-03 Sustainability Literature-Integrated Revision Status
+
+This section records the current implementation state after integrating the four user-specified smart-city and carbon-emissions papers into the Sustainability draft.
+
+### Closed Or Addressed In The Current Draft
+
+1. The Sustainability draft now cites and discusses the requested smart-city digitalization, spatial-distribution, green-technology-progress, and coupling-coordination papers.
+2. The `Sustainability 2023, 15, 225` reference has been corrected to Ma and Wu's 353-city smart-city digitalization paper.
+3. The introduction now distinguishes prior average smart-city treatment-effect evidence from this paper's nonlinear SCCD intensity evidence.
+4. H2, H3, and H4 have been tightened around green technology progress, digital economy capacity, and regional heterogeneity while preserving the current empirical scope.
+5. Discussion and conclusions now explain why average policy-adoption carbon reductions can coexist with phase-dependent SCCD effects.
+6. The generated manuscript outputs are:
+   - `outputs/sustainability_restructure_20260603_deep/manuscript_sustainability_deep.docx`
+   - `outputs/sustainability_restructure_20260603_deep/manuscript_sustainability_deep.pdf`
+   - `outputs/sustainability_restructure_20260603_deep/sustainability_deep_checks.json`
+   - `outputs/sustainability_restructure_20260603_deep/revision_evidence_manifest.md`
+   - `outputs/sustainability_restructure_20260603_deep/submission_readiness_audit.md`
+   - `outputs/sustainability_restructure_20260603_deep/submission_cover_letter_draft.md`
+   - `outputs/sustainability_restructure_20260603_deep/author_metadata_intake.md`
+   - `outputs/sustainability_restructure_20260603_deep/final_submission_checklist.md`
+
+### Remaining Author Actions Before Submission
+
+1. Finalize the author CRediT contribution statement against the actual named author list.
+2. Provide the final funding statement, including grant numbers, or confirm a formal no-external-funding statement.
+3. Provide the final conflict-of-interest declaration.
+4. Confirm data-source licenses and the final wording for code/data access.
+5. Fill and finalize the MDPI Sustainability cover letter draft with author metadata and any reviewer suggestions or exclusions.
+6. Complete the final MDPI/Sustainability submission checklist after author metadata, data-license wording, and cover letter text are finalized.
+
+### Verification Notes
+
+1. The 2026-06-03 generator run reports `passed: true` in `sustainability_deep_checks.json`.
+2. The regenerated draft contains 33 references, H1-H4, required Sustainability back-matter headings, observed-main-sample wording, and no forbidden `mediation effect` phrase.
+3. The final PDF was rendered to 18 PNG pages under `outputs/sustainability_restructure_20260603_deep/rendered_pdf_latest/`; the contact sheet and dense table/reference pages were inspected without obvious clipping or overlap.
+4. `submission_readiness_audit.md` records the package as submission-prepared but blocked on author metadata, data/source-license wording, and cover letter content.
+5. `submission_cover_letter_draft.md` now provides a cover-letter template, but the final corresponding author block and declarations still require author confirmation.
+6. `author_metadata_intake.md` and `final_submission_checklist.md` convert the remaining blockers into fill-in fields and upload-stage checks.
+
 ## 2026-05-31 Sustainability Deep Revision Status
 
 This section records the current implementation state for the Sustainability deep rewrite. Older notes below are retained for provenance.

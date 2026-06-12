@@ -128,21 +128,31 @@ test IV IV2
 scalar fs_f_sccd2 = r(F)
 scalar fs_p_sccd2 = r(p)
 
+* Weak-instrument diagnostics via ivreg2 for observed sample.
+ivreg2 CE $BASE_CONTROLS i.year (SCCD SCCD2 = IV IV2) if is_fitted == 0, gmm2s robust cluster(id) first
+scalar kp_rk_lm = e(idstat)
+scalar kp_rk_lm_p = e(idp)
+scalar kp_wald_f = e(rkf)
+scalar kp_wald_p = e(rkfp)
+scalar cd_wald_f = e(cdf)
+
 file open dcsv using "$TABLES/table4_iv_diagnostics_observed_2006_2021.csv", write replace
 file write dcsv "diagnostic,value,p_value,notes" _n
 file write dcsv "First-stage F for SCCD," %9.6f (fs_f_sccd) "," %9.6f (fs_p_sccd) ",Excluded instruments IV and IV2" _n
 file write dcsv "First-stage F for SCCD2," %9.6f (fs_f_sccd2) "," %9.6f (fs_p_sccd2) ",Excluded instruments IV and IV2" _n
-file write dcsv "Kleibergen-Paap rk LM underidentification,,,Not generated because observed workflow uses xtivreg fixed-effects IV" _n
-file write dcsv "Cragg-Donald Wald F,,,Not generated because observed workflow uses xtivreg fixed-effects IV" _n
-file write dcsv "Kleibergen-Paap rk Wald F,,,Not generated because observed workflow uses xtivreg fixed-effects IV" _n
-file write dcsv "Overidentification test,,,Not applicable because the model is exactly identified with two endogenous regressors and two excluded instruments" _n
+file write dcsv "Kleibergen-Paap rk LM," %12.6f (kp_rk_lm) "," %9.6f (kp_rk_lm_p) ",Underidentification test from observed-sample ivreg2 diagnostic" _n
+file write dcsv "Kleibergen-Paap rk Wald F," %12.6f (kp_wald_f) "," %9.6f (kp_wald_p) ",Weak-instrument test from observed-sample ivreg2 diagnostic" _n
+file write dcsv "Cragg-Donald Wald F," %12.6f (cd_wald_f) ",,Reported by ivreg2; Stock-Yogo critical values assume i.i.d. errors" _n
+file write dcsv "Overidentification test,,,Not applicable: exactly identified" _n
 file close dcsv
 
 file open dtxt using "$TABLES/table4_iv_diagnostics_observed_2006_2021.txt", write replace
 file write dtxt "Table 4 Panel B. First-stage and weak-instrument diagnostics for observed 2006-2021 sample" _n
 file write dtxt "First-stage F for SCCD: " %9.3f (fs_f_sccd) " (p=" %9.6f (fs_p_sccd) ")" _n
 file write dtxt "First-stage F for SCCD2: " %9.3f (fs_f_sccd2) " (p=" %9.6f (fs_p_sccd2) ")" _n
-file write dtxt "Kleibergen-Paap and Cragg-Donald diagnostics: not generated because the observed workflow uses xtivreg fixed-effects IV." _n
+file write dtxt "Kleibergen-Paap rk LM: " %9.3f (kp_rk_lm) " (p=" %9.6f (kp_rk_lm_p) ")" _n
+file write dtxt "Kleibergen-Paap rk Wald F: " %9.3f (kp_wald_f) _n
+file write dtxt "Cragg-Donald Wald F: " %9.3f (cd_wald_f) _n
 file write dtxt "Overidentification test: not applicable because the model is exactly identified." _n
 file write dtxt "IV turning point: " %9.6f (iv_tp_observed) _n
 file close dtxt

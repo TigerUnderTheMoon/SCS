@@ -8,7 +8,7 @@ Empirical manuscript revision for *Sustainable Cities and Society*. Two-way fixe
 
 | Path | Purpose |
 |------|---------|
-| `00_master*.do` … `07_*.do` | Stata do-files (original + `_2006_2024_noER` variants) |
+| `00_master*.do` … `07_*.do` | Stata do-files; `_2006_2024_noER` variants are retained historical workflow files and are not called by `run_stata.ps1` |
 | `插值回归_2006_2024_拟合更新.dta` | Main dataset (284 cities × 19 years = 5,396 obs) |
 | `outputs/tables/` | Generated `.rtf`, `.csv`, `.dta` tables |
 | `outputs/figures/` | Generated `.png` figures |
@@ -66,18 +66,19 @@ The script auto-detects Stata (`StataMP-64.exe`, `StataSE-64.exe`, etc.) from re
 
 ```stata
 cd "D:\Workplace\SCS"
-& "D:\Staata18\StataMP-64.exe" /e do "D:\Workplace\SCS\00_master_2006_2024_noER.do"
+& "D:\Staata18\StataMP-64.exe" /e do "D:\Workplace\SCS\00_master.do"
 ```
 
 ## Workflow Files
 
 | Do-file | Content |
 |---------|---------|
-| `00_master.do` / `00_master_2006_2024_noER.do` | Orchestrates 01–07; sets globals (`$ROOT`, `$DATA`, `$OUT`, `$TABLES`, `$FIGURES`, `$LOGS`) |
+| `00_master.do` | Current workflow orchestrator for 01–07; sets globals (`$ROOT`, `$DATA`, `$OUT`, `$TABLES`, `$FIGURES`, `$LOGS`) |
+| `00_master_2006_2024_noER.do` | Historical `_noER` workflow retained for provenance; not called by `run_stata.ps1` |
 | `01_descriptive_statistics*.do` | Panel diagnostics, missing-value tables, descriptive stats |
 | `02_baseline_regression*.do` | TWFE baseline with SCCD + SCCD2, turning-point calculation |
 | `03_robustness_endogeneity*.do` | Robustness checks, IV-2SLS first-stage and second-stage |
-| `04_heterogeneity*.do` | Regional heterogeneity (eastern/central/western/northeastern) |
+| `04_heterogeneity*.do` | Regional heterogeneity (eastern/central/western only; current `region` data do not contain a northeastern category) |
 | `05_mediation*.do` | Mediation via OIU and GTI (Sobel-Goodman / bootstrap) |
 | `06_moderation*.do` | Moderation by DEI, POLY, ER |
 | `07_figures*.do` | Kernel density, fitted curves, regional trends |

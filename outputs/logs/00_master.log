@@ -2,11 +2,11 @@
       name:  master
        log:  D:/Workplace/SCS/outputs/logs/00_master.log
   log type:  text
- opened on:  31 May 2026, 23:46:11
+ opened on:   8 Jun 2026, 23:43:16
 
 . 
 . di as text "Starting SCS workflow at " c(current_date) " " c(current_time)
-Starting SCS workflow at 31 May 2026 23:46:11
+Starting SCS workflow at  8 Jun 2026 23:43:16
 
 . di as text "Data file: $DATA"
 Data file: D:/Workplace/SCS/插值回归_2006_2024_拟合更新.dta
@@ -17,6 +17,14 @@ Data file: D:/Workplace/SCS/插值回归_2006_2024_拟合更新.dta
 . if _rc {
 .     di as text "Installing estout from SSC for table export."
 .     ssc install estout, replace
+. }
+
+. 
+. capture which ivreg2
+
+. if _rc {
+.     di as text "Installing ivreg2 from SSC for weak-instrument diagnostics."
+.     ssc install ivreg2, replace
 . }
 
 . 
@@ -49,7 +57,7 @@ Data file: D:/Workplace/SCS/插值回归_2006_2024_拟合更新.dta
       name:  log01
        log:  D:/Workplace/SCS/outputs/logs/01_descriptive_statistics.log
   log type:  text
- opened on:  31 May 2026, 23:46:11
+ opened on:   8 Jun 2026, 23:43:16
 
 . 
 . use "$DATA", clear
@@ -537,7 +545,7 @@ file D:/Workplace/SCS/outputs/tables/table02_descriptive_statistics_observed.cs
       name:  log01
        log:  D:/Workplace/SCS/outputs/logs/01_descriptive_statistics.log
   log type:  text
- closed on:  31 May 2026, 23:46:12
+ closed on:   8 Jun 2026, 23:43:17
 -------------------------------------------------------------------------------
 
 . 
@@ -572,7 +580,7 @@ end of do-file
       name:  log02
        log:  D:/Workplace/SCS/outputs/logs/02_baseline_regression.log
   log type:  text
- opened on:  31 May 2026, 23:46:12
+ opened on:   8 Jun 2026, 23:43:17
 
 . 
 . use "$DATA", clear
@@ -1456,7 +1464,7 @@ turning_po~t |   .5218384   .0406311    12.84   0.000     .4422029    .6014739
       name:  log02
        log:  D:/Workplace/SCS/outputs/logs/02_baseline_regression.log
   log type:  text
- closed on:  31 May 2026, 23:46:16
+ closed on:   8 Jun 2026, 23:43:20
 -------------------------------------------------------------------------------
 
 . 
@@ -1491,7 +1499,7 @@ end of do-file
       name:  log03
        log:  D:/Workplace/SCS/outputs/logs/03_robustness_endogeneity.log
   log type:  text
- opened on:  31 May 2026, 23:46:16
+ opened on:   8 Jun 2026, 23:43:20
 
 . 
 . use "$DATA", clear
@@ -2324,6 +2332,227 @@ Exogenous:  OPEN UR URG GI 2008.year 2009.year 2010.year 2011.year 2012.year
 . scalar fs_p_sccd2 = r(p)
 
 . 
+. * Weak-instrument diagnostics via ivreg2 for observed sample.
+. ivreg2 CE $BASE_CONTROLS i.year (SCCD SCCD2 = IV IV2) if is_fitted == 0, gmm2
+> s robust cluster(id) first
+
+First-stage regressions
+-----------------------
+
+
+First-stage regression of SCCD:
+
+Statistics robust to heteroskedasticity and clustering on id
+Number of obs =                   4232
+Number of clusters (id) =          284
+------------------------------------------------------------------------------
+             |               Robust
+        SCCD | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+          IV |   .6229465   .0869304     7.17   0.000      .452517     .793376
+         IV2 |   .1586243    .110018     1.44   0.149     -.057069    .3743175
+        OPEN |   .0128117   .0040256     3.18   0.001     .0049195    .0207039
+          UR |   .0006608   .0001046     6.32   0.000     .0004557    .0008658
+         URG |   .0062042   .0015447     4.02   0.000     .0031758    .0092326
+          GI |   -.040285   .0089895    -4.48   0.000    -.0579091   -.0226608
+             |
+        year |
+       2008  |   .0070305    .003442     2.04   0.041     .0002824    .0137786
+       2009  |   .0101514   .0029216     3.47   0.001     .0044234    .0158793
+       2010  |   .0132101   .0028704     4.60   0.000     .0075825    .0188376
+       2011  |   .0151843   .0027864     5.45   0.000     .0097214    .0206472
+       2012  |   .0217857   .0029937     7.28   0.000     .0159166    .0276549
+       2013  |   .0217397   .0032382     6.71   0.000     .0153912    .0280882
+       2014  |   .0309726    .003382     9.16   0.000     .0243421    .0376032
+       2015  |   .0211322   .0033895     6.23   0.000      .014487    .0277775
+       2016  |   .0303569   .0034621     8.77   0.000     .0235694    .0371445
+       2017  |   .0334693   .0036356     9.21   0.000     .0263416    .0405969
+       2018  |   .0401917   .0037385    10.75   0.000     .0328623    .0475211
+       2019  |   .0510744   .0041501    12.31   0.000     .0429381    .0592107
+       2020  |  -.1131479   .0066799   -16.94   0.000    -.1262441   -.1000518
+       2021  |   .0043108   .0030009     1.44   0.151    -.0015725    .0101941
+             |
+       _cons |   .0422728   .0155406     2.72   0.007      .011805    .0727407
+------------------------------------------------------------------------------
+F test of excluded instruments:
+  F(  2,   283) =   483.41
+  Prob > F      =   0.0000
+Sanderson-Windmeijer multivariate F test of excluded instruments:
+  F(  1,   283) =   709.71
+  Prob > F      =   0.0000
+
+
+First-stage regression of SCCD2:
+
+Statistics robust to heteroskedasticity and clustering on id
+Number of obs =                   4232
+Number of clusters (id) =          284
+------------------------------------------------------------------------------
+             |               Robust
+       SCCD2 | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+          IV |  -.0536004   .0857745    -0.62   0.532    -.2217636    .1145628
+         IV2 |   .8442355   .1193363     7.07   0.000     .6102735    1.078198
+        OPEN |   .0090633   .0030576     2.96   0.003     .0030688    .0150578
+          UR |   .0004816   .0000735     6.55   0.000     .0003375    .0006257
+         URG |   .0059643   .0011172     5.34   0.000      .003774    .0081547
+          GI |  -.0241174   .0065561    -3.68   0.000    -.0369707    -.011264
+             |
+        year |
+       2008  |    .004549   .0021155     2.15   0.032     .0004014    .0086966
+       2009  |   .0061798   .0018576     3.33   0.001     .0025379    .0098217
+       2010  |   .0085611   .0018152     4.72   0.000     .0050023    .0121199
+       2011  |   .0094948   .0018206     5.22   0.000     .0059254    .0130641
+       2012  |   .0142063   .0020245     7.02   0.000     .0102373    .0181753
+       2013  |   .0140741   .0021728     6.48   0.000     .0098142    .0183339
+       2014  |     .01994   .0023251     8.58   0.000     .0153815    .0244984
+       2015  |   .0128569   .0023564     5.46   0.000     .0082371    .0174766
+       2016  |   .0200628   .0025013     8.02   0.000     .0151589    .0249668
+       2017  |   .0217605     .00261     8.34   0.000     .0166435    .0268775
+       2018  |   .0271329   .0027154     9.99   0.000     .0218092    .0324565
+       2019  |   .0363969    .003163    11.51   0.000     .0301958     .042598
+       2020  |  -.0787326   .0054655   -14.41   0.000    -.0894478   -.0680174
+       2021  |   .0031685   .0019021     1.67   0.096    -.0005606    .0068977
+             |
+       _cons |   -.013112   .0147635    -0.89   0.375    -.0420563    .0158322
+------------------------------------------------------------------------------
+F test of excluded instruments:
+  F(  2,   283) =   464.13
+  Prob > F      =   0.0000
+Sanderson-Windmeijer multivariate F test of excluded instruments:
+  F(  1,   283) =   626.65
+  Prob > F      =   0.0000
+
+
+
+Summary results for first-stage regressions
+-------------------------------------------
+
+                                           (Underid)            (Weak id)
+Variable     | F(  2,   283)  P-val | SW Chi-sq(  1) P-val | SW F(  1,   283)
+SCCD         |     483.41    0.0000 |      715.60   0.0000 |      709.71
+SCCD2        |     464.13    0.0000 |      631.85   0.0000 |      626.65
+
+NB: first-stage test statistics cluster-robust
+
+Stock-Yogo weak ID F test critical values for single endogenous regressor:
+                                   10% maximal IV size             19.93
+                                   15% maximal IV size             11.59
+                                   20% maximal IV size              8.75
+                                   25% maximal IV size              7.25
+Source: Stock-Yogo (2005).  Reproduced by permission.
+NB: Critical values are for i.i.d. errors only.
+
+Underidentification test
+Ho: matrix of reduced form coefficients has rank=K1-1 (underidentified)
+Ha: matrix has rank=K1 (identified)
+Kleibergen-Paap rk LM statistic          Chi-sq(1)=45.16    P-val=0.0000
+
+Weak identification test
+Ho: equation is weakly identified
+Cragg-Donald Wald F statistic                                    1708.51
+Kleibergen-Paap Wald rk F statistic                               380.73
+
+Stock-Yogo weak ID test critical values for K1=2 and L1=2:
+                                   10% maximal IV size              7.03
+                                   15% maximal IV size              4.58
+                                   20% maximal IV size              3.95
+                                   25% maximal IV size              3.63
+Source: Stock-Yogo (2005).  Reproduced by permission.
+NB: Critical values are for Cragg-Donald F statistic and i.i.d. errors.
+
+Weak-instrument-robust inference
+Tests of joint significance of endogenous regressors B1 in main equation
+Ho: B1=0 and orthogonality conditions are valid
+Anderson-Rubin Wald test           F(2,283)=      74.55     P-val=0.0000
+Anderson-Rubin Wald test           Chi-sq(2)=    150.34     P-val=0.0000
+Stock-Wright LM S statistic        Chi-sq(2)=     42.20     P-val=0.0000
+
+NB: Underidentification, weak identification and weak-identification-robust
+    test statistics cluster-robust
+
+Number of clusters             N_clust  =        284
+Number of observations               N  =       4232
+Number of regressors                 K  =         21
+Number of endogenous regressors      K1 =          2
+Number of instruments                L  =         21
+Number of excluded instruments       L1 =          2
+
+2-Step GMM estimation
+---------------------
+
+Estimates efficient for arbitrary heteroskedasticity and clustering on id
+Statistics robust to heteroskedasticity and clustering on id
+
+Number of clusters (id) =          284                Number of obs =     4232
+                                                      F( 20,   283) =   101.30
+                                                      Prob > F      =   0.0000
+Total (centered) SS     =  6913.440306                Centered R2   =   0.6786
+Total (uncentered) SS   =  95069.47634                Uncentered R2 =   0.9766
+Residual SS             =  2222.101992                Root MSE      =    .7246
+
+------------------------------------------------------------------------------
+             |               Robust
+          CE | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        SCCD |   7.671646   1.970556     3.89   0.000     3.809427    11.53386
+       SCCD2 |  -1.271754   2.000325    -0.64   0.525    -5.192319    2.648812
+        OPEN |   .2087467   .1068552     1.95   0.051    -.0006855     .418179
+          UR |   .0158224   .0029169     5.42   0.000     .0101054    .0215393
+         URG |   .0263121   .0633568     0.42   0.678    -.0978651    .1504892
+          GI |  -3.524788   .4673709    -7.54   0.000    -4.440818   -2.608758
+             |
+        year |
+       2008  |   .0974429   .0240178     4.06   0.000     .0503689    .1445168
+       2009  |   .1580026   .0300384     5.26   0.000     .0991283    .2168768
+       2010  |   .1976322   .0356786     5.54   0.000     .1277034     .267561
+       2011  |   .2228224   .0443499     5.02   0.000     .1358982    .3097466
+       2012  |    .241993   .0567461     4.26   0.000     .1307728    .3532133
+       2013  |   .1492702   .0660841     2.26   0.024     .0197477    .2787926
+       2014  |   .1350767   .0739992     1.83   0.068    -.0099591    .2801126
+       2015  |   .9144873    .079163    11.55   0.000     .7593306    1.069644
+       2016  |   .9392129   .0862589    10.89   0.000     .7701486    1.108277
+       2017  |   .9658944   .0957201    10.09   0.000     .7782864    1.153502
+       2018  |   .8905033   .1045367     8.52   0.000     .6856151    1.095391
+       2019  |   .6580169   .1037128     6.34   0.000     .4547436    .8612902
+       2020  |   -.215409   .0706718    -3.05   0.002    -.3539231   -.0768948
+       2021  |  -.1289013   .0617686    -2.09   0.037    -.2499656   -.0078371
+             |
+       _cons |    1.63956     .41515     3.95   0.000     .8258812    2.453239
+------------------------------------------------------------------------------
+Underidentification test (Kleibergen-Paap rk LM statistic):             45.160
+                                                   Chi-sq(1) P-val =    0.0000
+------------------------------------------------------------------------------
+Weak identification test (Cragg-Donald Wald F statistic):             1708.508
+                         (Kleibergen-Paap rk Wald F statistic):        380.735
+Stock-Yogo weak ID test critical values: 10% maximal IV size              7.03
+                                         15% maximal IV size              4.58
+                                         20% maximal IV size              3.95
+                                         25% maximal IV size              3.63
+Source: Stock-Yogo (2005).  Reproduced by permission.
+NB: Critical values are for Cragg-Donald F statistic and i.i.d. errors.
+------------------------------------------------------------------------------
+Hansen J statistic (overidentification test of all instruments):         0.000
+                                                 (equation exactly identified)
+------------------------------------------------------------------------------
+Instrumented:         SCCD SCCD2
+Included instruments: OPEN UR URG GI 2008.year 2009.year 2010.year 2011.year
+                      2012.year 2013.year 2014.year 2015.year 2016.year
+                      2017.year 2018.year 2019.year 2020.year 2021.year
+Excluded instruments: IV IV2
+------------------------------------------------------------------------------
+
+. scalar kp_rk_lm = e(idstat)
+
+. scalar kp_rk_lm_p = e(idp)
+
+. scalar kp_wald_f = e(rkf)
+
+. scalar kp_wald_p = e(rkfp)
+
+. scalar cd_wald_f = e(cdf)
+
+. 
 . file open dcsv using "$TABLES/table4_iv_diagnostics_observed_2006_2021.csv", 
 > write replace
 
@@ -2335,18 +2564,17 @@ Exogenous:  OPEN UR URG GI 2008.year 2009.year 2010.year 2011.year 2012.year
 . file write dcsv "First-stage F for SCCD2," %9.6f (fs_f_sccd2) "," %9.6f (fs_p
 > _sccd2) ",Excluded instruments IV and IV2" _n
 
-. file write dcsv "Kleibergen-Paap rk LM underidentification,,,Not generated be
-> cause observed workflow uses xtivreg fixed-effects IV" _n
+. file write dcsv "Kleibergen-Paap rk LM," %12.6f (kp_rk_lm) "," %9.6f (kp_rk_l
+> m_p) ",Underidentification test from observed-sample ivreg2 diagnostic" _n
 
-. file write dcsv "Cragg-Donald Wald F,,,Not generated because observed workflo
-> w uses xtivreg fixed-effects IV" _n
+. file write dcsv "Kleibergen-Paap rk Wald F," %12.6f (kp_wald_f) "," %9.6f (kp
+> _wald_p) ",Weak-instrument test from observed-sample ivreg2 diagnostic" _n
 
-. file write dcsv "Kleibergen-Paap rk Wald F,,,Not generated because observed w
-> orkflow uses xtivreg fixed-effects IV" _n
+. file write dcsv "Cragg-Donald Wald F," %12.6f (cd_wald_f) ",,Reported by ivre
+> g2; Stock-Yogo critical values assume i.i.d. errors" _n
 
-. file write dcsv "Overidentification test,,,Not applicable because the model i
-> s exactly identified with two endogenous regressors and two excluded instrume
-> nts" _n
+. file write dcsv "Overidentification test,,,Not applicable: exactly identified
+> " _n
 
 . file close dcsv
 
@@ -2363,8 +2591,12 @@ Exogenous:  OPEN UR URG GI 2008.year 2009.year 2010.year 2011.year 2012.year
 . file write dtxt "First-stage F for SCCD2: " %9.3f (fs_f_sccd2) " (p=" %9.6f (
 > fs_p_sccd2) ")" _n
 
-. file write dtxt "Kleibergen-Paap and Cragg-Donald diagnostics: not generated 
-> because the observed workflow uses xtivreg fixed-effects IV." _n
+. file write dtxt "Kleibergen-Paap rk LM: " %9.3f (kp_rk_lm) " (p=" %9.6f (kp_r
+> k_lm_p) ")" _n
+
+. file write dtxt "Kleibergen-Paap rk Wald F: " %9.3f (kp_wald_f) _n
+
+. file write dtxt "Cragg-Donald Wald F: " %9.3f (cd_wald_f) _n
 
 . file write dtxt "Overidentification test: not applicable because the model is
 >  exactly identified." _n
@@ -2391,7 +2623,7 @@ Exogenous:  OPEN UR URG GI 2008.year 2009.year 2010.year 2011.year 2012.year
       name:  log03
        log:  D:/Workplace/SCS/outputs/logs/03_robustness_endogeneity.log
   log type:  text
- closed on:  31 May 2026, 23:46:18
+ closed on:   8 Jun 2026, 23:43:24
 -------------------------------------------------------------------------------
 
 . 
@@ -2426,7 +2658,7 @@ end of do-file
       name:  log04
        log:  D:/Workplace/SCS/outputs/logs/04_heterogeneity.log
   log type:  text
- opened on:  31 May 2026, 23:46:18
+ opened on:   8 Jun 2026, 23:43:24
 
 . 
 . use "$DATA", clear
@@ -2801,7 +3033,7 @@ corr(u_i, Xb) = 0.0866                          Prob > F          =     0.0000
       name:  log04
        log:  D:/Workplace/SCS/outputs/logs/04_heterogeneity.log
   log type:  text
- closed on:  31 May 2026, 23:46:19
+ closed on:   8 Jun 2026, 23:43:24
 -------------------------------------------------------------------------------
 
 . 
@@ -2836,7 +3068,7 @@ end of do-file
       name:  log05
        log:  D:/Workplace/SCS/outputs/logs/05_mediation.log
   log type:  text
- opened on:  31 May 2026, 23:46:19
+ opened on:   8 Jun 2026, 23:43:24
 
 . 
 . use "$DATA", clear
@@ -3318,7 +3550,7 @@ corr(u_i, Xb) = 0.1423                          Prob > F          =     0.0000
       name:  log05
        log:  D:/Workplace/SCS/outputs/logs/05_mediation.log
   log type:  text
- closed on:  31 May 2026, 23:46:20
+ closed on:   8 Jun 2026, 23:43:25
 -------------------------------------------------------------------------------
 
 . 
@@ -3353,7 +3585,7 @@ end of do-file
       name:  log06
        log:  D:/Workplace/SCS/outputs/logs/06_moderation.log
   log type:  text
- opened on:  31 May 2026, 23:46:20
+ opened on:   8 Jun 2026, 23:43:25
 
 . 
 . use "$DATA", clear
@@ -3384,8 +3616,8 @@ Panel variable: id (strongly balanced)
 . 
 . eststo clear
 
-. xtreg CE c.SCCD##c.ER c.SCCD2##c.ER $BASE_CONTROLS i.year, fe vce(cluster id)
-note: ER omitted because of collinearity.
+. xtreg CE c.SCCD c.SCCD2 c.ER c.SCCD#c.ER c.SCCD2#c.ER $BASE_CONTROLS i.year, 
+> fe vce(cluster id)
 
 Fixed-effects (within) regression               Number of obs     =      5,366
 Group variable: id                              Number of groups  =        284
@@ -3404,12 +3636,10 @@ corr(u_i, Xb) = 0.1109                          Prob > F          =     0.0000
           CE | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
         SCCD |    9.56944   1.995157     4.80   0.000     5.642209    13.49667
+       SCCD2 |  -9.753212   2.463435    -3.96   0.000    -14.60219   -4.904231
           ER |   33.86372   45.90767     0.74   0.461    -56.50011    124.2276
              |
  c.SCCD#c.ER |  -158.7945   230.8854    -0.69   0.492    -613.2651    295.6762
-             |
-       SCCD2 |  -9.753212   2.463435    -3.96   0.000    -14.60219   -4.904231
-          ER |          0  (omitted)
              |
 c.SCCD2#c.ER |    260.988   277.8162     0.94   0.348    -285.8604    807.8364
              |
@@ -3447,9 +3677,8 @@ c.SCCD2#c.ER |    260.988   277.8162     0.94   0.348    -285.8604    807.8364
 
 . eststo mod_er_full
 
-. xtreg CE c.SCCD##c.DEI c.SCCD2##c.DEI $BASE_CONTROLS i.year, fe vce(cluster i
-> d)
-note: DEI omitted because of collinearity.
+. xtreg CE c.SCCD c.SCCD2 c.DEI c.SCCD#c.DEI c.SCCD2#c.DEI $BASE_CONTROLS i.yea
+> r, fe vce(cluster id)
 
 Fixed-effects (within) regression               Number of obs     =      5,366
 Group variable: id                              Number of groups  =        284
@@ -3468,12 +3697,10 @@ corr(u_i, Xb) = 0.1324                          Prob > F          =     0.0000
           CE | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
         SCCD |   8.828553   1.289243     6.85   0.000      6.29083    11.36628
+       SCCD2 |  -7.714295    1.47309    -5.24   0.000     -10.6139   -4.814691
          DEI |   4.600847   2.079751     2.21   0.028     .5071035     8.69459
              |
 c.SCCD#c.DEI |  -22.37686   7.346277    -3.05   0.003    -36.83714   -7.916579
-             |
-       SCCD2 |  -7.714295    1.47309    -5.24   0.000     -10.6139   -4.814691
-         DEI |          0  (omitted)
              |
      c.SCCD2#|
        c.DEI |    21.6438   6.145425     3.52   0.000     9.547256    33.74034
@@ -3512,9 +3739,8 @@ c.SCCD#c.DEI |  -22.37686   7.346277    -3.05   0.003    -36.83714   -7.916579
 
 . eststo mod_dei_full
 
-. xtreg CE c.SCCD##c.POLY c.SCCD2##c.POLY $BASE_CONTROLS i.year, fe vce(cluster
->  id)
-note: POLY omitted because of collinearity.
+. xtreg CE c.SCCD c.SCCD2 c.POLY c.SCCD#c.POLY c.SCCD2#c.POLY $BASE_CONTROLS i.
+> year, fe vce(cluster id)
 
 Fixed-effects (within) regression               Number of obs     =      5,366
 Group variable: id                              Number of groups  =        284
@@ -3533,13 +3759,11 @@ corr(u_i, Xb) = 0.1057                          Prob > F          =     0.0000
           CE | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
         SCCD |   7.769654   2.188173     3.55   0.000     3.462494    12.07681
+       SCCD2 |  -8.223009   2.660659    -3.09   0.002     -13.4602   -2.985816
         POLY |  -1.179417   .9703805    -1.22   0.225    -3.089496    .7306624
              |
       c.SCCD#|
       c.POLY |   3.213252    4.84824     0.66   0.508    -6.329935    12.75644
-             |
-       SCCD2 |  -8.223009   2.660659    -3.09   0.002     -13.4602   -2.985816
-        POLY |          0  (omitted)
              |
      c.SCCD2#|
       c.POLY |  -.1855223   5.504968    -0.03   0.973     -11.0214    10.65036
@@ -3592,9 +3816,8 @@ corr(u_i, Xb) = 0.1057                          Prob > F          =     0.0000
 . 
 . eststo clear
 
-. xtreg CE c.SCCD##c.ER c.SCCD2##c.ER $BASE_CONTROLS i.year if is_fitted == 0, 
-> fe vce(cluster id)
-note: ER omitted because of collinearity.
+. xtreg CE c.SCCD c.SCCD2 c.ER c.SCCD#c.ER c.SCCD2#c.ER $BASE_CONTROLS i.year i
+> f is_fitted == 0, fe vce(cluster id)
 
 Fixed-effects (within) regression               Number of obs     =      4,514
 Group variable: id                              Number of groups  =        284
@@ -3613,12 +3836,10 @@ corr(u_i, Xb) = 0.1694                          Prob > F          =     0.0000
           CE | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
         SCCD |   10.93104   1.990607     5.49   0.000      7.01276    14.84931
+       SCCD2 |  -11.67487   2.434656    -4.80   0.000    -16.46721    -6.88254
           ER |   61.64274   46.31501     1.33   0.184    -29.52289    152.8084
              |
  c.SCCD#c.ER |  -325.7881   228.1117    -1.43   0.154     -774.799    123.2229
-             |
-       SCCD2 |  -11.67487   2.434656    -4.80   0.000    -16.46721    -6.88254
-          ER |          0  (omitted)
              |
 c.SCCD2#c.ER |    455.053   266.4932     1.71   0.089    -69.50745    979.6135
              |
@@ -3653,9 +3874,8 @@ c.SCCD2#c.ER |    455.053   266.4932     1.71   0.089    -69.50745    979.6135
 
 . eststo mod_er_obs
 
-. xtreg CE c.SCCD##c.DEI c.SCCD2##c.DEI $BASE_CONTROLS i.year if is_fitted == 0
-> , fe vce(cluster id)
-note: DEI omitted because of collinearity.
+. xtreg CE c.SCCD c.SCCD2 c.DEI c.SCCD#c.DEI c.SCCD2#c.DEI $BASE_CONTROLS i.yea
+> r if is_fitted == 0, fe vce(cluster id)
 
 Fixed-effects (within) regression               Number of obs     =      4,514
 Group variable: id                              Number of groups  =        284
@@ -3674,12 +3894,10 @@ corr(u_i, Xb) = 0.1808                          Prob > F          =     0.0000
           CE | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
         SCCD |   8.869165   1.197971     7.40   0.000     6.511102    11.22723
+       SCCD2 |  -7.976924   1.423302    -5.60   0.000    -10.77853   -5.175322
          DEI |   5.874133   2.225523     2.64   0.009     1.493453    10.25481
              |
 c.SCCD#c.DEI |  -25.91319   7.935639    -3.27   0.001    -41.53356   -10.29282
-             |
-       SCCD2 |  -7.976924   1.423302    -5.60   0.000    -10.77853   -5.175322
-         DEI |          0  (omitted)
              |
      c.SCCD2#|
        c.DEI |   24.17338   6.665149     3.63   0.000     11.05382    37.29294
@@ -3715,9 +3933,8 @@ c.SCCD#c.DEI |  -25.91319   7.935639    -3.27   0.001    -41.53356   -10.29282
 
 . eststo mod_dei_obs
 
-. xtreg CE c.SCCD##c.POLY c.SCCD2##c.POLY $BASE_CONTROLS i.year if is_fitted ==
->  0, fe vce(cluster id)
-note: POLY omitted because of collinearity.
+. xtreg CE c.SCCD c.SCCD2 c.POLY c.SCCD#c.POLY c.SCCD2#c.POLY $BASE_CONTROLS i.
+> year if is_fitted == 0, fe vce(cluster id)
 
 Fixed-effects (within) regression               Number of obs     =      4,514
 Group variable: id                              Number of groups  =        284
@@ -3736,13 +3953,11 @@ corr(u_i, Xb) = 0.1691                          Prob > F          =     0.0000
           CE | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
         SCCD |   7.925006   2.146434     3.69   0.000     3.700005    12.15001
+       SCCD2 |  -8.677608   2.659852    -3.26   0.001    -13.91321   -3.442003
         POLY |  -1.042828   .9413454    -1.11   0.269    -2.895755    .8100997
              |
       c.SCCD#|
       c.POLY |   2.842087    4.78184     0.59   0.553    -6.570401    12.25457
-             |
-       SCCD2 |  -8.677608   2.659852    -3.26   0.001    -13.91321   -3.442003
-        POLY |          0  (omitted)
              |
      c.SCCD2#|
       c.POLY |   .1593194   5.484888     0.03   0.977    -10.63703    10.95567
@@ -4011,7 +4226,7 @@ marginal_e~d |   3.094372   .4712406     6.57   0.000     2.170758    4.017987
       name:  log06
        log:  D:/Workplace/SCS/outputs/logs/06_moderation.log
   log type:  text
- closed on:  31 May 2026, 23:46:23
+ closed on:   8 Jun 2026, 23:43:28
 -------------------------------------------------------------------------------
 
 . 
@@ -4046,7 +4261,7 @@ end of do-file
       name:  log07
        log:  D:/Workplace/SCS/outputs/logs/07_figures.log
   log type:  text
- opened on:  31 May 2026, 23:46:23
+ opened on:   8 Jun 2026, 23:43:28
 
 . 
 . use "$DATA", clear
@@ -4169,7 +4384,7 @@ file
       name:  log07
        log:  D:/Workplace/SCS/outputs/logs/07_figures.log
   log type:  text
- closed on:  31 May 2026, 23:46:29
+ closed on:   8 Jun 2026, 23:43:35
 -------------------------------------------------------------------------------
 
 . 
@@ -4177,11 +4392,11 @@ end of do-file
 
 . 
 . di as text "Completed SCS workflow at " c(current_date) " " c(current_time)
-Completed SCS workflow at 31 May 2026 23:46:29
+Completed SCS workflow at  8 Jun 2026 23:43:35
 
 . log close master
       name:  master
        log:  D:/Workplace/SCS/outputs/logs/00_master.log
   log type:  text
- closed on:  31 May 2026, 23:46:29
+ closed on:   8 Jun 2026, 23:43:35
 -------------------------------------------------------------------------------

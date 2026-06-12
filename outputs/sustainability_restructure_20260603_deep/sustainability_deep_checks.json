@@ -1,0 +1,59 @@
+{
+  "docx": "D:\\Workplace\\SCS\\outputs\\sustainability_restructure_20260603_deep\\manuscript_sustainability_deep.docx",
+  "pdf": "D:\\Workplace\\SCS\\outputs\\sustainability_restructure_20260603_deep\\manuscript_sustainability_deep.pdf",
+  "pdf_status": {
+    "created": true,
+    "method": "Word COM",
+    "error": ""
+  },
+  "abstract_words": 157,
+  "word_count_total": 13015,
+  "word_count_main_text_no_references": 10000,
+  "meets_10000_word_requirement": true,
+  "required_sections": {
+    "Abstract": true,
+    "Keywords": true,
+    "Introduction": true,
+    "Materials and Methods": true,
+    "Results": true,
+    "Discussion": true,
+    "Conclusions": true,
+    "Author Contributions": true,
+    "Funding": true,
+    "Data Availability": true,
+    "Conflicts": true,
+    "References": true
+  },
+  "target_references": {
+    "Ma_Wu_2023": true,
+    "Li_Zhang_Lau_Gong_2025": true,
+    "An_Yang_Zhang_Zeng_2024": true,
+    "Zhu_Li_Zhou_Zhu_Yu_2024": true
+  },
+  "contains_H1_H4": true,
+  "contains_data_availability": true,
+  "contains_funding": true,
+  "contains_conflicts": true,
+  "contains_supplementary": true,
+  "contains_mediation_effect": false,
+  "contains_forbidden_real_records_phrase": false,
+  "contains_unqualified_2006_2024_main_sample": false,
+  "contains_placeholders_to_be_completed": false,
+  "uses_observed_main_sample": true,
+  "references_count": 33,
+  "tables_count": 7,
+  "paragraphs_count": 216,
+  "required_inputs": {
+    "table_u_test_observed_2006_2021.csv": true,
+    "table_u_test_observed_2006_2021.txt": true,
+    "table4_iv_diagnostics_observed_2006_2021.csv": true,
+    "table4_iv_diagnostics_observed_2006_2021.txt": true,
+    "dei_conditional_turning_points_observed_2006_2021.csv": true,
+    "dei_conditional_turning_points_observed_2006_2021.txt": true,
+    "open_data_quality_observed_2006_2021.csv": true,
+    "open_data_quality_observed_2006_2021.txt": true,
+    "sample_position_relative_to_turning_point_observed_2006_2021.csv": true,
+    "fig_moderation_dei_observed_2006_2021.png": true
+  },
+  "passed": true
+}

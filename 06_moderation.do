@@ -31,11 +31,11 @@ xtset id year
 global BASE_CONTROLS OPEN UR URG GI
 
 eststo clear
-xtreg CE c.SCCD##c.ER c.SCCD2##c.ER $BASE_CONTROLS i.year, fe vce(cluster id)
+xtreg CE c.SCCD c.SCCD2 c.ER c.SCCD#c.ER c.SCCD2#c.ER $BASE_CONTROLS i.year, fe vce(cluster id)
 eststo mod_er_full
-xtreg CE c.SCCD##c.DEI c.SCCD2##c.DEI $BASE_CONTROLS i.year, fe vce(cluster id)
+xtreg CE c.SCCD c.SCCD2 c.DEI c.SCCD#c.DEI c.SCCD2#c.DEI $BASE_CONTROLS i.year, fe vce(cluster id)
 eststo mod_dei_full
-xtreg CE c.SCCD##c.POLY c.SCCD2##c.POLY $BASE_CONTROLS i.year, fe vce(cluster id)
+xtreg CE c.SCCD c.SCCD2 c.POLY c.SCCD#c.POLY c.SCCD2#c.POLY $BASE_CONTROLS i.year, fe vce(cluster id)
 eststo mod_poly_full
 
 esttab mod_er_full mod_dei_full mod_poly_full using "$TABLES/table07_moderation_full_2006_2024.rtf", replace ///
@@ -46,11 +46,11 @@ esttab mod_er_full mod_dei_full mod_poly_full using "$TABLES/table07_moderation_
     label compress title("Moderation analysis: full sample, 2006-2024")
 
 eststo clear
-xtreg CE c.SCCD##c.ER c.SCCD2##c.ER $BASE_CONTROLS i.year if is_fitted == 0, fe vce(cluster id)
+xtreg CE c.SCCD c.SCCD2 c.ER c.SCCD#c.ER c.SCCD2#c.ER $BASE_CONTROLS i.year if is_fitted == 0, fe vce(cluster id)
 eststo mod_er_obs
-xtreg CE c.SCCD##c.DEI c.SCCD2##c.DEI $BASE_CONTROLS i.year if is_fitted == 0, fe vce(cluster id)
+xtreg CE c.SCCD c.SCCD2 c.DEI c.SCCD#c.DEI c.SCCD2#c.DEI $BASE_CONTROLS i.year if is_fitted == 0, fe vce(cluster id)
 eststo mod_dei_obs
-xtreg CE c.SCCD##c.POLY c.SCCD2##c.POLY $BASE_CONTROLS i.year if is_fitted == 0, fe vce(cluster id)
+xtreg CE c.SCCD c.SCCD2 c.POLY c.SCCD#c.POLY c.SCCD2#c.POLY $BASE_CONTROLS i.year if is_fitted == 0, fe vce(cluster id)
 eststo mod_poly_obs
 
 esttab mod_er_obs mod_dei_obs mod_poly_obs using "$TABLES/table07_moderation_observed_2006_2021.rtf", replace ///

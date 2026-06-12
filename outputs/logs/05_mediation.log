@@ -2,7 +2,7 @@
       name:  log05
        log:  D:/Workplace/SCS/outputs/logs/05_mediation.log
   log type:  text
- opened on:  31 May 2026, 23:46:19
+ opened on:   8 Jun 2026, 23:43:24
 
 . 
 . use "$DATA", clear
@@ -484,5 +484,5 @@ corr(u_i, Xb) = 0.1423                          Prob > F          =     0.0000
       name:  log05
        log:  D:/Workplace/SCS/outputs/logs/05_mediation.log
   log type:  text
- closed on:  31 May 2026, 23:46:20
+ closed on:   8 Jun 2026, 23:43:25
 -------------------------------------------------------------------------------
