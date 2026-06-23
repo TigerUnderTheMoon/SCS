@@ -3,14 +3,16 @@
   "pdf": "D:\\Workplace\\SCS\\outputs\\sustainability_restructure_20260603_deep\\manuscript_sustainability_deep.pdf",
   "pdf_status": {
     "created": true,
-    "method": "Word COM",
+    "method": "PowerShell Word COM",
     "error": ""
   },
-  "abstract_words": 157,
-  "word_count_total": 13015,
-  "word_count_main_text_no_references": 10000,
+  "abstract_words": 130,
+  "keywords_count": 6,
+  "word_count_total": 13183,
+  "word_count_main_text_no_references": 10026,
   "meets_10000_word_requirement": true,
   "required_sections": {
+    "Article Type": true,
     "Abstract": true,
     "Keywords": true,
     "Introduction": true,
@@ -20,10 +22,16 @@
     "Conclusions": true,
     "Author Contributions": true,
     "Funding": true,
+    "Institutional Review Board": true,
+    "Informed Consent": true,
     "Data Availability": true,
     "Conflicts": true,
+    "AI Use": true,
+    "Supplementary Materials": true,
     "References": true
   },
+  "title_page_author_metadata_present": false,
+  "structured_abstract": true,
   "target_references": {
     "Ma_Wu_2023": true,
     "Li_Zhang_Lau_Gong_2025": true,
@@ -35,14 +43,35 @@
   "contains_funding": true,
   "contains_conflicts": true,
   "contains_supplementary": true,
+  "contains_ai_statement": true,
   "contains_mediation_effect": false,
   "contains_forbidden_real_records_phrase": false,
   "contains_unqualified_2006_2024_main_sample": false,
   "contains_placeholders_to_be_completed": false,
+  "generator_trace_terms_found": [],
+  "internal_process_terms_found_main_text": [],
+  "long_sentences_ge_35_words": 0,
+  "long_sentence_samples": [],
   "uses_observed_main_sample": true,
   "references_count": 33,
-  "tables_count": 7,
-  "paragraphs_count": 216,
+  "tables_count": 9,
+  "paragraphs_count": 226,
+  "highlights_created": true,
+  "highlights_count": 5,
+  "graphical_abstract_created": true,
+  "supplementary_readme_created": true,
+  "artifact_status": {
+    "highlights_created": true,
+    "graphical_abstract": {
+      "created": true,
+      "error": "Graphical abstract generation skipped; retained existing PNG because: No module named 'matplotlib'"
+    },
+    "supplementary": {
+      "readme": "D:\\Workplace\\SCS\\outputs\\sustainability_restructure_20260603_deep\\supplementary_materials\\README.md",
+      "main_files": 24,
+      "sensitivity_files": 18
+    }
+  },
   "required_inputs": {
     "table_u_test_observed_2006_2021.csv": true,
     "table_u_test_observed_2006_2021.txt": true,
@@ -53,7 +82,16 @@
     "open_data_quality_observed_2006_2021.csv": true,
     "open_data_quality_observed_2006_2021.txt": true,
     "sample_position_relative_to_turning_point_observed_2006_2021.csv": true,
+    "table08_vif_observed_2006_2021.csv": true,
+    "table08_fixed_effects_joint_tests_observed_2006_2021.csv": true,
     "fig_moderation_dei_observed_2006_2021.png": true
   },
-  "passed": true
+  "author_metadata_blockers": [
+    "title page author names, affiliations, and corresponding-author metadata are not present",
+    "author contribution, funding, acknowledgments, and conflict statements require final author confirmation",
+    "data/source-license wording requires author confirmation before upload"
+  ],
+  "passed": true,
+  "submission_ready": false,
+  "submission_status": "STRUCTURAL_QA_PASSED_AUTHOR_METADATA_BLOCKED"
 }

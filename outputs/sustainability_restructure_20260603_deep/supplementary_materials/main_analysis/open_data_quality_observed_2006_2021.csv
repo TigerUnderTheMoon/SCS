@@ -1,0 +1,11 @@
+item,value,notes
+nonmissing_observed_OPEN,        4529,Observed sample nonmissing OPEN
+missing_observed_OPEN,          15,Observed sample missing OPEN
+negative_observed_OPEN,          72,OPEN less than zero
+negative_observed_OPEN_percent, 1.589755,Share among nonmissing observed OPEN
+OPEN_min,-0.719693,Observed sample
+OPEN_mean, 0.192715,Observed sample
+OPEN_p25, 0.027456,Observed sample
+OPEN_median, 0.076448,Observed sample
+OPEN_p75, 0.201604,Observed sample
+OPEN_max, 3.639746,Observed sample

@@ -1,0 +1,33 @@
+{
+  "manuscript": "outputs/espr_submission/manuscript_espr.docx",
+  "manuscript_pdf": "outputs/espr_submission/manuscript_espr.pdf",
+  "cover_letter": "outputs/espr_submission/cover_letter_espr.docx",
+  "cover_letter_pdf": "outputs/espr_submission/cover_letter_espr.pdf",
+  "esm_files": {
+    "ESM_1.pdf": "outputs/espr_submission/ESM_1.pdf",
+    "ESM_2.pdf": "outputs/espr_submission/ESM_2.pdf",
+    "ESM_3.pdf": "outputs/espr_submission/ESM_3.pdf"
+  },
+  "checks": {
+    "line_numbering": true,
+    "statements_heading": true,
+    "ref_count": 33,
+    "refs_with_pages": 31,
+    "refs_with_issue": 11,
+    "abstract_words": 212,
+    "edgar_year": true,
+    "green_economy": 0,
+    "numeric_citations": 0,
+    "cover_title_match": true,
+    "cover_no_overclaim": true,
+    "esm_files": {
+      "ESM_1.pdf": true,
+      "ESM_2.pdf": true,
+      "ESM_3.pdf": true
+    },
+    "overall_passed": true,
+    "manuscript_pdf_size": 946549
+  },
+  "overall_passed": true,
+  "timestamp": "2026-06-23"
+}

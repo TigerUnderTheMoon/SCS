@@ -2,7 +2,7 @@
       name:  log03
        log:  D:/Workplace/SCS/outputs/logs/03_robustness_endogeneity.log
   log type:  text
- opened on:   8 Jun 2026, 23:43:20
+ opened on:  14 Jun 2026, 01:50:27
 
 . 
 . use "$DATA", clear
@@ -1126,5 +1126,5 @@ Excluded instruments: IV IV2
       name:  log03
        log:  D:/Workplace/SCS/outputs/logs/03_robustness_endogeneity.log
   log type:  text
- closed on:   8 Jun 2026, 23:43:24
+ closed on:  14 Jun 2026, 01:50:31
 -------------------------------------------------------------------------------

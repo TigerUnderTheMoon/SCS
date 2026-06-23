@@ -1,5 +1,41 @@
 # Change Log
 
+## 2026-06-14
+
+### Submission-Standard Tightening Pass
+
+- Removed remaining manuscript-facing internal process wording from `build_sustainability_observed_manuscript.py`, including `working repository`, `workflow`, `author-side items`, `reviewer-proof`, and `current outputs` language in the generated DOCX/PDF text.
+- Added stricter QA fields to `sustainability_deep_checks.json`: `keywords_count`, `title_page_author_metadata_present`, `internal_process_terms_found_main_text`, `author_metadata_blockers`, `submission_ready`, and `submission_status`.
+- Added `outputs/sustainability_restructure_20260603_deep/submission_requirements_audit.md` to map MDPI/Sustainability requirements to local evidence and author-only blockers.
+- Updated package trackers: `submission_readiness_audit.md`, `final_submission_checklist.md`, `author_metadata_intake.md`, and `submission_cover_letter_draft.md`.
+- Replaced the unconfirmed cover-letter conflict statement with author-confirmation placeholders.
+- Added a graphical-abstract fallback in the generator so a valid existing `graphical_abstract.png` is retained when the current Python environment lacks `matplotlib`.
+
+### Verification
+
+- Ran `powershell -NoProfile -ExecutionPolicy Bypass -File .\run_stata.ps1`; `outputs/logs/00_master.log` contains `Completed SCS workflow at 14 Jun 2026 01:50:48`, and no `outputs/logs/*.log` entry contains a Stata `r()` error.
+- Ran `SUSTAINABILITY_REVISION_DATE=20260603 python build_sustainability_observed_manuscript.py`; `sustainability_deep_checks.json` reports `passed: true`, `submission_ready: false`, `submission_status: STRUCTURAL_QA_PASSED_AUTHOR_METADATA_BLOCKED`, 130 abstract words, 6 keywords, 10,026 main-text words before references, zero long sentences at the audit threshold, and no main-text internal process terms.
+- Rendered the final PDF to 32 PNG pages under `outputs/sustainability_restructure_20260603_deep/rendered_pdf_latest/`, rebuilt `contact_sheet.png`, and visually checked the contact sheet plus the title/abstract, back-matter, and reference pages.
+
+### Sustainability Submission Checklist Pass
+
+- Added `08_submission_diagnostics.do` and called it from `00_master.do` to export reviewer-facing VIF diagnostics and fixed-effect joint significance tests for the observed 2006-2021 full-control baseline sample.
+- Updated `build_sustainability_observed_manuscript.py` so the generated Sustainability manuscript now uses a structured abstract with `Background`, `Methods`, `Results`, and `Conclusions`.
+- Added five submission highlights, a 300 dpi graphical abstract, a categorized supplementary-materials package with `main_analysis/` and `sensitivity_analysis/`, and a supplementary README.
+- Added manuscript text for VIF and fixed-effect diagnostics, plus supplementary Tables S1-S2.
+- Added an AI-assisted writing declaration and removed manuscript-facing `generator` / `generated workflow` wording.
+- Split long manuscript sentences flagged by the sentence-length audit.
+- Added `outputs/sustainability_restructure_20260603_deep/reference_doi_audit.csv` for DOI resolver checks.
+
+### Verification
+
+- Ran `powershell -NoProfile -ExecutionPolicy Bypass -File .\run_stata.ps1`; `outputs/logs/00_master.log` contains `Completed SCS workflow`, and no `outputs/logs/*.log` entry contains a Stata `r()` error.
+- Confirmed `outputs/tables/table08_vif_observed_2006_2021.csv` and `outputs/tables/table08_fixed_effects_joint_tests_observed_2006_2021.csv` were exported. The maximum VIF is 28.210 for `SCCD`, and city/year fixed effects are jointly significant with p-values below 0.001.
+- Ran `SUSTAINABILITY_REVISION_DATE=20260603 python build_sustainability_observed_manuscript.py`; `sustainability_deep_checks.json` reports `passed: true`, structured abstract present, 5 highlights, graphical abstract present, 0 long sentences at the audit threshold, and no manuscript-facing generator trace terms.
+- Verified `graphical_abstract.png` is 2400 x 1440 pixels at approximately 300 dpi.
+- Rendered the regenerated PDF to 32 PNG pages under `outputs/sustainability_restructure_20260603_deep/rendered_pdf_latest/` with `pdftoppm`, rebuilt `contact_sheet.png`, and visually inspected the contact sheet plus the front page, new diagnostic tables, dense table pages, back matter, and graphical abstract.
+- DOI audit status: 27 DOI links resolved directly, 5 DOI links resolved to publisher pages that returned automated-access 403 responses, and 1 reference is a web/data source without a DOI.
+
 ## 2026-06-08
 
 ### Empirical Workflow Consistency Repair

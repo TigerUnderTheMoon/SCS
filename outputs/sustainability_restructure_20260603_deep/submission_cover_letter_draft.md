@@ -1,6 +1,6 @@
 # Cover Letter Draft
 
-Date: 2026-06-03
+Date: 2026-06-14
 
 To: Editors, *Sustainability*
 
@@ -12,7 +12,11 @@ We submit our manuscript for consideration in *Sustainability*. The paper studie
 
 The main result is nonlinear. The estimated association between coordination and log carbon emissions is inverted U-shaped, with a turning point inside the observed SCCD range. The paper also shows that industrial upgrading and green technological innovation are associated restructuring pathways, and that digital economy development weakens the marginal emission cost of coordination.
 
-This manuscript is original, is not under consideration elsewhere, and all authors have approved the submission. There are no conflicts of interest to declare.
+Before submission, replace this paragraph with the final author-confirmed declarations: the manuscript is original; it is not under consideration elsewhere; all authors have approved the submission; and the conflict-of-interest statement matches the manuscript and submission-system declaration.
+
+Funding statement: [Insert final funding statement or confirm no external funding.]
+
+Data availability note: [Insert final data/code availability wording consistent with source licenses.]
 
 Corresponding author: [Name]
 Affiliation: [Affiliation]

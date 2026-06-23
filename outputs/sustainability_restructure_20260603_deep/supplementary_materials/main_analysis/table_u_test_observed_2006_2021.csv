@@ -1,0 +1,5 @@
+test_item,estimate,se,p_value,ci_lower,ci_upper,notes
+turning_point, 0.521838, 0.040631, 0.000000, 0.442203, 0.601474,nlcom -b1/(2*b2)
+left_endpoint_marginal_effect, 6.479416, 0.966808, 0.000000, 4.576368, 8.382464,SCCD minimum =  0.121422
+mean_sccd_marginal_effect, 3.385829, 0.501455, 0.000000, 2.398775, 4.372883,SCCD mean =  0.312600
+right_endpoint_marginal_effect,-4.860617, 1.545491, 0.001838,-7.902734,-1.818500,SCCD maximum =  0.822216

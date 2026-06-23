@@ -2,7 +2,7 @@
       name:  log02
        log:  D:/Workplace/SCS/outputs/logs/02_baseline_regression.log
   log type:  text
- opened on:   8 Jun 2026, 23:43:17
+ opened on:  14 Jun 2026, 01:50:23
 
 . 
 . use "$DATA", clear
@@ -886,5 +886,5 @@ turning_po~t |   .5218384   .0406311    12.84   0.000     .4422029    .6014739
       name:  log02
        log:  D:/Workplace/SCS/outputs/logs/02_baseline_regression.log
   log type:  text
- closed on:   8 Jun 2026, 23:43:20
+ closed on:  14 Jun 2026, 01:50:27
 -------------------------------------------------------------------------------

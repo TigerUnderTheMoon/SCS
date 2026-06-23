@@ -1,0 +1,100 @@
+[
+  {
+    "location": "Section 2.1 body (paragraphs 022-027)",
+    "before_summary": "6 paragraphs (~530 words): smart-city policy reviews citing Yang, Ma&Wu, An, Li individually + introductory positioning paragraph",
+    "after_summary": "2 paragraphs (~310 words): condensed smart-city policy review + embedded positioning vs Ma and Wu (2023) at subsection end",
+    "reason": "Compress 2.1 to fit target Section 2 <=3000 words while preserving positioning against Ma and Wu 2023 (one of 4 closest studies).",
+    "manual": false
+  },
+  {
+    "location": "Section 2.2 body",
+    "before_summary": "5 paragraphs (~470 words): urban spatial structure review + SCCD interaction logic + stage-dependent coordination interpretation",
+    "after_summary": "3 paragraphs (~460 words): condensed urban-form review + SCCD interaction logic + embedded positioning vs Li et al. (2025)",
+    "reason": "Compress 2.2 preserving Li et al. 2025 positioning as embedded subsection-end note.",
+    "manual": false
+  },
+  {
+    "location": "Section 2.5 (Positioning Against the Four Closest Studies) + Section 2.4 (Coordination Paradox)",
+    "before_summary": "2.5 = heading + 6 paragraphs (~720 words) of comparison vs Ma&Li&An&Zhu; 2.4 = heading + 6 paragraphs (~700 words) of paradox theory",
+    "after_summary": "2.5 deleted entirely; 2.4 deleted (body merged into new 2.3); Ma&Li&An&Zhu positioning embedded as 2-3 sentences at the end of 2.1/2.2/2.3 respectively",
+    "reason": "Per task: remove 2.5 as standalone subsection and embed condensed positioning paragraphs at end of 2.1-2.3; merge 2.4 into 2.3 to reach 3 subsections total.",
+    "manual": false
+  },
+  {
+    "location": "Section 2.6 heading",
+    "before_summary": "Heading text: '2.6. Hypotheses'",
+    "after_summary": "Heading text: '2.4. Hypotheses'",
+    "reason": "After deleting 2.4 and 2.5 and merging old 2.4 content into 2.3, the hypotheses subsection is renumbered from 2.6 to 2.4 to keep Section 2 numbering sequential (2.1, 2.2, 2.3, 2.4).",
+    "manual": false
+  },
+  {
+    "location": "In-text citation",
+    "before_summary": "Numbered citation style: 'energy-intensive patterns [1-4]'",
+    "after_summary": "Author-year style: 'energy-intensive patterns (Creutzig et al. 2016; Seto et al. 2012; Dhakal 2009; Fang et al. 2015)'",
+    "reason": "ESPR uses author-year citation format (Springer guidelines). Converted vestigial numbered citations to author-year format reusing only references already present in the reference list.",
+    "manual": false
+  },
+  {
+    "location": "In-text citation",
+    "before_summary": "Numbered citation style: 'functional layout [6-15]'",
+    "after_summary": "Author-year style: 'functional layout (Fang et al. 2015; Gagne et al. 2012; Hong et al. 2022; Jung et al. 2022; Kaza 2020; Lee and Lee 2014; Shi et al. 2023; Tan et al. 2024; Wang et al. 2024; Zhang et al. 2024)'",
+    "reason": "ESPR uses author-year citation format (Springer guidelines). Converted vestigial numbered citations to author-year format reusing only references already present in the reference list.",
+    "manual": false
+  },
+  {
+    "location": "In-text citation",
+    "before_summary": "Numbered citation style: 'and carbon performance [19-26]'",
+    "after_summary": "Author-year style: 'and carbon performance (Anon Higon et al. 2017; Balogun et al. 2020; Castells-Quintana et al. 2021; Cheng et al. 2023; Huang and Huang 2024; Lange et al. 2020; Obringer et al. 2021; Zhang et al. 2022; Hou et al. 2024)'",
+    "reason": "ESPR uses author-year citation format (Springer guidelines). Converted vestigial numbered citations to author-year format reusing only references already present in the reference list.",
+    "manual": false
+  },
+  {
+    "location": "In-text citation",
+    "before_summary": "Numbered citation style: 'reduce average urban carbon emissions [5,16-18]'",
+    "after_summary": "Author-year style: 'reduce average urban carbon emissions (Yang et al. 2022; Ma and Wu 2023; An et al. 2024; Balogun et al. 2020)'",
+    "reason": "ESPR uses author-year citation format (Springer guidelines). Converted vestigial numbered citations to author-year format reusing only references already present in the reference list.",
+    "manual": false
+  },
+  {
+    "location": "In-text citation",
+    "before_summary": "Numbered citation style: 'spatially heterogeneous effects [5,16-18]'",
+    "after_summary": "Author-year style: 'spatially heterogeneous effects (Yang et al. 2022; Ma and Wu 2023; An et al. 2024; Balogun et al. 2020)'",
+    "reason": "ESPR uses author-year citation format (Springer guidelines). Converted vestigial numbered citations to author-year format reusing only references already present in the reference list.",
+    "manual": false
+  },
+  {
+    "location": "Abstract",
+    "before_summary": "~212 words: included methodological detail, IV F-stat reference, and 'coordination may raise carbon emissions before operating efficiency emerges' framing",
+    "after_summary": "~186 words: retains SCCD four-space framework definition, inverted U + turning point 0.522, supplementary IV 0.570 caveat, OIU/GTI associated pathway mention, DEI attenuation, regional heterogeneity, and governance sequencing policy implication",
+    "reason": "Trim per ESPR 'about 10 to 15 lines' guidance and task priority order (SCCD framework -> turning point 0.522 -> DEI moderation -> policy). No empirical numbers changed; trimmed contextual/methodological preamble.",
+    "manual": false
+  },
+  {
+    "location": "Section 4.2 / Table S1 preamble",
+    "before_summary": "Para preceding Table S1 caption discussed maximum VIF = 28.21 with a generic statement about expected collinearity between SCCD and SCCD2",
+    "after_summary": "New normal-style paragraph added immediately before Table S1 caption with the exact user-specified sentence: Elevated VIF values for SCCD and SCCD squared are expected because the quadratic specification includes a level term and its square; these do not indicate problematic multicollinearity among distinct explanatory variables.",
+    "reason": "Reinforce the multicollinearity explanation (per task): explicitly state that high VIF for SCCD and SCCD2 reflects the polynomial level-and-square construction and does NOT indicate problematic multicollinearity among distinct explanatory variables.",
+    "manual": false
+  },
+  {
+    "location": "Table S1 Table Note",
+    "before_summary": "Existing note ended with 'the quadratic specification includes a level term and its square.'",
+    "after_summary": "Note extended with '; these do not indicate problematic multicollinearity among distinct explanatory variables.'",
+    "reason": "Align the in-table note with the strengthened in-text preamble requested by the task.",
+    "manual": false
+  },
+  {
+    "location": "Section 4.3 (Supplementary IV) closing paragraph",
+    "before_summary": "Closed with a cautionary statement about IV remaining supplementary; no reference to supplementary material files",
+    "after_summary": "Appended: 'Full first-stage and weak-instrument diagnostics, additional robustness specifications, and supplementary regional and moderation analyses are reported in Electronic Supplementary Material (ESM_1, ESM_2, and ESM_3).'",
+    "reason": "ESPR guidelines require supplementary files to be specifically cited in text (like figures/tables). Adds ESM_1/2/3 in-text reference to satisfy the cross-reference check.",
+    "manual": false
+  },
+  {
+    "location": "Cross-reference verification",
+    "before_summary": "Tables 1-7, Figures 1-3, ESM_1-3 referenced in text",
+    "after_summary": "Status after edits: {\"Table 1\": true, \"Table 2\": true, \"Table 3\": true, \"Table 4\": true, \"Table 5\": true, \"Table 6\": true, \"Table 7\": true, \"Figure 1\": true, \"Figure 2\": true, \"Figure 3\": true, \"ESM_1\": true, \"ESM_2\": true, \"ESM_3\": true}",
+    "reason": "Confirm all tables/figures/supplementary files are referenced in body per ESPR guidelines.",
+    "manual": false
+  }
+]

@@ -1,0 +1,3 @@
+test,F_stat,df,df_r,p_value,N,notes
+City fixed effects,   16.244719,      283,     4209,    0.000000,     4514,Joint test of city indicators in pooled OLS dummy-variable diagnostic
+Year fixed effects,   81.330416,       15,     4209,    0.000000,     4514,Joint test of year indicators in pooled OLS dummy-variable diagnostic

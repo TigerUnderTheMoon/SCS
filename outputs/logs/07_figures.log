@@ -2,7 +2,7 @@
       name:  log07
        log:  D:/Workplace/SCS/outputs/logs/07_figures.log
   log type:  text
- opened on:   8 Jun 2026, 23:43:28
+ opened on:  14 Jun 2026, 01:50:37
 
 . 
 . use "$DATA", clear
@@ -125,5 +125,5 @@ file
       name:  log07
        log:  D:/Workplace/SCS/outputs/logs/07_figures.log
   log type:  text
- closed on:   8 Jun 2026, 23:43:35
+ closed on:  14 Jun 2026, 01:50:46
 -------------------------------------------------------------------------------

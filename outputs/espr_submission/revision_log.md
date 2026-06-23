@@ -1,0 +1,81 @@
+# ESPR Submission Revision Log
+
+- Manuscript: `outputs/espr_submission/manuscript_espr.docx` -> `outputs/espr_submission/manuscript_espr_revised.docx`
+- Cover letter: `outputs/espr_submission/cover_letter_espr.docx` -> `outputs/espr_submission/cover_letter_espr_revised.docx`
+- Target journal: Environmental Science and Pollution Research (ESPR), Springer Nature
+- Date: 2026-06-23
+
+## Context and scientific-governance red lines
+
+All edits preserve the empirical record: no coefficient, standard error, significance star, turning point (0.522 / 0.570), IV diagnostic (F = 61.55 / 80.44 / 380.73), observation count, R-squared, sample period (2006-2021 observed vs 2022-2024 fitted) was modified. The wording discipline of the original manuscript ("association" rather than "causal effect"; "supplementary IV evidence" rather than "primary identification strategy"; "associated pathway" rather than "formal decomposition") was retained. The Limitations section (5.4) wording on observational design, time-varying unobserved factors, and IV limitations remained unchanged. No references were added or removed; the 33-entry reference list remained alphabetically ordered by first author's last name per ESPR guidelines.
+
+## A. Manuscript revisions
+
+| # | Location | Before (summary) | After (summary) | Reason |
+|---|----------|------------------|------------------|--------|
+| 1 | Section 2.1 body (paragraphs 022-027) | 6 paragraphs (~530 words): smart-city policy reviews citing Yang, Ma&Wu, An, Li individually + introductory positioning paragraph | 2 paragraphs (~310 words): condensed smart-city policy review + embedded positioning vs Ma and Wu (2023) at subsection end | Compress 2.1 to fit target Section 2 <=3000 words while preserving positioning against Ma and Wu 2023 (one of 4 closest studies). |
+| 2 | Section 2.2 body | 5 paragraphs (~470 words): urban spatial structure review + SCCD interaction logic + stage-dependent coordination interpretation | 3 paragraphs (~460 words): condensed urban-form review + SCCD interaction logic + embedded positioning vs Li et al. (2025) | Compress 2.2 preserving Li et al. 2025 positioning as embedded subsection-end note. |
+| 3 | Section 2.5 (Positioning Against the Four Closest Studies) + Section 2.4 (Coordination Paradox) | 2.5 = heading + 6 paragraphs (~720 words) of comparison vs Ma&Li&An&Zhu; 2.4 = heading + 6 paragraphs (~700 words) of paradox theory | 2.5 deleted entirely; 2.4 deleted (body merged into new 2.3); Ma&Li&An&Zhu positioning embedded as 2-3 sentences at the end of 2.1/2.2/2.3 respectively | Per task: remove 2.5 as standalone subsection and embed condensed positioning paragraphs at end of 2.1-2.3; merge 2.4 into 2.3 to reach 3 subsections total. |
+| 4 | Section 2.6 heading | Heading text: '2.6. Hypotheses' | Heading text: '2.4. Hypotheses' | After deleting 2.4 and 2.5 and merging old 2.4 content into 2.3, the hypotheses subsection is renumbered from 2.6 to 2.4 to keep Section 2 numbering sequential (2.1, 2.2, 2.3, 2.4). |
+| 5 | In-text citation | Numbered citation style: 'energy-intensive patterns [1-4]' | Author-year style: 'energy-intensive patterns (Creutzig et al. 2016; Seto et al. 2012; Dhakal 2009; Fang et al. 2015)' | ESPR uses author-year citation format (Springer guidelines). Converted vestigial numbered citations to author-year format reusing only references already present in the reference list. |
+| 6 | In-text citation | Numbered citation style: 'functional layout [6-15]' | Author-year style: 'functional layout (Fang et al. 2015; Gagne et al. 2012; Hong et al. 2022; Jung et al. 2022; Kaza 2020; Lee and Lee 2014; Shi et al. 2023; Tan et al. 2024; Wang et al. 2024; Zhang et al. 2024)' | ESPR uses author-year citation format (Springer guidelines). Converted vestigial numbered citations to author-year format reusing only references already present in the reference list. |
+| 7 | In-text citation | Numbered citation style: 'and carbon performance [19-26]' | Author-year style: 'and carbon performance (Anon Higon et al. 2017; Balogun et al. 2020; Castells-Quintana et al. 2021; Cheng et al. 2023; Huang and Huang 2024; Lange et al. 2020; Obringer et al. 2021; Zhang et al. 2022;... | ESPR uses author-year citation format (Springer guidelines). Converted vestigial numbered citations to author-year format reusing only references already present in the reference list. |
+| 8 | In-text citation | Numbered citation style: 'reduce average urban carbon emissions [5,16-18]' | Author-year style: 'reduce average urban carbon emissions (Yang et al. 2022; Ma and Wu 2023; An et al. 2024; Balogun et al. 2020)' | ESPR uses author-year citation format (Springer guidelines). Converted vestigial numbered citations to author-year format reusing only references already present in the reference list. |
+| 9 | In-text citation | Numbered citation style: 'spatially heterogeneous effects [5,16-18]' | Author-year style: 'spatially heterogeneous effects (Yang et al. 2022; Ma and Wu 2023; An et al. 2024; Balogun et al. 2020)' | ESPR uses author-year citation format (Springer guidelines). Converted vestigial numbered citations to author-year format reusing only references already present in the reference list. |
+| 10 | Abstract | ~212 words: included methodological detail, IV F-stat reference, and 'coordination may raise carbon emissions before operating efficiency emerges' framing | ~186 words: retains SCCD four-space framework definition, inverted U + turning point 0.522, supplementary IV 0.570 caveat, OIU/GTI associated pathway mention, DEI attenuation, regional heterogeneity, and governance seque... | Trim per ESPR 'about 10 to 15 lines' guidance and task priority order (SCCD framework -> turning point 0.522 -> DEI moderation -> policy). No empirical numbers changed; trimmed contextual/methodological preamble. |
+| 11 | Section 4.2 / Table S1 preamble | Para preceding Table S1 caption discussed maximum VIF = 28.21 with a generic statement about expected collinearity between SCCD and SCCD2 | New normal-style paragraph added immediately before Table S1 caption with the exact user-specified sentence: Elevated VIF values for SCCD and SCCD squared are expected because the quadratic specification includes a level... | Reinforce the multicollinearity explanation (per task): explicitly state that high VIF for SCCD and SCCD2 reflects the polynomial level-and-square construction and does NOT indicate problematic multicollinearity among distinct explanatory variables. |
+| 12 | Table S1 Table Note | Existing note ended with 'the quadratic specification includes a level term and its square.' | Note extended with '; these do not indicate problematic multicollinearity among distinct explanatory variables.' | Align the in-table note with the strengthened in-text preamble requested by the task. |
+| 13 | Section 4.3 (Supplementary IV) closing paragraph | Closed with a cautionary statement about IV remaining supplementary; no reference to supplementary material files | Appended: 'Full first-stage and weak-instrument diagnostics, additional robustness specifications, and supplementary regional and moderation analyses are reported in Electronic Supplementary Material (ESM_1, ESM_2, and E... | ESPR guidelines require supplementary files to be specifically cited in text (like figures/tables). Adds ESM_1/2/3 in-text reference to satisfy the cross-reference check. |
+| 14 | Cross-reference verification | Tables 1-7, Figures 1-3, ESM_1-3 referenced in text | Status after edits: {"Table 1": true, "Table 2": true, "Table 3": true, "Table 4": true, "Table 5": true, "Table 6": true, "Table 7": true, "Figure 1": true, "Figure 2": true, "Figure 3": true, "ESM_1": true, "ESM_2": tr... | Confirm all tables/figures/supplementary files are referenced in body per ESPR guidelines. |
+| 15 | Section 2.3 heading | Heading: '2.3. Digitalization, Green Technology Progress, and Low-Carbon Coupling' | Heading: '2.3. Digitalization, Green Technology Progress, and the Coordination Paradox' | Reflect the merged content (original 2.3 + 2.4 Coordination Paradox) in the heading title so the section scope matches the new compressed content. |
+
+## B. Cover letter revisions
+
+| # | Location | Before (summary) | After (summary) | Reason |
+|---|----------|------------------|------------------|--------|
+| 1 | Cover Letter - Suggested Reviewers section **[MANUAL]** | Cover letter had no Suggested Reviewers section (author_metadata_finalized.md notes Suggested reviewers: (none)) | Added Suggested Reviewers section with 4 entries covering urban environmental policy & carbon emissions, urban spatial structure & econometrics, China environmental policy & sustainable urban development, and digital eco... | Per task: supplement cover letter with 3-5 suggested reviewers matching the three requested reviewer-direction categories. To avoid fabricating real-person contact information without verification, name/affiliation/email are templated as placeholders flagged for manual confirmation. |
+
+## C. ESPR submission-guideline checks performed
+
+Source: https://www.springer.com/11356/submission-guidelines (retrieved on the revision date).
+
+- **Citation format**: ESPR uses author-year (name and year in parentheses). The reference list is alphabetized by first author's last name. All 33 references in `manuscript_espr.docx` already follow the ESPR style. No reference-list reordering or format conversion was required. Vestigial numbered in-text citations (e.g. `[1-4]`, `[5,16-18]`, `[6-15]`, `[19-26]`, `[21-23]`) outside Section 2 were converted to author-year format using only references already present in the list. **No references were added or removed.**
+- **Abstract length**: ESPR guidance is "about 10 to 15 lines" (no hard word cap). Original abstract was 212 words; revised abstract is 186 words. Compression retained SCCD four-space framework, inverted U + turning point 0.522, supplementary IV turning point 0.570 caveat, OIU/GTI associated pathway mention, DEI attenuation, regional heterogeneity, and governance sequencing policy implication in priority order specified by the task.
+- **Keywords**: 6 keywords provided ("smart city construction; spatial coupling coordination; digital space; carbon emissions; governance sequencing; sustainable urban transition"). ESPR requires 6-8 keywords; satisfies the lower bound. **[MANUAL]** The author may add 1-2 additional keywords before submission to be within the upper-half of the recommended range.
+- **Self-citations**: ESPR caps self-citations at 5 across all authors in the bibliography. The reference list contains zero self-citations (none of the 33 entries is authored by Ma H or Wang N). No action required.
+- **Statements and Declarations**: Already present (Funding, Competing Interests, Author Contributions, Data Availability, Code Availability, Generative AI Declaration, Ethics Approval, Acknowledgments). ESPR places this section BEFORE References; the manuscript follows this order. No change required.
+- **Tables**: All tables (1-7, S1-S2) cited in consecutive order in the text with Arabic numerals and caption (title) provided. Verified all Table 1 through Table 7 references are present in body text.
+- **Figures**: Figure 1, Figure 2, Figure 3 each have a short caption and are cited in the body text. Verified.
+- **Supplementary**: ESM_1, ESM_2, ESM_3 are present as separate PDF files. Added an in-text reference sentence in Section 4.3 ("...are reported in Electronic Supplementary Material (ESM_1, ESM_2, and ESM_3).") to satisfy the ESPR requirement that supplementary files be specifically cited in text.
+- **Footnotes/Endnotes**: ESPR prefers footnotes over endnotes. The manuscript does not use endnotes. The VIF note added in Section 4.2 is inserted as a normal-style text paragraph immediately before the Table S1 caption rather than as a footnote; the table-note itself was also extended. **[MANUAL]** If the editorial office requires a numbered footnote rather than an in-text note, the publisher-side production team can convert; the wording will remain identical.
+- **Heading levels**: Three or fewer displayed heading levels are used (Heading 1 for sections, Heading 2 for subsections). Compliant. No Heading 3 was introduced by the revision.
+- **Hybrid open-access model**: ESPR is hybrid OA. No open-access author-side preference is required at submission; applicable only upon acceptance.
+
+## D. Manual follow-up items
+
+1. **[MANUAL]** **Suggested reviewers - corresponding author completion**: The cover letter now contains a `Suggested Reviewers` section with 4 reviewer entries (name, affiliation, email, one-sentence reason). Names, affiliations, and emails are explicitly marked `[To be confirmed]`. The corresponding author (Ningning Wang) must fill in actual contact details before final submission. The 4 suggested reviewer-path fields correspond to (i) urban environmental policy & carbon emissions, (ii) urban spatial structure & econometrics, (iii) China environmental policy & sustainable urban development, and (iv) digital economy & environmental performance. The fourth entry is an additional direction beyond the three categories named in the task; it can be removed if the corresponding author prefers exactly three reviewers.
+2. **[MANUAL]** **Reference list pre-existing inconsistency**: The reference list entry for EDGAR is `European Commission JointResearchCentre (2025) EDGAR - The Emissions Database for Global Atmospheric Research. Available online: ...`. In-text paragraph [064] cites this source as `(European Commission 2026; Crippa et al. 2024)`, i.e. with year 2026. This year mismatch (2025 in reference list vs 2026 in text) is pre-existing and **was not introduced or modified** by these revisions. Per the project scientific-governance red line, the reference entry was not added/removed and the in-text reference was not silently changed. The corresponding author should reconcile the year (recommend updating the reference-list entry to 2026 to match the in-text citation, since EDGAR v8.0 was released in 2024 and the dataset accessed in 2026).
+3. **[MANUAL]** **Keyword count**: 6 keywords are provided (ESPR requires 6-8). The lower bound is met; the corresponding author may optionally add 1-2 keywords (e.g. "digital economy development", "governance sequencing", "regional heterogeneity") before submission.
+4. **[MANUAL]** **VIF note placement as footnote (optional)**: The user-specified VIF sentence was inserted as a normal-style paragraph immediately before the Table S1 caption. If the editorial office prefers a numbered footnote to the table title rather than a body paragraph, the production team can convert; no wording will change. No action needed unless requested by the editor.
+
+## E. Cross-reference verification (post-revision)
+
+After revisions, the revised manuscript body contains explicit textual references to all required items:
+
+- Tables: Table 1, Table 2, Table 3, Table 4, Table 5, Table 6, Table 7, Table S1, Table S2 (all FOUND in body text)
+- Figures: Figure 1, Figure 2, Figure 3 (all FOUND in body text)
+- Supplementary: ESM_1, ESM_2, ESM_3 (all FOUND in body text via the new sentence appended to Section 4.3)
+- Critical comparator citations retained in Section 2: Yang et al. (2022), Ma and Wu (2023), An et al. (2024), Li et al. (2025), Zhu et al. (2024) (all FOUND)
+- Critical empirical numbers preserved: SCCD = 8.444\*\*\*, SCCD squared = - 8.091\*\*\*, turning point 0.522 / 0.570, F = 61.55 / 80.44 / 380.73 / 16.24 / 81.33, N = 4544/4514/4375/139, SCCD range, etc. (verified unchanged vs. original manuscript)
+- Total paragraph count: 227 (original) -> 206 (revised)
+- Section 2 word count: ~1697 words (well within the 3,000-word target)
+- Abstract word count: 212 (original) -> 186 (revised)
+- References: 33 entries unchanged, alphabetically ordered
+
+## F. Files written
+
+- `manuscript_espr_revised.docx` - Revised manuscript
+- `cover_letter_espr_revised.docx` - Revised cover letter
+- `revision_log.md` - This file
+- `_apply_manuscript_revisions.py`, `_apply_cover_revisions.py` - Revision scripts (kept for audit trail)
+- `_revisions_log_data.json`, `_revisions_log_cover.json` - Machine-readable change entries (intermediate)

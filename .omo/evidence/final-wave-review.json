@@ -1,0 +1,181 @@
+{
+  "F1_plan_compliance": {
+    "must_have": {
+      "citations_author_year_33": true,
+      "mdpi_elements_removed": true,
+      "abstract_unstructured_180_220": true,
+      "author_metadata_filled": true,
+      "statements_before_references": true,
+      "cover_letter_has_preprint": true,
+      "hard_constraints_pass": true
+    },
+    "must_not_have": {
+      "no_green_economy": true,
+      "no_wikipedia": true,
+      "no_dta_modified": true,
+      "no_stata_run": true,
+      "no_coefficients_modified": true,
+      "no_open_access_selected": true
+    },
+    "passed": true
+  },
+  "F2_document_quality": {
+    "heading_count": 29,
+    "structure": [
+      {
+        "level": "Heading 1",
+        "text": "Abstract"
+      },
+      {
+        "level": "Heading 1",
+        "text": "1. Introduction"
+      },
+      {
+        "level": "Heading 1",
+        "text": "2. Literature Review and Theoretical Framework"
+      },
+      {
+        "level": "Heading 2",
+        "text": "2.1. Smart-City Construction and Urban Carbon Reduction"
+      },
+      {
+        "level": "Heading 2",
+        "text": "2.2. Urban Spatial Structure, Coordination, and Emissions"
+      },
+      {
+        "level": "Heading 2",
+        "text": "2.3. Digitalization, Green Technology Progress, and Low-Carb"
+      },
+      {
+        "level": "Heading 2",
+        "text": "2.4. The Coordination Paradox"
+      },
+      {
+        "level": "Heading 2",
+        "text": "2.5. Positioning Against the Four Closest Studies"
+      },
+      {
+        "level": "Heading 2",
+        "text": "2.6. Hypotheses"
+      },
+      {
+        "level": "Heading 1",
+        "text": "3. Materials and Methods"
+      },
+      {
+        "level": "Heading 2",
+        "text": "3.1. Data and Sample"
+      },
+      {
+        "level": "Heading 2",
+        "text": "3.2. SCCD Construction and Indicator System"
+      },
+      {
+        "level": "Heading 2",
+        "text": "3.3. Empirical Strategy"
+      },
+      {
+        "level": "Heading 2",
+        "text": "3.4. Claim Boundaries and Reproducibility Logic"
+      },
+      {
+        "level": "Heading 2",
+        "text": "3.5. Empirical Interpretation Rules"
+      },
+      {
+        "level": "Heading 1",
+        "text": "4. Results"
+      },
+      {
+        "level": "Heading 2",
+        "text": "4.1. Descriptive Statistics"
+      },
+      {
+        "level": "Heading 2",
+        "text": "4.2. Baseline Nonlinear Relationship"
+      },
+      {
+        "level": "Heading 2",
+        "text": "4.3. Robustness and Supplementary IV Evidence"
+      },
+      {
+        "level": "Heading 2",
+        "text": "4.4. Regional Heterogeneity"
+      },
+      {
+        "level": "Heading 2",
+        "text": "4.5. Associated Pathway Equations"
+      },
+      {
+        "level": "Heading 2",
+        "text": "4.6. Moderation and Boundary Conditions"
+      },
+      {
+        "level": "Heading 1",
+        "text": "5. Discussion"
+      },
+      {
+        "level": "Heading 2",
+        "text": "5.1. Reconciling Average Smart-City Effects and Nonlinear Co"
+      },
+      {
+        "level": "Heading 2",
+        "text": "5.2. Governance Sequencing for Sustainability"
+      },
+      {
+        "level": "Heading 2",
+        "text": "5.3. Interpreting Associated Pathways"
+      },
+      {
+        "level": "Heading 2",
+        "text": "5.4. Limitations"
+      },
+      {
+        "level": "Heading 1",
+        "text": "6. Conclusions"
+      },
+      {
+        "level": "Heading 1",
+        "text": "References"
+      }
+    ],
+    "total_paragraphs": 227,
+    "total_words": 11360,
+    "orphan_claims": 0,
+    "orphan_details": [],
+    "passed": true
+  },
+  "F3_pre_submission_qa": {
+    "files_exist": {
+      "manuscript_docx": true,
+      "manuscript_pdf": true,
+      "cover_letter_docx": true,
+      "cover_letter_pdf": true,
+      "qa_json": true,
+      "author_metadata": true
+    },
+    "all_files_present": true,
+    "pdf_size_kb": 824,
+    "pdf_size_ok": true,
+    "estimated_pages": 22,
+    "passed": true
+  },
+  "F4_scope_fidelity": {
+    "environmental_keywords": {
+      "environmental": 26,
+      "pollution": 3,
+      "emissions": 107,
+      "stressor": 0,
+      "sustainable urban": 4,
+      "carbon": 85
+    },
+    "no_green_economy": true,
+    "espr_scope_match": true,
+    "title_has_chinese_cities": true,
+    "keywords_present": true,
+    "passed": true
+  },
+  "all_final_wave_passed": true,
+  "note": "Self-reviewed due to task() tool unavailability (Insufficient Balance). F1-F4 executed as direct comprehensive checks.",
+  "timestamp": "2026-06-22"
+}

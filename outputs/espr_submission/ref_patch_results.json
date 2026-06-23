@@ -1,0 +1,296 @@
+[
+  {
+    "idx": 0,
+    "doi": "10.3390/su16188048",
+    "status": "patched",
+    "volume": "16",
+    "issue": "18",
+    "page": "8048",
+    "new_ref": "An X, Yang Y, Zhang X, Zeng X (2024) Smarter and Cleaner? The Carbon Reduction Effect of Smart Cities: A Perspective on Green Technology Progress. Sus"
+  },
+  {
+    "idx": 1,
+    "doi": "10.1016/j.tele.2017.01.001",
+    "status": "patched",
+    "volume": "34",
+    "issue": "4",
+    "page": "85-95",
+    "new_ref": "Anon Higon D, Gholami R, Shirazi F (2017) ICT and environmental sustainability: A global perspective. Telematics and Informatics 34(4): 85-95. https:/"
+  },
+  {
+    "idx": 2,
+    "doi": "10.1016/j.scs.2019.101888",
+    "status": "patched",
+    "volume": "53",
+    "issue": "",
+    "page": "101888",
+    "new_ref": "Balogun A-L, Marks D, Sharma R, Shekhar H, Balmes C, Maheng D, Arshad A, Salehi P, Vyas A (2020) Assessing the potentials of digitalization as a tool "
+  },
+  {
+    "idx": 3,
+    "doi": "10.1016/j.ecolecon.2021.107153",
+    "status": "patched",
+    "volume": "189",
+    "issue": "",
+    "page": "107153",
+    "new_ref": "Castells-Quintana D, Dienesch E, Krause M (2021) Air pollution in an urban world: A global view on density, cities and emissions. Ecological Economics"
+  },
+  {
+    "idx": 4,
+    "doi": "10.1016/j.esr.2023.101218",
+    "status": "patched",
+    "volume": "50",
+    "issue": "",
+    "page": "101218",
+    "new_ref": "Chang H, Ding Q, Zhao W, Hou N, Liu W (2023) The digital economy, industrial structure upgrading, and carbon emission intensity: Empirical evidence fr"
+  },
+  {
+    "idx": 5,
+    "doi": "10.1016/j.resconrec.2022.106762",
+    "status": "patched",
+    "volume": "189",
+    "issue": "",
+    "page": "106762",
+    "new_ref": "Cheng Y, Zhang Y, Wang J, Jiang J (2023) The impact of the urban digital economy on China's carbon intensity: Spatial spillover and mediating effect. "
+  },
+  {
+    "idx": 6,
+    "doi": "10.1038/nclimate3169",
+    "status": "patched",
+    "volume": "6",
+    "issue": "12",
+    "page": "1054-1056",
+    "new_ref": "Creutzig F, Agoston P, Minx JC, Canadell JG, Andrew RM, Le Quere C, Peters GP, Sharifi A, Yamagata Y, Dhakal S (2016) Urban infrastructure choices str"
+  },
+  {
+    "idx": 7,
+    "doi": "10.5194/essd-16-2811-2024",
+    "status": "patched",
+    "volume": "16",
+    "issue": "6",
+    "page": "2811-2830",
+    "new_ref": "Crippa M, Guizzardi D, Pagani F, Schiavina M, Melchiorri M, Pisoni E, Graziosi F, Muntean M, Maes J, Dijkstra L, Van Damme M, Clarisse L, Coheur P (20"
+  },
+  {
+    "idx": 8,
+    "doi": "10.1016/j.enpol.2009.05.020",
+    "status": "patched",
+    "volume": "37",
+    "issue": "11",
+    "page": "4208-4219",
+    "new_ref": "Dhakal S (2009) Urban energy use and carbon emissions from cities in China and policy implications. Energy Policy 37(11): 4208-4219. https://doi.org/1"
+  },
+  {
+    "idx": 9,
+    "doi": "10.1016/j.techfore.2019.06.010",
+    "status": "patched",
+    "volume": "146",
+    "issue": "",
+    "page": "297-303",
+    "new_ref": "Du K, Li P, Yan Z (2019) Do green technology innovations contribute to carbon dioxide emission reduction? Empirical evidence from patent data. Technol"
+  },
+  {
+    "idx": 10,
+    "doi": null,
+    "status": "no_doi",
+    "ref": "European Commission JointResearchCentre (2025) EDGAR - The Emissions Database for Global Atmospheric Research. Available online: https://edgar.jrc.ec.europa.eu/ (accessed on 21."
+  },
+  {
+    "idx": 11,
+    "doi": "10.1016/j.apenergy.2015.08.095",
+    "status": "patched",
+    "volume": "158",
+    "issue": "",
+    "page": "519-531",
+    "new_ref": "Fang C, Wang S, Li G (2015) Changing urban forms and carbon dioxide emissions in China: A case study of 30 provincial capital cities. Applied Energy 1"
+  },
+  {
+    "idx": 12,
+    "doi": "10.1016/j.jue.2012.04.001",
+    "status": "patched",
+    "volume": "72",
+    "issue": "2-3",
+    "page": "123-136",
+    "new_ref": "Gagne C, Riou S, Thisse J-F (2012) Are compact cities environmentally friendly? Journal of Urban Economics 2012, 72, 123-136(2-3): 123-136. https://do"
+  },
+  {
+    "idx": 13,
+    "doi": "10.1016/j.ecolind.2022.109456",
+    "status": "patched",
+    "volume": "144",
+    "issue": "",
+    "page": "109456",
+    "new_ref": "Hong S, Hui ECM, Lin Y (2022) Relationship between urban spatial structure and carbon emissions: A literature review. Ecological Indicators 144: 10945"
+  },
+  {
+    "idx": 14,
+    "doi": "10.1371/journal.pone.0308001",
+    "status": "patched",
+    "volume": "19",
+    "issue": "9",
+    "page": "e0308001",
+    "new_ref": "Hou J, Li W, Zhang X (2024) Research on the impacts of digital economy on carbon emission efficiency at China's city level. PLOS ONE 19(9): e0308001. "
+  },
+  {
+    "idx": 15,
+    "doi": "10.3390/su16187974",
+    "status": "patched",
+    "volume": "16",
+    "issue": "18",
+    "page": "7974",
+    "new_ref": "Huang L, Huang Y (2024) Does the digital economy promote urban carbon emission reduction? Sustainability 2024, 16, 7974(18): 7974. https://doi.org/10."
+  },
+  {
+    "idx": 16,
+    "doi": "10.1016/j.uclim.2022.101223",
+    "status": "patched",
+    "volume": "44",
+    "issue": "",
+    "page": "101223",
+    "new_ref": "Jung MC, Kang M, Kim S (2022) Does polycentric development produce less transportation carbon emissions? Evidence from urban form identified by night-"
+  },
+  {
+    "idx": 17,
+    "doi": "10.1016/j.enpol.2019.111049",
+    "status": "patched",
+    "volume": "136",
+    "issue": "",
+    "page": "111049",
+    "new_ref": "Kaza N (2020) Urban form and transportation energy consumption. Energy Policy 136: 111049. https://doi.org/10.1016/j.enpol.2019.111049"
+  },
+  {
+    "idx": 18,
+    "doi": "10.1016/j.ecolecon.2020.106760",
+    "status": "patched",
+    "volume": "176",
+    "issue": "",
+    "page": "106760",
+    "new_ref": "Lange S, Pohl J, Santarius T (2020) Digitalization and energy consumption. Does ICT reduce energy demand? Ecological Economics 176: 106760. https://do"
+  },
+  {
+    "idx": 19,
+    "doi": "10.1016/j.enpol.2014.01.024",
+    "status": "patched",
+    "volume": "68",
+    "issue": "",
+    "page": "534-549",
+    "new_ref": "Lee S, Lee B (2014) The influence of urban form on GHG emissions in the U.S. household sector. Energy Policy 68: 534-549. https://doi.org/10.1016/j.en"
+  },
+  {
+    "idx": 20,
+    "doi": "10.3390/su17114934",
+    "status": "patched",
+    "volume": "17",
+    "issue": "11",
+    "page": "4934",
+    "new_ref": "Li D, Zhang X, Lau AD, Gong Y (2025) The Impact of Smart City Construction on the Spatial Distribution of Urban Carbon Emissions Based on the Panel Da"
+  },
+  {
+    "idx": 21,
+    "doi": "10.1016/j.techfore.2021.121434",
+    "status": "patched",
+    "volume": "176",
+    "issue": "",
+    "page": "121434",
+    "new_ref": "Lin B, Ma R (2022) Green technology innovations, urban innovation environment and CO2 emission reduction in China: Fresh evidence from a partially lin"
+  },
+  {
+    "idx": 22,
+    "doi": "10.3390/su15010225",
+    "status": "patched",
+    "volume": "15",
+    "issue": "1",
+    "page": "225",
+    "new_ref": "Ma Z, Wu F (2023) Smart City, Digitalization and CO2 Emissions: Evidence from 353 Cities in China. Sustainability 15(1): 225. https://doi.org/10.3390/"
+  },
+  {
+    "idx": 23,
+    "doi": "10.1016/j.resconrec.2020.105389",
+    "status": "patched",
+    "volume": "167",
+    "issue": "",
+    "page": "105389",
+    "new_ref": "Obringer R, Rachunok B, Maia-Silva D, Arbabzadeh M, Nateghi R, Madani K (2021) The overlooked environmental footprint of increasing Internet use. Reso"
+  },
+  {
+    "idx": 24,
+    "doi": "10.1073/pnas.1211658109",
+    "status": "patched",
+    "volume": "109",
+    "issue": "40",
+    "page": "16083-16088",
+    "new_ref": "Seto KC, Guneralp B, Hutyra LR (2012) Global forecasts of urban expansion to 2030 and direct impacts on biodiversity and carbon pools. Proceedings of "
+  },
+  {
+    "idx": 25,
+    "doi": "10.1016/j.apgeog.2022.102855",
+    "status": "patched",
+    "volume": "151",
+    "issue": "",
+    "page": "102855",
+    "new_ref": "Shi K, Liu G, Cui Y, Wu Y (2023) What urban spatial structure is more conducive to reducing carbon emissions? A conditional effect of population size."
+  },
+  {
+    "idx": 26,
+    "doi": "10.1016/j.ecolind.2024.112700",
+    "status": "patched",
+    "volume": "167",
+    "issue": "",
+    "page": "112700",
+    "new_ref": "Tan G, Zhang X, Xiong S, Sun Z, Lei Y, Wang H, Du S (2024) Assessing the impacts of urban functional form on anthropogenic carbon emissions: A case st"
+  },
+  {
+    "idx": 27,
+    "doi": "10.1016/j.jenvman.2018.11.078",
+    "status": "patched",
+    "volume": "233",
+    "issue": "",
+    "page": "728-738",
+    "new_ref": "Tian X, Bai F, Jia J, Liu Y, Shi F (2019) Realizing low-carbon development in a developing and industrializing region: Impacts of industrial structure"
+  },
+  {
+    "idx": 28,
+    "doi": "10.1016/j.jclepro.2024.141127",
+    "status": "patched",
+    "volume": "442",
+    "issue": "",
+    "page": "141127",
+    "new_ref": "Wang C, Zhang Y, Chen J, Li D, Zhu M, Gan Z (2024) The impact of urban polycentricity on carbon emissions: A case study of the Yangtze River Delta Reg"
+  },
+  {
+    "idx": 29,
+    "doi": "10.1016/j.scs.2022.104201",
+    "status": "patched",
+    "volume": "87",
+    "issue": "",
+    "page": "104201",
+    "new_ref": "Yang Z, Gao W, Han Q, Qi L, Cui Y, Chen Y (2022) Digitalization and carbon emissions: How does digital city construction affect China's carbon emissio"
+  },
+  {
+    "idx": 30,
+    "doi": "10.1016/j.enpol.2024.113990",
+    "status": "patched",
+    "volume": "186",
+    "issue": "",
+    "page": "113990",
+    "new_ref": "Zhang B, Xin Q, Chen S, Yang Z, Wang Z (2024) Urban spatial structure and commuting-related carbon emissions in China: Do monocentric cities emit more"
+  },
+  {
+    "idx": 31,
+    "doi": "10.1016/j.enpol.2022.112927",
+    "status": "patched",
+    "volume": "165",
+    "issue": "",
+    "page": "112927",
+    "new_ref": "Zhang W, Liu X, Wang D, Zhou J (2022) Digital economy and carbon emission performance: Evidence at China's city level. Energy Policy 165: 112927. http"
+  },
+  {
+    "idx": 32,
+    "doi": "10.1038/s41598-024-68417-4",
+    "status": "patched",
+    "volume": "14",
+    "issue": "1",
+    "page": "20461",
+    "new_ref": "Zhu X, Li D, Zhou S, Zhu S, Yu L (2024) Evaluating coupling coordination between urban smart performance and low-carbon level in China's pilot cities "
+  }
+]

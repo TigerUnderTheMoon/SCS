@@ -1,0 +1,5 @@
+Fixed-effect joint significance tests for observed full-control baseline sample
+Diagnostic model: pooled OLS with SCCD, SCCD2, OPEN, UR, URG, GI, city indicators, and year indicators.
+Main manuscript estimates remain two-way fixed-effects regressions with city-clustered standard errors.
+City fixed effects: F(      283,      4209) =    16.245, p =  0.000000
+Year fixed effects: F(       15,      4209) =    81.330, p =  0.000000

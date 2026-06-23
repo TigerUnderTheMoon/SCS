@@ -1,0 +1,6 @@
+OPEN data-quality diagnostic for observed 2006-2021 sample
+Nonmissing OPEN observations:         4529
+Missing OPEN observations:           15
+Negative OPEN observations:           72 (    1.590% of nonmissing OPEN)
+OPEN range: [-0.719693,  3.639746]
+Interpretation note: negative OPEN values are retained and disclosed rather than recoded ex post because the data file is treated as authoritative input.

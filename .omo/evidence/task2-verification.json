@@ -1,0 +1,15 @@
+{
+  "numeric_citations_remaining": 0,
+  "author_year_citations": 24,
+  "et_al_in_reference_list": 0,
+  "reference_count": 33,
+  "alphabetically_sorted": true,
+  "espr_self_citations": 0,
+  "author_self_citations": 2,
+  "within_limits": {
+    "espr_self_citation_le_5": true,
+    "author_self_citation_le_5": true,
+    "no_et_al_in_refs": true,
+    "no_numeric_citations": true
+  }
+}

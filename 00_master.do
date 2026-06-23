@@ -44,6 +44,7 @@ do "$ROOT/04_heterogeneity.do"
 do "$ROOT/05_mediation.do"
 do "$ROOT/06_moderation.do"
 do "$ROOT/07_figures.do"
+do "$ROOT/08_submission_diagnostics.do"
 
 di as text "Completed SCS workflow at " c(current_date) " " c(current_time)
 log close master

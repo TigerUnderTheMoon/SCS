@@ -1,0 +1,8 @@
+item,value,notes
+baseline_estimation_sample_n,        4514,Full-control observed baseline e(sample)
+turning_point, 0.521838,Observed baseline turning point
+observations_at_or_below_turning_point,        4375,SCCD <= turning point
+observations_above_turning_point,         139,SCCD > turning point
+percent_at_or_below_turning_point,96.920691,Percent of e(sample)
+percent_above_turning_point, 3.079309,Percent of e(sample)
+cities_with_any_observation_above_turning_point,          33,Unique ids with SCCD > turning point in e(sample)

@@ -1,0 +1,6 @@
+Variance inflation factor diagnostic for observed baseline regressors
+Sample: observed 2006-2021 full-control baseline e(sample)
+Auxiliary regressions include year indicators and exclude city indicators.
+Mean VIF:     9.943
+Maximum VIF:    28.210
+Interpretation note: SCCD and SCCD2 are expected to have elevated VIF values because the quadratic specification includes a level term and its square.

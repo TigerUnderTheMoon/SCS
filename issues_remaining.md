@@ -1,5 +1,66 @@
 # Issues Remaining
 
+## 2026-06-14 Submission-Standard Tightening Pass
+
+### Closed Or Addressed In The Current Package
+
+1. Removed remaining manuscript-facing internal process wording such as `working repository`, `workflow`, `author-side items`, `reviewer-proof`, and `current outputs` from the generated DOCX/PDF text.
+2. Added a stricter manuscript QA split in `sustainability_deep_checks.json`: structural evidence QA now remains `passed: true`, while final upload readiness is reported separately as `submission_ready: false`.
+3. Added `outputs/sustainability_restructure_20260603_deep/submission_requirements_audit.md` to map MDPI/Sustainability requirements to package evidence and author-side blockers.
+4. Added QA checks for article type, keyword count, ethics statements, title-page author metadata, and main-text internal process terms.
+5. Revised package trackers so `submission_readiness_audit.md`, `final_submission_checklist.md`, `author_metadata_intake.md`, and `submission_cover_letter_draft.md` use the same status: structural QA passed, author metadata blocked.
+6. Replaced unconfirmed cover-letter conflict wording with author-confirmation placeholders rather than assuming no conflicts.
+
+### Remaining Author Actions Before Submission
+
+1. Add final title-page author names, affiliations, ORCID IDs if used, and corresponding-author metadata.
+2. Finalize the named author list and CRediT contribution statement.
+3. Provide the final funding statement with grant numbers, or confirm the formal no-external-funding statement.
+4. Provide final acknowledgments text, or confirm that no acknowledgments are required.
+5. Provide the final conflict-of-interest declaration.
+6. Confirm the data/source-license wording for raw data, processed city-level data, code, tables, and figures.
+7. Confirm the AI-use declaration wording if the author team wants journal-specific phrasing.
+8. Fill and finalize the cover letter with author metadata, originality/no-under-review declaration, and any reviewer suggestions or exclusions.
+
+### Verification Notes
+
+1. Ran `powershell -NoProfile -ExecutionPolicy Bypass -File .\run_stata.ps1`; `outputs/logs/00_master.log` contains `Completed SCS workflow at 14 Jun 2026 01:50:48`, and no `outputs/logs/*.log` entry contains a Stata `r()` error.
+2. Ran `SUSTAINABILITY_REVISION_DATE=20260603 python build_sustainability_observed_manuscript.py`; `sustainability_deep_checks.json` reports `passed: true`, `submission_ready: false`, `submission_status: STRUCTURAL_QA_PASSED_AUTHOR_METADATA_BLOCKED`, 130 abstract words, 6 keywords, 10,026 main-text words before references, 0 long sentences, and no main-text internal process terms.
+3. Rendered the final PDF to 32 PNG pages under `outputs/sustainability_restructure_20260603_deep/rendered_pdf_latest/`, rebuilt `contact_sheet.png`, and visually checked the contact sheet plus the title/abstract, author-declaration, data/AI/conflict/supplementary, and reference pages.
+
+## 2026-06-14 Sustainability Submission Checklist Pass
+
+### Closed Or Addressed In The Current Package
+
+1. The manuscript abstract now uses the requested Sustainability structured format: Background, Methods, Results, and Conclusions.
+2. Five highlights are prepared in `outputs/sustainability_restructure_20260603_deep/submission_highlights.md`.
+3. A graphical abstract is prepared at `outputs/sustainability_restructure_20260603_deep/graphical_abstract.png`; the file is 2400 x 1440 pixels at approximately 300 dpi.
+4. Manuscript-facing `generator` / `generated workflow` wording has been removed by the QA gate.
+5. VIF diagnostics and fixed-effect joint significance tests are exported to:
+   - `outputs/tables/table08_vif_observed_2006_2021.csv`
+   - `outputs/tables/table08_fixed_effects_joint_tests_observed_2006_2021.csv`
+6. The manuscript now includes supplementary Tables S1-S2 for VIF and fixed-effect diagnostics.
+7. The manuscript includes a declaration of generative AI and AI-assisted technologies in the writing process.
+8. Supplementary materials are organized under `outputs/sustainability_restructure_20260603_deep/supplementary_materials/` with `main_analysis/`, `sensitivity_analysis/`, and a README.
+9. A DOI audit is saved as `outputs/sustainability_restructure_20260603_deep/reference_doi_audit.csv`.
+10. The sentence-length QA audit reports zero sentences at or above the 35-word threshold before the reference list.
+
+### Remaining Author Actions Before Submission
+
+1. Finalize the named author list and CRediT contribution statement. The repository still does not contain author-specific roles.
+2. Provide the final funding statement with grant numbers, or confirm the formal no-external-funding statement.
+3. Provide final acknowledgments text, or confirm that no acknowledgments are required.
+4. Provide the final conflict-of-interest declaration.
+5. Confirm the data/source-license wording for raw data, processed city-level data, code, tables, and figures.
+6. Confirm the AI-use declaration wording if the author team wants journal-specific phrasing.
+7. Fill and finalize the cover letter with author metadata, originality/no-under-review declaration, and any reviewer suggestions or exclusions.
+
+### Verification Notes
+
+1. The 2026-06-14 generator run reports `passed: true` in `sustainability_deep_checks.json`.
+2. The regenerated PDF was rendered to 32 PNG pages under `outputs/sustainability_restructure_20260603_deep/rendered_pdf_latest/`; the contact sheet and selected dense pages were visually inspected without obvious clipping or overlap.
+3. The DOI audit produced 27 direct resolver successes, 5 DOI redirects to publisher pages that returned automated-access 403 responses, and 1 web/data-source reference without a DOI.
+
 ## 2026-06-08 Data Consistency Notes
 
 1. Stata `tabulate region` on `插值回归_2006_2024_拟合更新.dta` reports only `东部`, `中部`, and `西部`; no `东北部` category is present.

@@ -1,0 +1,14 @@
+{
+  "green_economy_count": 0,
+  "intro_word_count": 1007,
+  "intro_env_keywords": {
+    "environmental": 2,
+    "pollution": 0,
+    "emissions": 8,
+    "stressor": 0,
+    "urban landscape": 0,
+    "sustainable urban": 1
+  },
+  "policy_eval_mentions": 7,
+  "scope_compliant": true
+}

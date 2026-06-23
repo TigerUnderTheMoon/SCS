@@ -1,0 +1,95 @@
+{
+  "green_economy_count": 0,
+  "green_economy_locations": [],
+  "espr_self_citation_count": 0,
+  "espr_self_citation_samples": [],
+  "total_self_citation_count": 0,
+  "total_self_citation_samples": [],
+  "et_al_count": 22,
+  "et_al_locations": [
+    {
+      "paragraph": 10,
+      "context": "ough green patenting [16]. An et al. show that smart-city construc"
+    },
+    {
+      "paragraph": 10,
+      "context": " factor productivity [18]. Li et al. further show that the effect "
+    },
+    {
+      "paragraph": 23,
+      "context": "Yang et al. provide an important benchmar"
+    },
+    {
+      "paragraph": 25,
+      "context": "An et al. examine the carbon-reduction "
+    },
+    {
+      "paragraph": 26,
+      "context": "Li et al. analyze 277 prefecture-level "
+    },
+    {
+      "paragraph": 26,
+      "context": "at classification. It uses Li et al. to motivate regional heteroge"
+    },
+    {
+      "paragraph": 30,
+      "context": "Fang et al. show that urban form matters "
+    },
+    {
+      "paragraph": 36,
+      "context": "ain boundary condition. Zhang et al. link digital economy developm"
+    },
+    {
+      "paragraph": 36,
+      "context": "in Chinese cities [24]. Cheng et al. study digital economy, carbon"
+    },
+    {
+      "paragraph": 36,
+      "context": " spatial spillovers [25]. Hou et al. examine the digital economy a"
+    }
+  ],
+  "wikipedia_count": 0,
+  "wikipedia_locations": [],
+  "reference_count": 33,
+  "numeric_citation_count": 24,
+  "numeric_citation_samples": [
+    "16",
+    "18",
+    "17",
+    "27",
+    "5",
+    "16",
+    "18",
+    "17",
+    "4",
+    "24"
+  ],
+  "abstract_structured_markers": [
+    "Background: Smart-city construction can coordinate",
+    "Methods: Using an observed panel of 284 Chinese ci",
+    "Results: The full-control estimates show an invert",
+    "Conclusions: Smart-city coordination supports low-"
+  ],
+  "mdpi_elements": {
+    "article_label": true,
+    "highlights": false,
+    "graphical_abstract": false
+  },
+  "et_al_in_reference_list": 0,
+  "et_al_in_reference_list_samples": [],
+  "espr_self_citation_in_refs": 0,
+  "espr_self_citation_in_refs_samples": [],
+  "author_self_citation_count": 2,
+  "author_self_citation_samples": [
+    "13. Wang, C.; Zhang, Y.; Chen, J.; Li, D.; Zhu, M.; Gan, Z. The impact of urban polycentricity on carbon emissions: A ca",
+    "16. Ma, Z.; Wu, F. Smart City, Digitalization and CO2 Emissions: Evidence from 353 Cities in China. Sustainability 2023,"
+  ],
+  "ellipsis_in_refs": 0,
+  "reference_list_first_5": [
+    "1. Seto, K.C.; Guneralp, B.; Hutyra, L.R. Global forecasts of urban expansion to 2030 and direct impacts on biodiversity and carbon pools. Proceedings of the National Academy of Sciences of the United States of America 2012, 109, 16083-16088. https://doi.org/10.1073/pnas.1211658109",
+    "2. Dhakal, S. Urban energy use and carbon emissions from cities in China and policy implications. Energy Policy 2009, 37, 4208-4219. https://doi.org/10.1016/j.enpol.2009.05.020",
+    "3. Creutzig, F.; Agoston, P.; Minx, J.C.; Canadell, J.G.; Andrew, R.M.; Le Quere, C.; Peters, G.P.; Sharifi, A.; Yamagata, Y.; Dhakal, S. Urban infrastructure choices structure climate solutions. Nature Climate Change 2016, 6, 1054-1056. https://doi.org/10.1038/nclimate3169",
+    "4. Fang, C.; Wang, S.; Li, G. Changing urban forms and carbon dioxide emissions in China: A case study of 30 provincial capital cities. Applied Energy 2015, 158, 519-531. https://doi.org/10.1016/j.apenergy.2015.08.095",
+    "5. Yang, Z.; Gao, W.; Han, Q.; Qi, L.; Cui, Y.; Chen, Y. Digitalization and carbon emissions: How does digital city construction affect China's carbon emission reduction? Sustainable Cities and Society 2022, 87, 104201. https://doi.org/10.1016/j.scs.2022.104201"
+  ]
+}

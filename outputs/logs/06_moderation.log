@@ -2,7 +2,7 @@
       name:  log06
        log:  D:/Workplace/SCS/outputs/logs/06_moderation.log
   log type:  text
- opened on:   8 Jun 2026, 23:43:25
+ opened on:  14 Jun 2026, 01:50:33
 
 . 
 . use "$DATA", clear
@@ -643,5 +643,5 @@ marginal_e~d |   3.094372   .4712406     6.57   0.000     2.170758    4.017987
       name:  log06
        log:  D:/Workplace/SCS/outputs/logs/06_moderation.log
   log type:  text
- closed on:   8 Jun 2026, 23:43:28
+ closed on:  14 Jun 2026, 01:50:37
 -------------------------------------------------------------------------------

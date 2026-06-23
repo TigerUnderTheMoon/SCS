@@ -1,0 +1,43 @@
+[000] <Normal> June 22, 2026
+[001] <Normal> 
+[002] <Normal> To the Editor-in-Chief
+[003] <Normal> Environmental Science and Pollution Research
+[004] <Normal> Springer Nature
+[005] <Normal> 
+[006] <Normal> Subject: Submission of manuscript for consideration in Environmental Science and Pollution Research
+[007] <Normal> 
+[008] <Normal> Dear Editor-in-Chief,
+[009] <Normal> 
+[010] <Normal> We are pleased to submit our original research manuscript entitled "Smart City Construction, Sustainable Urban Transition, and Carbon Emissions: Nonlinear Evidence from Chinese Cities" for consideration for publication in Environmental Science and Pollution Research. The manuscript has not been published previously and is not under consideration for publication elsewhere, in whole or in part, in any language. All authors have read and approved the final manuscript and agree to its submission.
+[011] <Normal> 
+[012] <Normal> The associated-pathway and moderation analyses show that industrial structure upgrading and green technological innovation move with SCCD, while digital economy development moderates the nonlinear SCCD-emission relationship.
+[013] <Normal> 
+[014] <Normal> The manuscript makes three contributions. First, it provides a city-level quantitative assessment of the nonlinear relationship between smart-city construction and carbon emissions, refining the existing smart-city carbon literature that has relied primarily on binary policy evaluations. Second, it identifies an empirically grounded turning point that informs sequencing of smart-city construction across cities with different coordination capacities. Third, it documents associated pathway and moderation mechanisms that connect smart-city construction to industrial upgrading and green technology innovation, offering actionable evidence for urban environmental management.
+[015] <Normal> 
+[016] <Normal> The empirical design uses an observed panel of 284 Chinese cities from 2006 to 2021, with supplementary instrumental-variable estimation using lagged smart-city construction as an instrument. Robustness checks, regional heterogeneity analysis, and pathway-moderation analyses support the main findings. The study uses publicly available city-level statistical and emissions data and does not involve human participants or animal subjects.
+[017] <Normal> 
+[018] <Normal> Preprint Declaration: I confirm that I have not submitted my manuscript to a preprint server before submitting it to Environmental Science and Pollution Research.
+[019] <Normal> 
+[020] <Normal> Originality and Conflict of Interest: This manuscript is original, has not been published elsewhere, and is not under consideration by another journal. The authors have no relevant financial or non-financial interests to disclose.
+[021] <Normal> 
+[022] <Normal> Funding: This work was supported by the National Social Science Fund of China Project (Grant number 24BSH018) and the Beijing Natural Science Foundation Project (Grant number L252145).
+[023] <Normal> 
+[024] <Normal> Generative AI Use: During manuscript preparation, AI-assisted tools were used for language polishing, structural editing, and formatting support. The authors reviewed and approved all content and take full responsibility for the manuscript.
+[025] <Normal> 
+[026] <Normal> We thank you for considering our manuscript and look forward to your response.
+[027] <Normal> 
+[028] <Normal> Sincerely,
+[029] <Normal> 
+[030] <Normal> Ningning Wang (Corresponding Author)
+[031] <Normal> College of Management Science and Engineering
+[032] <Normal> Beijing Information Science and Technology University
+[033] <Normal> 102200 Beijing, China
+[034] <Normal> Email: wangningning@bistu.edu.cn
+[035] <Normal> 
+[036] <Normal> Haoran Ma (First Author)
+[037] <Normal> College of Management Science and Engineering
+[038] <Normal> Beijing Information Science and Technology University
+[039] <Normal> 102200 Beijing, China
+[040] <Normal> Email: mahaoran0000@foamail.com
+
+=== TABLES ===

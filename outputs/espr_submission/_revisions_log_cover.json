@@ -1,0 +1,9 @@
+[
+  {
+    "location": "Cover Letter - Suggested Reviewers section",
+    "before_summary": "Cover letter had no Suggested Reviewers section (author_metadata_finalized.md notes Suggested reviewers: (none))",
+    "after_summary": "Added Suggested Reviewers section with 4 entries covering urban environmental policy & carbon emissions, urban spatial structure & econometrics, China environmental policy & sustainable urban development, and digital economy & environmental performance. Each entry has a one-sentence reason; name/affiliation/email fields are explicitly marked as [To be confirmed] pending corresponding-author confirmation.",
+    "reason": "Per task: supplement cover letter with 3-5 suggested reviewers matching the three requested reviewer-direction categories. To avoid fabricating real-person contact information without verification, name/affiliation/email are templated as placeholders flagged for manual confirmation.",
+    "manual": true
+  }
+]
